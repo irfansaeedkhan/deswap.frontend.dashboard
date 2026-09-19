@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <style type="text/css">  
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;
+  font-feature-settings: "pnum" on, "lnum" on;
+}
+a:hover {
+    text-decoration: none;
+}
+            .inner-container{
+                background-color: #232323 !important;
+                margin-top: 81px;
+                border-radius: 32px;
+                margin-bottom: 151px;
+            }
+            .inner-content{
+                padding-left:40px;
+                padding-bottom: 40px;
+                padding-right: 40px;
+            }
+
+            .heading1{
+                color:#e44757;
+                height: 32px;
+                width: 221.6749725341797px;
+                padding-top: 40px;
+                border-radius: 0px;
+            }
+            .heading2{
+                font-size: 34px;
+                font-style: normal;
+                font-weight: 700;
+                letter-spacing: 0em;
+                text-align: left;
+                color: #FFFFFF;
+                padding-top: 80px;
+            }
+            .para1{
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                letter-spacing: 0em;
+                text-align: left;
+                color: #e1dfdf;
+                padding-top: 80px;
+            }
+            .para2{
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                letter-spacing: 0em;
+                text-align: left;
+                color: #e1dfdf;
+                width: 808;
+                padding-top:24px ;
+            }
+            .parapart2{
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                letter-spacing: 0em;
+                text-align: left;
+                color: #e1dfdf;
+                width: 808;
+                padding-top:10px ;
+            }
+
+
+            .btn1{
+                height: 56px;
+                width: 92px;
+                border-radius: 16px;
+                padding: 16px;
+                background: #e44757;
+                border:0px;
+            }
+
+            .span1{
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 700;
+                letter-spacing: 0em;
+                text-align: center;
+                color:#FFFFFF;
+            }
+
+            .btndiv{
+                padding-top: 40px;
+            }
+
+            .para3{
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                letter-spacing: 0em;
+                text-align: left;
+                color: #e1dfdf;
+                padding-top: 20px;
+            }
+
+            .para4{
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                letter-spacing: 0em;
+                text-align: left;
+                color:#e1dfdf;
+                padding-top: 64px;
+            }
+
+            .para5{
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                letter-spacing: 0em;
+                text-align: left;
+                color: #e1dfdf;
+            }
+            .line{
+                border-top: 1px #4F4F4F solid;
+                margin-right: 40px;
+            }
+            .para6{
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                letter-spacing: 0em;
+                text-align: left;
+                color: #e1dfdf;
+            }
+            .cont {
+                max-width: 100% !important;
+                overflow-x: hidden !important;
+                padding-right: 100px;
+                padding-left: 100px;
+                margin-right: auto;
+                margin-left: auto; 
+                background: #1f1f1f;
+            }
+
+            .img1{
+                height: 16px;
+                width: 112.43242645263672px;
+                margin-top: 44px;
+
+            }
+
+            @media only screen and (max-device-width: 480px) {
+                .cont {
+                    max-width: 100% !important;
+                    overflow-x: hidden !important;
+                    padding-right: 0px;
+                    padding-left: 0px;
+                    margin-right: auto;
+                    margin-left: auto; 
+                }
+                .inner-container{
+                    margin-left: 25px;
+                    margin-right: 25px;
+                }
+                
+            }
+    </style>
+    </head>
+    
+    <body >
+            <div class=" cont">
+        <div className="row justify-content-center">
+            <div className="">
+        <div class="inner-container">
+            <div class="inner-content">
+                <img className="img-fluid"  src="https://deswap.co/images/logo.png" 
+                style="object-fit: cover;
+                margin-top: 30px;
+                max-width: 300px;
+                display: inline-block;"
+                 alt="no image" />
+                    <h4 class="heading2">New User registered on deswap platform</h4>
+                    <p class="para2">
+                        <br>
+                            Please check txhash on polygon scan : <br>
+                                Email ID : <% if (useremail) { %>
+                                                <%= useremail %>
+                                            <% } %><br>
+                                Username : <% if (userusername) { %>
+                                            <%= userusername %>
+                                        <% } %><br>
+                                TxHash : <% if (txhash) { %>
+                                            <%= txhash %>
+                                         <% } %><br>
+                                Referral : <% if (referral) { %>
+                                            <%= referral %>
+                                         <% } %><br>
+                                Wallet Address : <% if (walletaddress) { %>
+                                            <%= walletaddress %>
+                                        <% } %><br>
+                                Transaction Amount in matic : <% if (amount) { %>
+                                    <%= amount %>
+                                <% } %><br>
+                                Amount in USD : <% if (amountInUSD) { %>
+                                    <%= amountInUSD %>
+                                <% } %><br>
+                                Amount fetched on server in matic : <% if (checkedAmount) { %>
+                                    <%= checkedAmount %>
+                                <% } %><br>
+                                Difference in percentage : <% if (percentageerror) { %>
+                                    <%= percentageerror %>
+                                <% } %><br>
+                                Error message : <% if (transactionError) { %>
+                                    <%= transactionError %>
+                                <% } %><br>
+                </p>
+                <br>
+                <div class="btndiv">
+                    <hr class="line"></hr>
+                </div>
+                <p class="para3">Please do not reply to this message. If you have any question, please contact DESWAP Support</p>
+                <p class=para6>© 2021 DESWAP. All Rights Reserved</p>
+            </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        </div>
+   
+    </body>
+</html>

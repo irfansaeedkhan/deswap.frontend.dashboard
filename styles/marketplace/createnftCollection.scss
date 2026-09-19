@@ -1,0 +1,310 @@
+.createNFTCollectionContainer {
+  .createNFTCollectionInner {
+    width: 48vw;
+    padding-top: 5rem;
+    padding-bottom: 10rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    @include max767() {
+      width: 90vw;
+    }
+    h2 {
+      font-weight: 600;
+      font-size: 34px;
+      @include max767() {
+        font-size: 24px;
+      }
+    }
+
+    h6 {
+      font-weight: 600;
+      @include txt14;
+      margin: 0;
+    }
+    .uploadLogoImgContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      p {
+        color: #adadad;
+        @include txt12;
+      }
+      .uploadBox {
+        border: 2px dashed #333333;
+        border-radius: 24px;
+        background: #262626;
+        width: 100%;
+        max-width: 480px;
+        height: 206px;
+        position: relative;
+        &:hover {
+          background: #333333;
+        }
+
+        input {
+          position: absolute;
+          top: 50%;
+          left: 24px;
+          transform: translateY(-50%);
+          z-index: 10;
+          width: 140px;
+          height: 140px;
+          cursor: pointer;
+          opacity: 0;
+        }
+
+        .uploadicon {
+          position: absolute;
+          top: 50%;
+          left: 24px;
+          transform: translateY(-50%);
+          z-index: 5;
+          width: 140px;
+          height: 140px;
+          background: #333333;
+          border: 1px dashed #3d3d3d;
+          border-radius: 9999999px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          span {
+            width: 80px !important;
+            height: 80px !important;
+          }
+        }
+
+        .uploadiconpic {
+          position: absolute;
+          top: 50%;
+          left: 24px;
+          transform: translateY(-50%);
+          z-index: 5;
+          width: 140px;
+          height: 140px;
+          background: #333333;
+          border: 1px dashed #3d3d3d;
+          border-radius: 9999999px;
+          overflow: hidden;
+        }
+      }
+    }
+    .uploadCoverContainer {
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      p {
+        @include txt12;
+        line-height: 18px;
+        color: #adadad;
+      }
+      .uploadBox {
+        border: 2px dashed #333333;
+        border-radius: 24px;
+        background: #262626;
+        width: 100%;
+        max-width: 480px;
+        height: 300px;
+        position: relative;
+        overflow: hidden;
+        @include max767 {
+          width: 100%;
+          height: 240px;
+        }
+        &:hover {
+          background: #333333;
+        }
+
+        input {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50% -50%);
+          transform: translate(-50%, -50%);
+          z-index: 10;
+          width: 140px;
+          height: 140px;
+          cursor: pointer;
+          opacity: 0;
+        }
+
+        .uploadicon {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50% -50%);
+          transform: translate(-50%, -50%);
+          z-index: 5;
+          width: 140px;
+          height: 140px;
+        }
+
+        .uploadiconpic {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50% -50%);
+          transform: translate(-50%, -50%);
+          z-index: 5;
+          width: 380px;
+          height: 300px;
+
+          @include max767 {
+            border-radius: 16px;
+            overflow: hidden;
+            width: 100%;
+            height: 240px;
+          }
+        }
+      }
+    }
+
+    .blockchainContainer {
+      h3 {
+        padding-top: 3.2rem;
+        font-weight: 600;
+        @include txt14;
+      }
+
+      .blockchainbox {
+        border: 2px dashed #333333;
+        border-radius: 32px;
+        display: flex;
+        gap: 1.8rem;
+        grid-gap: 1.8rem;
+        align-items: center;
+        background: #262626;
+        max-width: 480px;
+        height: 8.8rem;
+        padding: 3.5rem;
+        margin-top: 1rem;
+        margin-bottom: 3.2rem;
+
+        .maticicon {
+          width: 20px;
+        }
+      }
+    }
+
+    .putmarketplace {
+      padding-top: 1rem;
+      padding-bottom: 3.2rem;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 480px;
+      gap: 1rem;
+      grid-gap: 1rem;
+
+      .marketBox {
+        cursor: pointer;
+        width: 100%;
+        height: 120px;
+        background: #262626;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 1rem;
+        grid-gap: 1rem;
+        border-radius: 32px;
+        border: 2px dashed #333333;
+
+        &.active {
+          border: 2px solid #e44757;
+        }
+
+        .iconbox {
+          width: 24px;
+        }
+
+        h3 {
+        }
+      }
+    }
+
+    .createNFTCollectionForm {
+      h6 {
+        padding-bottom: 10px;
+      }
+      .inputFormContainer {
+        padding-bottom: 2.4rem;
+
+        .inputBox {
+          border: 1.5px solid #333333;
+          border-radius: 16px;
+          height: 56px;
+
+          input {
+            width: 100%;
+            height: 100%;
+            outline: none;
+            border: none;
+            background: none;
+            padding: 16px;
+            font-weight: 400;
+            @include txt14;
+          }
+          textarea {
+            width: 100%;
+            height: 100%;
+            outline: none;
+            border: none;
+            background: none;
+            padding: 16px;
+            font-weight: 400;
+            @include txt14;
+          }
+          p {
+            font-size: 10px;
+            color: #e44757;
+            margin-top: 3px;
+          }
+        }
+        &.inputWithIcon {
+          .inputBox {
+            position: relative;
+          }
+          input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding-left: 54px;
+          }
+          .iconBox {
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            top: 50%;
+            left: 24px;
+            transform: translateY(-50%);
+            img {
+              width: 100% !important;
+              height: 100% !important;
+            }
+          }
+        }
+      }
+
+      .FooterbtnContainer {
+        max-width: 465px;
+        width: 100%;
+
+        button {
+          // color: #FFFFFF;
+          // background-color: #E44757;
+          // background: #333333;
+          border-radius: 100px;
+          font-weight: 500;
+          @include txt14;
+
+          padding: 12px;
+        }
+      }
+    }
+  }
+}

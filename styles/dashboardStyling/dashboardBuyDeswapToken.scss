@@ -1,0 +1,732 @@
+.buydtkContainer {
+    width: 100%;
+    .buydtkInner {
+      width: 100%;
+      padding: 4rem;
+      @include maxWidth;
+      @include max1000 {
+        padding: 4rem;
+        padding-top: 8rem;
+        min-height:100vh;
+      }
+      @include max767 {
+        padding: 3rem;
+        padding-top: 8rem;
+      }
+      .title {
+        padding-bottom: 2.4rem;
+        h1 {
+          @include txt24;
+        }
+      }
+      .buydtkMain {
+        .swapContainer {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #ffffff;
+          
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 3vh;
+            padding-top: 10rem;
+            @include max1000{
+                padding-top: 10rem;
+            }
+        
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+              color: #ffffff;
+            }
+            .tableContainer {
+              min-height: 20vh;
+              &.customScrollOntables::-webkit-scrollbar {
+                display: block !important;
+                width: 9px;
+                height: 9px;
+                background-color: #ffffff;
+                border-radius: 5px;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                -ms-border-radius: 5px;
+                -o-border-radius: 5px;
+                cursor: pointer;
+              }
+              &.customScrollOntables::-webkit-scrollbar-thumb {
+                background-color: #e44757; /* or add it to the track */
+                border-radius: 5px;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                -ms-border-radius: 5px;
+                -o-border-radius: 5px;
+                cursor: pointer;
+              }
+              &.customScrollOntables {
+                overflow: auto;
+              }
+          
+              @include max767() {
+                &.customScrollOntables::-webkit-scrollbar {
+                  display: none !important;
+                }
+              }
+            }
+            .swapHeadingContainer {
+              margin: 0px !important;
+              padding: 0px !important;
+              .swapHeading {
+                font-weight: 500;
+                font-size: 2.125rem;
+                line-height: 42px;
+                color: #ffffff;
+                margin: 2.5rem;
+              }
+            }
+          
+            .swapInner.togglegraph {
+              display: flex;
+              width: 370px;
+              padding: 0px;
+          
+              @media screen and (max-width: 767px) {
+                width: 90%;
+              }
+            }
+            .swapInner {
+              width: 80%;
+              height: 100%;
+              gap: 5rem;
+              grid-gap: 5rem;
+          
+              @include max1000 {
+                width: 90%;
+                padding: 0rem 0rem;
+              }
+              @media screen and (max-width: 1199px) {
+                display: flex;
+                flex-direction: column-reverse;
+                display: grid;
+                grid-template-columns:100% 100%;
+              }
+              @media screen and (min-width: 1200px) {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                grid-template-rows: auto;
+              }
+              @media screen and (min-width: 1800px) {
+                max-width: 1390px;
+                align-self: start;
+              }
+              // heading
+          
+              // graph styling
+              .swapgraphContainer {
+                
+                padding: 20px;
+                width: 100%;
+                border-radius: 16px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                box-shadow: 0px 0px 5px 0px #2e2e2e;
+                background: #232323;
+                @media screen and (max-width: 1199px) {
+                  grid-column: 1;
+                  grid-row: 2;
+                }
+                @media screen and (max-width: 1200px) {
+                  margin-bottom: 3rem;
+                }
+                .head {
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  padding-bottom: 2.4rem;
+                  @include max767{
+                    padding-bottom: 3.4rem;
+
+                }
+                  .lefthead {
+                    display: flex;
+                    align-items: center;
+                    width: 30%;
+                    gap: 1rem;
+                    .coinswap {
+                      display: flex;
+                      gap: 13px;
+                      align-items: center;
+                      .coin1 {
+                        width: 24px;
+                        height: 24px;
+                        img {
+                          width: 24px !important;
+                          height: 24px !important;
+                        }
+                      }
+                      .coin2 {
+                        width: 28px !important;
+                          height: 28px !important;
+                        img {
+                            width: 28px !important;
+                            height: 28px !important;
+                        }
+                      }
+                      .coinTxt {
+                        font-size: 16px;
+                        font-weight: 500;
+                        letter-spacing: 1px;
+                      }
+                    }
+                    .swipeBtn {
+                      width: 20px !important;
+                      height: 20px !important;
+                      div {
+                        width: 20px !important;
+                        height: 20px !important;
+                      }
+                      img {
+                        width: 20px !important;
+                        height: 20px !important;
+                      }
+                    }
+                    // .basicBtn {
+                    //   width: 100%;
+                    //   padding: 6px 14px;
+                    //   border-radius: 16px;
+                    //   background-color: var(--website-button-color);
+                    //   color: var(--website-font-color);
+                    //   font-weight: 500;
+                    //   font-size: 16px;
+                    //   line-height: 24px;
+                    // }
+                    // .tradingViewBtn {
+                    //   width: 100%;
+                    //   padding: 6px 14px;
+                    //   border-radius: 16px;
+                    //   background-color: var(--website-button-color);
+                    //   color: var(--website-font-color);
+                    //   font-weight: 500;
+                    //   font-size: 16px;
+                    //   line-height: 24px;
+                    // }
+                  }
+                  .rightHead {
+                    display: flex;
+                    align-items: center;
+                    width: 50%;
+                    justify-content: flex-end;
+                    .expandBtn {
+                      width: 30px;
+                      height: 30px;
+                      img {
+                        width: 20px !important;
+                        height: 20px !important;
+                      }
+                    }
+                  }
+                }
+                .headDetails {
+                  align-items: center;
+                  justify-content: space-between;
+                  position: relative;
+                  .leftheadDetails {
+                    display: flex;
+                    align-items: flex-end;
+                    gap: 0.8rem;
+                    height: 50px;
+                    @include max767{
+                        gap: 1.2rem;
+                    }
+                    .left {
+                      display: flex;
+                      justify-content: center;
+                      align-items: flex-end;
+                      gap: 2rem;
+                    }
+                    @include max767 {
+                      flex-direction: column;
+                      align-items: flex-start;
+                    }
+                    .coinrate {
+                      font-size: 40px;
+                      line-height: 41px;
+                      font-weight: 500;
+                      @media screen and (max-width: 767px) {
+                        font-size: 26px;
+                        line-height: 27px;
+                      }
+                    }
+                    .coinname {
+                      font-size: 20px;
+                      font-weight: 500;
+                      margin-bottom: 6px;
+                      color: #b3b3b3;
+                      @media screen and (max-width: 767px) {
+                        margin-bottom: 4px;
+                      }
+                    }
+                    .coinprofitloss {
+                      font-size: 20px;
+                      font-weight: 500;
+                      color: #e44757;
+                      margin-bottom: 6px;
+                    }
+                  }
+                  .rightheadDetails {
+                    margin-bottom: -6px;
+                    @media screen and (max-width: 1349px) {
+                      padding-top: 10px;
+                    }
+                    @include max767 {
+                      margin-top: 40px;
+                    }
+          
+                    .timeBtnRow {
+                      display: flex;
+                      margin: 0px;
+                      padding: 0px;
+                      background-color: #333333;
+                      border-radius: 16px;
+                      button {
+                        border-radius: 16px;
+                        padding: 3px 16px;
+                        background-color: transparent;
+                        border: 0;
+                        color: white;
+                        font-size: 16px;
+                      }
+                      button:hover {
+                        color: #e44757;
+                      }
+                      button.active {
+                        color: black;
+                        font-weight: 500;
+                        background-color: white;
+                      }
+                    }
+          
+                    ul {
+                      position: absolute;
+                      top: 13px;
+                      right: 0;
+                      background-color: #333333;
+                      border-radius: 16px;
+                      border-color: #333333;
+          
+                      @media screen and (max-width: 1349px) {
+                        position: relative;
+                        width: fit-content;
+                      }
+                      @media screen and (max-width: 767px) {
+                        margin: 0 auto;
+                      }
+                      button {
+                        border-radius: 16px;
+                        padding: 3px 16px;
+                        border: 0;
+                        font-size: 16px;
+                        -webkit-border-radius: 16px;
+                        -moz-border-radius: 16px;
+                        -ms-border-radius: 16px;
+                        -o-border-radius: 16px;
+                        color: #ffffff;
+                      }
+                      button.active {
+                        border-radius: 16px;
+                        padding: 3px 16px;
+                        border: 0;
+                        color: black;
+                        font-weight: 500;
+                        font-size: 16px;
+                      }
+                    }
+                  }
+                }
+                .dateTime {
+                  p {
+                    font-size: 14px;
+                  }
+                }
+                .GraphtableContainer {
+                  &.customScrollOntables::-webkit-scrollbar {
+                    display: block !important;
+                  }
+                  .graphContainer {
+                    width: 100% !important;
+                    @media screen and (min-width: 1800px) {
+                      width: 100% !important;
+                    }
+                    @include max767 {
+                      height: 50vh;
+                      width: 92vh !important;
+                      overflow: auto;
+                      overflow-x: auto;
+                    }
+                    div {
+                      width: 100% !important;
+                    }
+                    img {
+                      width: 100% !important;
+                    }
+                  }
+                }
+              }
+              // swap token
+              .swaptokenContainer {
+               
+                width: 100%;
+                z-index: 1;
+                padding: 20px;
+                width: 100%;
+                border-radius: 16px;
+                box-shadow: 0px 0px 5px 0px #2e2e2e;
+                background: #232323;
+                @media screen and (max-width: 1199px) {
+                  grid-column: 1;
+                  grid-row: 1;
+                }
+                .swaptokenHead {
+                  width: 100%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  position: relative;
+                  padding-bottom: 25px;
+                  border-bottom: 1px solid #333333;
+                  .heading {
+                    text-align: center;
+                    h3 {
+                      font-size: 20px;
+                      font-weight: 500;
+                    }
+                    p {
+                      font-size: 14px;
+                      padding-top: 10px;
+                    }
+                  }
+                  .graphtoggleContainer {
+                    width: 24px;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    .graphtoggle {
+                      width: 24px !important;
+                      height: 24px !important;
+                      button{
+                        background: transparent;
+                        border: none;                    
+                      }
+                      img {
+                        width: 24px !important;
+                        height: 24px !important;
+                      }
+                    }
+                  }
+                  .historyiconContainer {
+                    width: 24px;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    .historyicon {
+                      width: 24px !important;
+                      height: 24px !important;
+                        background: transparent;
+                        border: none;                    
+                      img {
+                        width: 24px !important;
+                        height: 24px !important;
+                      }
+                    }
+                  }
+                }
+                .swaptokenBody {
+                  padding-top: 0.3rem;
+                  .inputformContainer {
+                    padding: 2.3rem 0;
+                    .tokendropdownBtnContainer {
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                      .balance p {
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: #b3b3b3;
+                      }
+                    }
+          
+                    .tokendropdownBtn {
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      gap: 8px;
+                      background: transparent;
+                      border: none;  
+                      .tokenicon {
+                        width: 24px;
+                        height: 24px;
+                        img {
+                          width: 24px !important;
+                          height: 24px !important;
+                        }
+                      }
+                      .tokenname {
+                        font-size: 16px;
+                        font-weight: 500;
+                        line-height: inherit;
+                        height: 18px;
+                      }
+                      .dropdown {
+                        display: flex;
+                      }
+                    }
+                    .tokeninput {
+                      padding-top: 1rem;
+                      position: relative;
+                      input {
+                        width: 100% !important;
+                        border: 1px solid #1f1f1f !important;
+                        outline: none !important;
+                        padding: 16px !important;
+                        height: 56px !important;
+                        border-radius: 16px !important;
+                        background-color: #323232;
+                        color: #d9d9d9;
+                        letter-spacing: 1px;
+                        font-size: 1.6rem;
+                      }
+                      button {
+                        position: absolute;
+                        border: 1px solid #e44757;
+                        bottom: 17px;
+                        right: 12px;
+                        border-radius: 15px;
+                        padding: 3px 6px;
+                        font-size: 7px;
+                        align-items: center;
+                        border-radius: 16px;
+                        cursor: pointer;
+                        display: inline-flex;
+                        font-weight: 500;
+                        justify-content: center;
+                        letter-spacing: 0.03em;
+                        line-height: 1;
+                        opacity: 1;
+                        outline: 0px;
+                        transition: background-color 0.2s ease 0s, opacity 0.2s ease 0s;
+                        height: 20px;
+                        font-size: 12px;
+                        padding: 2px 9px;
+                        background-color: transparent;
+                        border: 2px solid #e44757;
+                        box-shadow: none;
+                        color: #e44757;
+                      }
+                    }
+                  }
+                  .inputformContainer.down {
+                    .tokenicon {
+                        width: 28px !important;
+                        height: 28px !important;
+                      img {
+                        width: 28px !important;
+                            height: 28px !important;
+                      }
+                    }
+                  }
+                  .swipeIcon {
+                    text-align: center;
+                    .swipeiconBtn {
+                      border-radius: 50%;
+                      -webkit-border-radius: 50%;
+                      -moz-border-radius: 50%;
+                      -ms-border-radius: 50%;
+                      -o-border-radius: 50%;
+                      height: 30px;
+                      width: 30px;
+                      background: #e44757;
+                      line-height: 24px;
+                      padding: 5px;
+                      border: none;
+                      svg{
+                        // margin-top: -5px;
+                      }
+                    }
+                  }
+                }
+                .swaptokenFooter {
+                  padding-top: 1rem;
+                  .connect {
+                    width: 100%;
+                    padding: 12px 16px;
+                    border-radius: 16px;
+                    background-color: #e44757;
+                    color: #fff;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 24px;
+                  }
+                }
+              }
+            }
+          
+            .connectBtn {
+              width: 100%;
+              padding: 12px 16px;
+              border-radius: 16px;
+              background-color: var(--website-button-color);
+              color: var(--website-font-color);
+              font-weight: 500;
+              font-size: 16px;
+              line-height: 24px;
+            }
+            .ModalContainer {
+              width: auto;
+              min-width: 320px;
+              max-width: 100%;
+              .modalmaxWidth {
+                // max-width: 400px;
+                max-height: 70vh;
+                padding: 3rem 0rem;
+                width: 100%;
+                margin: 0 auto;
+                max-width: 100vw;
+                box-shadow: none !important;
+                @include max1000 {
+                  width: 90%;
+                }
+          
+                @include max767 {
+                  width: 100%;
+                  border-radius: 0px;
+                  height: 100vh;
+                  min-height: 100vh;
+                }
+                button:hover {
+                  span {
+                    color: #e44757 !important;
+                  }
+                }
+              }
+            }
+          }
+          
+          .swapCustomTable {
+            th {
+              min-width: 11rem;
+              line-height: 20px;
+              font-size: 16px;
+              font-weight: 600;
+              border-bottom: 1px solid;
+              text-align: left;
+              padding-right: 4rem;
+              padding: 2rem 4rem 2rem 0rem;
+              @include max767 {
+                min-width: 10rem;
+                
+              }
+            }
+            td {
+              padding: 1.3rem 1.3rem 1.3rem 0rem;
+              font-size: 16px;
+              font-weight: 500;
+              text-align: left;
+              padding-right: 4rem;
+              padding: 1.4rem 4rem 1.4rem 0rem;
+              @include max767 {
+                padding: 1rem 1rem 1rem 0rem;
+              }
+            }
+            a {
+              text-decoration-color: #e44757 !important;
+              -moz-text-decoration-color: #e44757 !important;
+            }
+            tr {
+              padding: 1.3rem 1.3rem;
+            }
+          }
+          .hideBtn {
+            display: none;
+          }
+       
+      }
+    }
+
+    // extra styling
+
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    @media screen and (max-width: 1300px){
+        .customScrollOntables::-webkit-scrollbar-thumb {
+            background-color: #e44757;
+        }
+    }
+
+    @media screen and (max-width: 1300px){
+        .customScrollOntables::-webkit-scrollbar, .customScrollOntables::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            -o-border-radius: 5px;
+            cursor: pointer;
+        }
+    }
+    @media screen and (min-width: 325px) and (max-width: 767px){
+        .sm\:overflow-x-scroll {
+            overflow-x: scroll;
+        }
+    }
+    @media screen and (max-width: 1300px){
+        .customScrollOntables {
+            overflow: auto;
+        }
+    }
+
+     .swapgraphContainer .GraphtableContainer.customScrollOntables::-webkit-scrollbar {
+        display: block!important;
+    }
+    
+    @media (max-width: 767px){
+        .customScrollOntables::-webkit-scrollbar {
+            display: none!important;
+        }
+    }
+
+    @media screen and (max-width: 1300px){
+        .customScrollOntables::-webkit-scrollbar, .customScrollOntables::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            -o-border-radius: 5px;
+            cursor: pointer;
+        }
+    }
+
+    @media screen and (max-width: 1300px){
+        .customScrollOntables::-webkit-scrollbar {
+            display: block!important;
+            width: 5px;
+            height: 6px;
+            background-color: #fff;
+        }
+    }
+    @media screen and (min-width: 1000px){
+      .modal_modal__zB_6A {
+        width: auto;
+    }
+    }
+
+  }
+  
+

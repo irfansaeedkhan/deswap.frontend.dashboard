@@ -1,0 +1,1185 @@
+$greyV3: #232323;
+$greyV4: #303030;
+$greytxt: #d7d7d7;
+
+button {
+  border-radius: 100px;
+}
+.DashboardLayout {
+  background: #0a0a0a;
+  margin: 0 auto;
+  width: 100%;
+  background: url(/images/background.png) no-repeat center center;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-position: 0 0;
+  background-position: initial;
+  flex-direction: column;
+  width: 100%;
+
+  .modal_modal__wrap__GOcsx {
+    min-height: 100vh;
+  }
+  ul,
+  li,
+  a {
+    text-decoration: none;
+    list-style: none;
+  }
+  ul {
+    padding-left: 0rem;
+  }
+  $base-font-size: 16px !default;
+
+  /*
+Pixels to ems function
+*/
+  @function px2em($px) {
+    @return ($px / $base-font-size) * 1em;
+  }
+  /*
+Font size and line height mixin
+*/
+  @mixin font-size($font-size, $line-height: false) {
+    font-size: px2em($font-size); /* #{$font-size} */
+
+    @if $line-height != false {
+      line-height: ($line-height / $font-size); /* #{$line-height} */
+    }
+  }
+  // p {
+  //     @include font-size(16px, 32px);
+  // }
+  @mixin txt48 {
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 67px;
+    @include max2000 {
+      font-size: 44px;
+      line-height: 60px;
+    }
+    @include max1900 {
+      font-size: 36px;
+      line-height: 50px;
+    }
+    @include max1500() {
+      font-size: 32px;
+      line-height: 44px;
+    }
+  }
+  @mixin txt34 {
+    font-weight: 400;
+    font-size: 34px;
+    line-height: 42px;
+    @include max1500() {
+      font-size: 30px;
+      line-height: 38px;
+    }
+  }
+  @mixin txt24 {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+    @include max1500() {
+      font-size: 22px;
+      line-height: 32px;
+    }
+  }
+  @mixin txt18 {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 29px;
+    @include max1500() {
+      font-size: 16px;
+      line-height: 22px;
+    }
+  }
+  @mixin txt16 {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    @include max1500() {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+  @mixin txt14 {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    @include max1500() {
+      font-size: 12px;
+      line-height: 20px;
+    }
+  }
+  @mixin txt12 {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    @include max1500() {
+      font-size: 10px;
+      line-height: 14px;
+    }
+  }
+
+  @mixin maxWidth {
+    max-width: 1340px;
+  }
+
+  .DashboardLayoutInner {
+    width: 100%;
+    display: flex;
+    // sidebar
+    @import "dashboardSidebar.scss";
+    // main content of pages
+    .mainContent {
+      width: 85%;
+      @media screen and (min-width: 1680px) {
+        width: 83%;
+      }
+      @include max1000 {
+        width: 100%;
+      }
+      // navbar for main content
+      @import "dashboardNavbar.scss";
+      // pages tabs data
+      .tabsData {
+        width: 100%;
+        // profile page styling
+        @import "dashboardDashboardTab.scss";
+        @import "dashboardProfileTab.scss";
+        @import "dashboardEditProfileTab.scss";
+        @import "dashboardBuyDswapTab.scss";
+        @import "dashboardMetaverseTab.scss";
+        @import "dashboardNetworkDetailsTab.scss";
+        @import "dashboardCreateTokenTab.scss";
+        @import "dashboardNetworkTab.scss";
+        @import "dashboardBuyDeswapToken.scss";
+        @import "dashboardNFTlicenseTab.scss";
+        @import "dashboardCompany.scss";
+
+        // admin dashboard styling
+        @import "adminDashboardTab.scss";
+        @import "adminAddNFTLicenseTab.scss";
+        @import "adminAddDeswapStackTab.scss";
+        @import "adminUserAccountTab.scss";
+        @import "adminCompanyList.scss";
+        @import "adminUserDetailTab.scss";
+        @import "adminUsersInfoTab.scss";
+        @import "adminPackTab.scss";
+        @import "adminUplineTab.scss";
+        @import "adminDownlineTab.scss";
+        @import "adminuserinfopanel.scss";
+        @import "adminUsersInfoDetailsContainer.scss";
+        @import "adminstakingpackfeeTab.scss";
+        @import "adminNetworkRewardsTab.scss";
+        @import "adminUserRegistrationTab.scss";
+        @import "SwapMaticToDawTab.scss";
+        @import "adminclaimmednetworkrewardsTab.scss";
+        @import "adminpurchasednftlicenseTab.scss";
+        @import "adminclaimmedpackTab.scss";
+        @import "adminnetworkrewardssetting.scss";
+      }
+    }
+  }
+
+  // modal conect wallet content
+
+  .modalcontentWallet {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .iconBoxContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .iconBox {
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 24px 16px 24px;
+        position: static;
+        width: 48%;
+        left: 0px;
+        top: 0px;
+        background: #141414;
+        border-radius: 16px;
+        margin-bottom: 22px;
+        text-align: center;
+        @include max1000() {
+          width: 100%;
+          padding: 20px 16px 20px;
+        }
+
+        p {
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 24px;
+          margin-top: 8px;
+        }
+      }
+    }
+  }
+  //modalcontentSuccess
+
+  .modalcontentSuccess {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    .contentbox {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 70%;
+      padding-bottom: 5%;
+      text-align: center;
+
+      @include max1500 {
+        max-width: 70%;
+      }
+      @include max1300 {
+        max-width: 75%;
+      }
+      @include max1000 {
+        max-width: 70%;
+      }
+      .iconBox {
+        padding-bottom: 23px;
+      }
+      h5 {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 28.8px;
+        padding-bottom: 8px;
+      }
+      p {
+        font-size: 14px;
+        line-height: 24px;
+        text-align: center;
+        color: #999999;
+      }
+    }
+  }
+
+  .avatarContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    .avatarList {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding-bottom: 3rem;
+      .avatarCard {
+        padding: 10px;
+        cursor: pointer;
+        width: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include max1000() {
+          width: 28%;
+        }
+        img {
+          border-radius: 50% !important;
+          -webkit-border-radius: 50% !important;
+          -moz-border-radius: 50% !important;
+          -ms-border-radius: 50% !important;
+          -o-border-radius: 50% !important;
+        }
+        img.activeImg {
+          border: 2px solid red !important;
+        }
+      }
+    }
+    .SimpleButton {
+      @include max1000() {
+        padding: 1.8rem 2rem;
+        margin-bottom: 2rem;
+        font-size: 2rem;
+        background-color: #e44757;
+      }
+    }
+  }
+
+  // modal packCard
+  .createPackCard {
+    width: 100%;
+    .packCard {
+      position: relative;
+      width: 100%;
+      // background: #232323;
+      border-radius: 24px;
+
+      @include max1000 {
+        // margin-bottom: 4rem;
+      }
+      &.DeactivateCard {
+        .inputListContainer {
+          h6 {
+            color: #474747 !important;
+          }
+          input {
+            color: #474747 !important;
+          }
+          &.packtype {
+            .dropdown-header {
+              color: #474747 !important;
+            }
+          }
+        }
+      }
+      .packCardInner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .formList {
+          width: 100%;
+          .inputListContainer {
+            padding-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            h6 {
+              color: #adadad;
+              font-weight: 500;
+              @include txt14;
+            }
+            .formInputDropDown {
+              display: flex;
+              flex-direction: column;
+              width: 52%;
+              p {
+                color: #e44757;
+                font-size: 1.3rem;
+                margin-left: 0.3rem;
+                margin-top: 0.4rem;
+                letter-spacing: 0.3px;
+                // position: absolute;
+                @include max1000() {
+                  font-size: 1.4rem;
+                  margin-top: 0.4rem;
+                  letter-spacing: 0.3px;
+                }
+              }
+            }
+            .formInputDropDown {
+              display: flex;
+              flex-direction: column;
+              width: 52%;
+              p {
+                color: #e44757;
+                font-size: 1.3rem;
+                margin-left: 0.3rem;
+                margin-top: 0.4rem;
+                letter-spacing: 0.3px;
+                // position: absolute;
+                @include max1000() {
+                  font-size: 1.4rem;
+                  margin-top: 0.4rem;
+                  letter-spacing: 0.3px;
+                }
+              }
+            }
+            .dropdown {
+              width: 100%;
+              height: 5.3rem;
+              border-radius: 16px;
+              z-index: 9;
+              font-weight: 500;
+              @include txt14;
+              .dropdown-header {
+                padding: 1.4rem;
+                font-size: 14px;
+              }
+            }
+            input {
+              background: transparent;
+              padding: 12px 16px;
+              width: 100%;
+              height: 5.3rem;
+              box-sizing: border-box;
+              border: 1px solid #474747;
+              border-radius: 16px;
+              font-weight: 500;
+              @include txt14;
+              color: #ffffff;
+            }
+
+            &.Active {
+              .dropdown {
+                .dropdown-header {
+                  color: #40dd3e;
+                }
+              }
+            }
+            &.Deactivate {
+              .dropdown {
+                .dropdown-header {
+                  color: #dd3e3e;
+                }
+              }
+            }
+
+            .formInputs {
+              display: flex;
+              flex-direction: column;
+              width: 52%;
+              p {
+                color: #e44757;
+                font-size: 1.3rem;
+                margin-left: 0.3rem;
+                margin-top: 0.4rem;
+                letter-spacing: 0.3px;
+                // position: absolute;
+                @include max1000() {
+                  font-size: 1.4rem;
+                  margin-top: 0.4rem;
+                  letter-spacing: 0.3px;
+                }
+              }
+            }
+            &.disabled {
+              h6 {
+                color: #474747;
+              }
+              input {
+                color: #474747;
+              }
+            }
+          }
+        }
+        .footerCard {
+          display: grid;
+          grid-column-gap: 2rem;
+          grid-template-columns: 1fr 1fr;
+          width: 100%;
+          padding-top: 4rem;
+          button {
+            padding: 1.6rem 2rem;
+          }
+        }
+      }
+    }
+  }
+
+  // create tokencard
+  // modal packCard
+  .createTokenCard {
+    width: 100%;
+    .tokenCard {
+      position: relative;
+      width: 100%;
+      // background: #232323;
+      border-radius: 24px;
+      @include max1000 {
+        // margin-bottom: 4rem;
+      }
+      .tokenCardInner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .formList {
+          width: 100%;
+          .inputListContainer {
+            padding-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            h6 {
+              color: #adadad;
+              font-weight: 500;
+              @include txt14;
+            }
+            .formInputDropDown {
+              display: flex;
+              flex-direction: column;
+              width: 52%;
+              p {
+                color: #e44757;
+                font-size: 1.3rem;
+                margin-left: 0.3rem;
+                margin-top: 0.4rem;
+                letter-spacing: 0.3px;
+                // position: absolute;
+                @include max1000() {
+                  font-size: 1.4rem;
+                  margin-top: 0.4rem;
+                  letter-spacing: 0.3px;
+                }
+              }
+            }
+            .dropdown {
+              width: 100%;
+              height: 5.3rem;
+              border-radius: 16px;
+              z-index: 9;
+              font-weight: 500;
+              @include txt14;
+              .dropdown-header {
+                padding: 1.4rem;
+                font-size: 14px;
+              }
+            }
+            input {
+              background: transparent;
+              padding: 12px 16px;
+              width: 100%;
+              height: 5.3rem;
+              box-sizing: border-box;
+              border: 1px solid #474747;
+              border-radius: 16px;
+              font-weight: 500;
+              @include txt14;
+              color: #ffffff;
+            }
+
+            &.Active {
+              .dropdown {
+                .dropdown-header {
+                  color: #40dd3e;
+                }
+              }
+            }
+            &.Deactivate {
+              .dropdown {
+                .dropdown-header {
+                  color: #dd3e3e;
+                }
+              }
+            }
+
+            .formInputs {
+              display: flex;
+              flex-direction: column;
+              width: 52%;
+              p {
+                color: #e44757;
+                font-size: 1.3rem;
+                margin-left: 0.3rem;
+                margin-top: 0.4rem;
+                letter-spacing: 0.3px;
+                // position: absolute;
+                @include max1000() {
+                  font-size: 1.4rem;
+                  margin-top: 0.4rem;
+                  letter-spacing: 0.3px;
+                }
+              }
+            }
+            &.disabled {
+              h6 {
+                color: #474747;
+              }
+              input {
+                color: #474747;
+              }
+            }
+          }
+        }
+        .footerCard {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          padding-top: 4rem;
+          flex-wrap: wrap;
+          gap: 2rem;
+          .topButtons {
+            display: flex;
+            gap: 2rem;
+          }
+          .connectWalletBtn {
+            width: 100%;
+          }
+          button {
+            width: 50%;
+            padding: 1.6rem 2rem;
+            height: 50px;
+            @include max767 {
+              width: 48%;
+              height: 44px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // modal ui css for add nft license
+  .createnftLicenseCard {
+    width: 100%;
+    .nftLicenseCard {
+      position: relative;
+      width: 100%;
+      // background: #232323;
+      border-radius: 24px;
+      @include max1000 {
+        // margin-bottom: 4rem;
+      }
+      &.DeactivateCard {
+        .inputListContainer {
+          h6 {
+            color: #474747 !important;
+          }
+          input {
+            color: #474747 !important;
+          }
+          &.nftLicensetype {
+            .dropdown-header {
+              color: #474747 !important;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+      .nftLicenseCardInner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .formList {
+          width: 100%;
+          .imgboxContainer {
+            .chooseLicenseImgContainer {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 1.3rem;
+              h6 {
+                color: #adadad;
+                font-weight: 500;
+                @include txt14;
+                width: 94%;
+              }
+              .choosefileContainer {
+                width: 100%;
+                input {
+                  background-color: #e44757;
+                  max-width: 28.3rem;
+                  font-weight: 500;
+                  padding: 12px 16px;
+                  width: 100%;
+                  height: 5.3rem;
+                  -moz-box-sizing: border-box;
+                  box-sizing: border-box;
+                  border: 1px solid #474747;
+                  border-radius: 16px;
+                  font-weight: 500;
+                  font-weight: 400;
+                  font-size: 14px;
+                  line-height: 24px;
+                  color: #ffffff;
+                  width: 100% !important;
+                }
+                // customfile input for network page
+                .custom-file-uploadInput {
+                  transition: all 0.2s linear;
+                  -webkit-transition: all 0.2s linear;
+                  -moz-transition: all 0.2s linear;
+                  -ms-transition: all 0.2s linear;
+                  -o-transition: all 0.2s linear;
+                  width: 100% !important;
+                  background-color: #141414 !important;
+                  margin-bottom: 3px !important;
+                  line-height: 24px !important;
+                  padding: 2px 0px !important;
+                  margin: 0;
+                  border: none !important;
+                }
+                .custom-file-uploadInput:focus {
+                  box-shadow: none !important;
+                }
+                .custom-file-uploadInput::-webkit-file-upload-button {
+                  visibility: hidden;
+                }
+                .custom-file-uploadInput::before {
+                  content: "Choose File";
+                  color: #ffffff;
+                  display: inline-block;
+                  background: #e44757;
+                  outline: none;
+                  white-space: nowrap;
+                  -webkit-user-select: none;
+                  cursor: pointer;
+                  font-weight: 700;
+                  font-size: 10pt;
+                  border: 1px solid #1f1f1f !important;
+                  box-sizing: border-box;
+                  border-radius: 12px !important;
+                  padding: 8px 16px !important;
+                  width: 100% !important;
+                  text-align: center;
+                  width: 100% !important;
+                }
+                .custom-file-uploadInput:hover::before {
+                  border-color: #e44757;
+                  background-color: #e44757;
+                  color: #e3e3e3;
+                  transition: all 0.2s linear;
+                  -webkit-transition: all 0.2s linear;
+                  -moz-transition: all 0.2s linear;
+                  -ms-transition: all 0.2s linear;
+                  -o-transition: all 0.2s linear;
+                }
+                .custom-file-uploadInput:focus::before {
+                  box-shadow: none !important;
+                }
+                .custom-file-uploadInput:active {
+                  outline: 0;
+                }
+                .custom-file-uploadInput:active::before {
+                  background: transparent;
+                }
+              }
+            }
+
+            .licenseimgBox {
+              width: 100%;
+              border: 2px solid #545151;
+              border-radius: 23px;
+              padding: 1rem;
+              margin-top: 15px;
+              margin-bottom: 15px;
+              img {
+                object-fit: contain;
+              }
+            }
+          }
+          .inputListContainer {
+            padding-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            h6 {
+              color: #adadad;
+              font-weight: 500;
+              @include txt14;
+            }
+
+            .formInputDropDown {
+              display: flex;
+              flex-direction: column;
+              width: 52%;
+              p {
+                color: #e44757;
+                font-size: 1.3rem;
+                margin-left: 0.3rem;
+                margin-top: 0.4rem;
+                letter-spacing: 0.3px;
+                // position: absolute;
+                @include max1000() {
+                  font-size: 1.4rem;
+                  margin-top: 0.4rem;
+                  letter-spacing: 0.3px;
+                }
+              }
+            }
+            .dropdown {
+              width: 100%;
+              height: 5.3rem;
+              border-radius: 16px;
+              z-index: 9;
+              font-weight: 500;
+              @include txt14;
+              .dropdown-header {
+                padding: 1.4rem;
+                font-size: 14px;
+              }
+            }
+            input {
+              background: transparent;
+              padding: 12px 16px;
+              width: 100%;
+              height: 5.3rem;
+              box-sizing: border-box;
+              border: 1px solid #474747;
+              border-radius: 16px;
+              font-weight: 500;
+              @include txt14;
+              color: #ffffff;
+            }
+
+            &.Active {
+              .dropdown {
+                .dropdown-header {
+                  color: #40dd3e;
+                  font-size: 14px;
+                }
+              }
+            }
+            &.Deactivate {
+              .dropdown {
+                .dropdown-header {
+                  color: #dd3e3e;
+                  font-size: 14px;
+                }
+              }
+            }
+
+            .formInputs {
+              display: flex;
+              flex-direction: column;
+              width: 52%;
+
+              &.levelsinput {
+                position: relative;
+                i {
+                  position: absolute;
+                  right: 15px;
+                  top: 14px;
+                  font-size: 12px;
+                }
+              }
+              p {
+                color: #e44757;
+                font-size: 1.3rem;
+                margin-left: 0.3rem;
+                margin-top: 0.4rem;
+                letter-spacing: 0.3px;
+                // position: absolute;
+                @include max1000() {
+                  font-size: 1.4rem;
+                  margin-top: 0.4rem;
+                  letter-spacing: 0.3px;
+                }
+              }
+            }
+            &.disabled {
+              h6 {
+                color: #474747;
+              }
+              input {
+                color: #474747;
+              }
+            }
+            #Description {
+              background: transparent;
+              padding: 12px 16px;
+              width: 100%;
+              box-sizing: border-box;
+              border: 1px solid #474747;
+              border-radius: 16px;
+              font-weight: 500;
+              @include txt14;
+              color: #ffffff;
+            }
+          }
+        }
+        .footerCard {
+          display: grid;
+          grid-column-gap: 2rem;
+          grid-template-columns: 1fr 1fr;
+          width: 100%;
+          padding-top: 4rem;
+          button {
+            padding: 1.6rem 2rem;
+          }
+        }
+      }
+    }
+  }
+  // modal ui css for Add Deswap Pack
+  .createdeswapstackCard {
+    width: 100%;
+    .deswapstackCard {
+      position: relative;
+      width: 100%;
+      // background: #232323;
+      border-radius: 24px;
+      @include max1000 {
+        // margin-bottom: 4rem;
+      }
+      &.DeactivateCard {
+        .inputListContainer {
+          h6 {
+            color: #474747 !important;
+          }
+          input {
+            color: #474747 !important;
+          }
+          &.deswapstacktype {
+            .dropdown-header {
+              color: #474747 !important;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+      .deswapstackCardInner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .formList {
+          width: 100%;
+          .imgboxContainer {
+            .chooseLicenseImgContainer {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 1.3rem;
+              h6 {
+                color: #adadad;
+                font-weight: 500;
+                @include txt14;
+                width: 94%;
+              }
+              .choosefileContainer {
+                width: 100%;
+                input {
+                  background-color: #e44757;
+                  max-width: 28.3rem;
+                  font-weight: 500;
+                  padding: 12px 16px;
+                  width: 100%;
+                  height: 5.3rem;
+                  -moz-box-sizing: border-box;
+                  box-sizing: border-box;
+                  border: 1px solid #474747;
+                  border-radius: 16px;
+                  font-weight: 500;
+                  font-weight: 400;
+                  font-size: 14px;
+                  line-height: 24px;
+                  color: #ffffff;
+                  width: 100% !important;
+                }
+                // customfile input for network page
+                .custom-file-uploadInput {
+                  transition: all 0.2s linear;
+                  -webkit-transition: all 0.2s linear;
+                  -moz-transition: all 0.2s linear;
+                  -ms-transition: all 0.2s linear;
+                  -o-transition: all 0.2s linear;
+                  width: 100% !important;
+                  background-color: #141414 !important;
+                  margin-bottom: 3px !important;
+                  line-height: 24px !important;
+                  padding: 0 !important;
+                  margin: 0;
+                  border: none !important;
+                }
+                .custom-file-uploadInput:focus {
+                  box-shadow: none !important;
+                }
+                .custom-file-uploadInput::-webkit-file-upload-button {
+                  visibility: hidden;
+                }
+                .custom-file-uploadInput::before {
+                  content: "Choose File";
+                  color: #ffffff;
+                  display: inline-block;
+                  background: #e44757;
+                  outline: none;
+                  white-space: nowrap;
+                  -webkit-user-select: none;
+                  cursor: pointer;
+                  font-weight: 700;
+                  font-size: 10pt;
+                  border: 1px solid #1f1f1f !important;
+                  box-sizing: border-box;
+                  border-radius: 12px !important;
+                  padding: 8px 16px !important;
+                  width: 100% !important;
+                  text-align: center;
+                  width: 100% !important;
+                }
+                .custom-file-uploadInput:hover::before {
+                  border-color: #e44757;
+                  background-color: #e44757;
+                  color: #e3e3e3;
+                  transition: all 0.2s linear;
+                  -webkit-transition: all 0.2s linear;
+                  -moz-transition: all 0.2s linear;
+                  -ms-transition: all 0.2s linear;
+                  -o-transition: all 0.2s linear;
+                }
+                .custom-file-uploadInput:focus::before {
+                  box-shadow: none !important;
+                }
+                .custom-file-uploadInput:active {
+                  outline: 0;
+                }
+                .custom-file-uploadInput:active::before {
+                  background: transparent;
+                }
+              }
+            }
+
+            .licenseimgBox {
+              width: 100%;
+              border: 2px solid #545151;
+              border-radius: 23px;
+              padding: 1rem;
+              margin-top: 15px;
+              margin-bottom: 15px;
+              img {
+                object-fit: contain;
+              }
+            }
+          }
+          .inputListContainer {
+            padding-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            h6 {
+              color: #adadad;
+              font-weight: 500;
+              @include txt14;
+            }
+            .formInputDropDown {
+              display: flex;
+              flex-direction: column;
+              width: 52%;
+              p {
+                color: #e44757;
+                font-size: 1.3rem;
+                margin-left: 0.3rem;
+                margin-top: 0.4rem;
+                letter-spacing: 0.3px;
+                // position: absolute;
+                @include max1000() {
+                  font-size: 1.4rem;
+                  margin-top: 0.4rem;
+                  letter-spacing: 0.3px;
+                }
+              }
+            }
+            .formInputDropDown {
+              display: flex;
+              flex-direction: column;
+              width: 52%;
+              p {
+                color: #e44757;
+                font-size: 1.3rem;
+                margin-left: 0.3rem;
+                margin-top: 0.4rem;
+                letter-spacing: 0.3px;
+                // position: absolute;
+                @include max1000() {
+                  font-size: 1.4rem;
+                  margin-top: 0.4rem;
+                  letter-spacing: 0.3px;
+                }
+              }
+            }
+            .dropdown {
+              width: 100%;
+              height: 5.3rem;
+              border-radius: 16px;
+              z-index: 9;
+              font-weight: 500;
+              @include txt14;
+              .dropdown-header {
+                padding: 1.4rem;
+                font-size: 14px;
+              }
+            }
+            input {
+              background: transparent;
+              padding: 12px 16px;
+              width: 100%;
+              height: 5.3rem;
+              box-sizing: border-box;
+              border: 1px solid #474747;
+              border-radius: 16px;
+              font-weight: 500;
+              @include txt14;
+              color: #ffffff;
+            }
+
+            &.Active {
+              .dropdown {
+                .dropdown-header {
+                  color: #40dd3e;
+                  font-size: 14px;
+                }
+              }
+            }
+            &.Deactivate {
+              .dropdown {
+                .dropdown-header {
+                  color: #dd3e3e;
+                  font-size: 14px;
+                }
+              }
+            }
+
+            .formInputs {
+              display: flex;
+              flex-direction: column;
+              width: 52%;
+
+              &.levelsinput {
+                position: relative;
+                i {
+                  position: absolute;
+                  right: 15px;
+                  top: 14px;
+                  font-size: 12px;
+                }
+              }
+              p {
+                color: #e44757;
+                font-size: 1.3rem;
+                margin-left: 0.3rem;
+                margin-top: 0.4rem;
+                letter-spacing: 0.3px;
+                // position: absolute;
+                @include max1000() {
+                  font-size: 1.4rem;
+                  margin-top: 0.4rem;
+                  letter-spacing: 0.3px;
+                }
+              }
+            }
+            &.disabled {
+              h6 {
+                color: #474747;
+              }
+              input {
+                color: #474747;
+              }
+            }
+            #Description {
+              background: transparent;
+              padding: 12px 16px;
+              width: 100%;
+              box-sizing: border-box;
+              border: 1px solid #474747;
+              border-radius: 16px;
+              font-weight: 500;
+              @include txt14;
+              color: #ffffff;
+            }
+          }
+        }
+        .footerCard {
+          display: grid;
+          grid-column-gap: 2rem;
+          grid-template-columns: 1fr 1fr;
+          width: 100%;
+          padding-top: 4rem;
+          button {
+            padding: 1.6rem 2rem;
+          }
+        }
+      }
+    }
+  }
+  button {
+    border-radius: 100px !important;
+    font-weight: 500 !important;
+  }
+
+  .secondaryRedBtn {
+    color: #e44757 !important;
+    background: #291719 !important;
+  }
+}

@@ -1,0 +1,28 @@
+@import "mixins";
+@import "globals.scss";
+@import "navbar.scss";
+@import "footer.scss";
+@import "home.scss";
+@import "about.scss";
+@import "tokenomics.scss";
+@import "ecosystem.scss";
+@import "metaverse.scss";
+
+// dashboard styling
+@import "register.scss";
+@import "login.scss";
+@import "forgetpassword.scss";
+@import "verification.scss";
+
+
+// dashboard setting
+@import "./dashboardStyling/dashboardlayout.scss";
+
+
+// global settings
+@import "./globals/dropdown.scss";
+@import "./globals/dropdownv2.scss";
+
+
+// market place
+@import "./marketplace/marketplace.scss";

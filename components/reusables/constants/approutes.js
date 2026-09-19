@@ -1,0 +1,65 @@
+export const AppRoutes = {
+  // landing pages
+  home: "/",
+  about: "/about",
+  tokenomics: "/tokenomics",
+  ecosystem: "/ecosystem",
+  metaverse: "/metaverse",
+
+  // users
+  user: {
+    // forms
+    forgotpassword: "/user/forgotpassword",
+    login: "/user/login",
+    register: "/user/register",
+    resetpassword: "/user/resetpassword",
+    verification: "/user/verification",
+    verifyemail: "/user/verifyemail",
+    // dashboard
+    dashboard: "/user/dashboard",
+    buydeswaptoken: "/user/dashboard/buydeswaptoken",
+    buydswap: "/user/dashboard/buydswap",
+    company: "/user/dashboard/company",
+    createtoken: "/user/dashboard/createtoken",
+    editprofile: "/user/dashboard/editprofile",
+    metaverse: "/user/dashboard/metaverse",
+    network: "/user/dashboard/network",
+    networkdetails: "/user/dashboard/networkdetails",
+    nftlicense: "/user/dashboard/nftlicense",
+    profile: "/user/dashboard/profile",
+  },
+  // users
+  admin: {
+    // forms
+    forgotpassword: "/admin/forgotpassword",
+    login: "/admin/login",
+    verification: "/admin/verification",
+    // dashboard
+    dashboard: "/admin/dashboard",
+    useraccount: "/admin/dashboard/useraccount",
+    useraccountUserID: "/admin/dashboard/useraccount/[userID]",
+    usersinfoUserID: "/admin/dashboard/usersinfo/[userID]",
+    addclamingpack: "/admin/dashboard/addclamingpack",
+    addnftlicense: "/admin/dashboard/addnftlicense",
+    claimmednetworkrewards: "/admin/dashboard/claimmednetworkrewards",
+    claimmedpack: "/admin/dashboard/claimmedpack",
+    companyfee: "/admin/dashboard/companyfee",
+    companylist: "/admin/dashboard/companylist",
+    companyrewards: "/admin/dashboard/companyrewards",
+    createcompanycategory: "/admin/dashboard/createcompanycategory",
+    createlevel: "/admin/dashboard/createlevel",
+    networkrewards: "/admin/dashboard/networkrewards",
+    networkrewardsetting2: "/admin/dashboard/networkrewardsetting2",
+    networkrewardssetting: "/admin/dashboard/networkrewardssetting",
+    packs: "/admin/dashboard/packs",
+    publickeyfee: "/admin/dashboard/publickeyfee",
+    purchasednftlicense: "/admin/dashboard/purchasednftlicense",
+    purchasedpack: "/admin/dashboard/purchasedpack",
+    swapmatictodaw: "/admin/dashboard/swapmatictodaw",
+    userdetail: "/admin/dashboard/userdetail",
+    userregistrationfee: "/admin/dashboard/userregistrationfee",
+    usersinfodetails: "/admin/dashboard/usersinfodetails",
+    usersinformationpanel: "/admin/dashboard/usersinformationpanel",
+    whitelistips: "/admin/dashboard/whitelistips",
+  },
+};

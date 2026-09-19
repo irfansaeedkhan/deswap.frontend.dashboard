@@ -1,0 +1,619 @@
+.createNFTContainer {
+  .createNFTInner {
+    width: 48vw;
+    padding-top: 5rem;
+    padding-bottom: 10rem;
+    margin: 0 auto;
+    @include max1000 {
+      width: 100%;
+      max-width: 480px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    h2 {
+      font-weight: 600;
+      font-size: 34px;
+      padding-bottom: 4rem;
+    }
+
+    h6 {
+      font-weight: 600;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .uploadContainer {
+      width: 100%;
+      max-width: 480px;
+
+      h6 {
+        padding-bottom: 1rem;
+      }
+
+      .uploadBox {
+        border: 2px dashed #333333;
+        border-radius: 24px;
+        background: #262626;
+        width: 480px;
+        height: 400px;
+        position: relative;
+        @include max767 {
+          width: 100%;
+          height: 240px;
+        }
+        &:hover {
+          background: #333333;
+        }
+
+        input {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50% -50%);
+          transform: translate(-50%, -50%);
+          z-index: 10;
+          width: 140px;
+          height: 140px;
+          cursor: pointer;
+          opacity: 0;
+        }
+
+        .uploadicon {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50% -50%);
+          transform: translate(-50%, -50%);
+          z-index: 5;
+          width: 140px;
+          height: 140px;
+        }
+
+        .uploadiconpic {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50% -50%);
+          transform: translate(-50%, -50%);
+          z-index: 5;
+          width: 380px;
+          height: 300px;
+          @include max767 {
+            border-radius: 16px;
+            overflow: hidden;
+            width: 100%;
+            height: 240px;
+          }
+        }
+      }
+
+      P {
+        font-size: 12px;
+        line-height: 18px;
+        color: #adadad;
+        padding-top: 1.2rem;
+      }
+    }
+
+    .blockchainContainer {
+      h3 {
+        padding-top: 3.2rem;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .blockchainbox {
+        border: 2px dashed #333333;
+        border-radius: 32px;
+        display: flex;
+        gap: 1.8rem;
+        grid-gap: 1.8rem;
+        align-items: center;
+        background: #262626;
+        max-width: 480px;
+        height: 8.8rem;
+        padding: 3.5rem;
+        margin-top: 1rem;
+        margin-bottom: 3.2rem;
+
+        .maticicon {
+          width: 20px;
+        }
+      }
+    }
+
+    .putmarketplace {
+      padding-top: 1rem;
+      padding-bottom: 3.2rem;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 480px;
+      gap: 1rem;
+      grid-gap: 1rem;
+
+      .marketBox {
+        cursor: pointer;
+        width: 100%;
+        height: 120px;
+        background: #262626;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 1rem;
+        grid-gap: 1rem;
+        border-radius: 32px;
+        border: 2px dashed #333333;
+
+        &.active {
+          border: 2px solid #e44757;
+        }
+
+        .iconbox {
+          width: 24px;
+        }
+
+        h3 {
+        }
+      }
+    }
+
+    .createnftForm {
+      .inputFormContainer {
+        padding-bottom: 2.4rem;
+
+        .inputBox {
+          border: 1.5px solid #333333;
+          border-radius: 16px;
+          height: 56px;
+
+          input {
+            width: 100%;
+            height: 100%;
+            outline: none;
+            border: none;
+            background: none;
+            padding: 16px;
+            font-weight: 400;
+            font-size: 14px;
+          }
+        }
+      }
+
+      .check {
+        width: 100%;
+
+        @include min1000 {
+          display: grid;
+          grid-column-gap: 3.5rem;
+          grid-template-columns: 1.5fr 1.5fr;
+        }
+
+        @include ipadView {
+          grid-template-columns: 1.5fr 1.5fr 1fr;
+          gap: 2rem;
+        }
+
+        .inputFormContainer {
+          padding-bottom: 2.4rem;
+
+          .inputBox {
+            border: 1.5px solid #333333;
+            border-radius: 16px;
+            height: 56px;
+
+            input {
+              width: 100%;
+              height: 100%;
+              outline: none;
+              border: none;
+              background: none;
+              padding: 16px;
+              font-weight: 400;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+
+      .toggleBoxContainer {
+        &.unlock {
+          padding-top: 1.4rem;
+        }
+
+        &.reserve {
+          padding-top: 2.4rem;
+        }
+
+        .Head {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 4rem;
+          grid-gap: 4rem;
+          align-items: center;
+          padding-bottom: 2rem;
+
+          .lefthead {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            grid-gap: 2rem;
+
+            .detail {
+              p {
+                font-weight: 400;
+                font-size: 14px;
+                margin: 0;
+                color: #858585;
+              }
+            }
+          }
+
+          .toggleinput {
+            // width: 40px;
+            // height: 21px;
+            // background: #e44757;
+            // border-radius: 100px;
+
+            .toggle-button-cover {
+              position: relative;
+              box-sizing: border-box;
+              width: 45px;
+              height: 22px;
+
+              .button-cover {
+                // height: 100px;
+                // margin: 20px;
+                // background-color: #fff;
+                // box-shadow: 0 10px 20px -8px #c5d6d6;
+                // border-radius: 4px;
+              }
+
+              .button-cover:before {
+                counter-increment: button-counter;
+                content: counter(button-counter);
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                color: #d7e3e3;
+                font-size: 12px;
+                line-height: 1;
+                padding: 5px;
+              }
+
+              .button-cover,
+              .knobs,
+              .layer {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+              }
+
+              .button {
+                position: relative;
+                top: 50%;
+                width: 45px;
+                height: 22px;
+                margin: -10px auto 0 auto;
+                overflow: hidden;
+              }
+
+              .button.r,
+              .button.r .layer {
+                border-radius: 100px;
+              }
+
+              .button.b2 {
+                border-radius: 2px;
+              }
+
+              .checkbox {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                padding: 0;
+                margin: 0;
+                opacity: 0;
+                cursor: pointer;
+                z-index: 3;
+              }
+
+              .knobs {
+                z-index: 2;
+              }
+
+              .layer {
+                width: 100%;
+                background-color: #333333;
+                transition: 0.3s ease all;
+                z-index: 1;
+              }
+
+              // button variant
+              #button-3 .knobs:before {
+                content: "";
+                position: absolute;
+                top: 3px;
+                left: 4px;
+                width: 16px;
+                height: 10px;
+                color: #fff;
+                font-size: 2px;
+                font-weight: bold;
+                text-align: center;
+                line-height: 1;
+                padding: 8px 1px;
+                background-color: #ffffff;
+                border-radius: 50%;
+                transition: 0.3s ease all,
+                  left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
+              }
+
+              #button-3 .checkbox:active + .knobs:before {
+                width: 46px;
+                border-radius: 100px;
+              }
+
+              #button-3 .checkbox:checked:active + .knobs:before {
+                margin-left: -26px;
+              }
+
+              #button-3 .checkbox:checked + .knobs:before {
+                content: "";
+                left: 26px;
+                background-color: #ffffff;
+              }
+
+              #button-3 .checkbox:checked ~ .layer {
+                background-color: #e44757;
+              }
+            }
+          }
+        }
+
+        .contentContainer {
+          textarea {
+            border: 1.5px solid #333333;
+            border-radius: 16px;
+            background: transparent;
+            padding: 16px;
+            color: #858585;
+            font-weight: 400;
+            font-size: 14px;
+            width: 100%;
+            line-height: 24px;
+          }
+
+          .copyData {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1.5px solid #333333;
+            border-radius: 16px;
+            height: 56px;
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 2.4rem;
+            position: relative;
+            p {
+              margin: 0;
+              color: #707070;
+              font-weight: 400;
+              font-size: 14px;
+            }
+            input {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              outline: none;
+              border: none;
+              background: none;
+              padding: 16px;
+              font-weight: 400;
+              font-size: 14px;
+            }
+            .copyImgIcon {
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+              right: 16px;
+              width: 24px;
+              height: 24px;
+              z-index: 40;
+            }
+            .copyBtn {
+              background: transparent;
+              box-shadow: none;
+              outline: none;
+              background-color: transparent;
+              border: none;
+              box-shadow: none !important;
+              svg path {
+                transition: all 0.2s linear;
+                -webkit-transition: all 0.2s linear;
+                -moz-transition: all 0.2s linear;
+                -ms-transition: all 0.2s linear;
+                -o-transition: all 0.2s linear;
+              }
+              svg:hover path {
+                stroke: #e44757;
+              }
+              &:before {
+                content: "";
+                display: none;
+                position: absolute;
+                z-index: 9998;
+                top: 35px;
+                left: 15px;
+                width: 0;
+                height: 0;
+                // border-left: 5px solid transparent;
+                // border-right: 5px solid transparent;
+                // border-bottom: 5px solid rgba(0, 0, 0, 0.72);
+              }
+              &:after {
+                content: "Copy to Clipboard";
+                display: none;
+                position: absolute;
+                z-index: 9999;
+                top: -20px;
+                right: -2px;
+                width: 114px;
+                height: 33px;
+                color: #e44757;
+                font-size: 10px;
+                line-height: 33px;
+                text-align: center;
+                background: rgb(228 71 87 / 9%);
+                border-radius: 11px;
+                -webkit-border-radius: 11px;
+                -moz-border-radius: 11px;
+                -ms-border-radius: 11px;
+                -o-border-radius: 11px;
+                background-color: rgb(228 71 87 / 9%);
+                border-radius: 100px;
+                @include max767 {
+                  right: 1px;
+                  line-height: 28px;
+                  top: -32px;
+                  height: 28px;
+                }
+              }
+
+              &:hover {
+                &:before,
+                &:after {
+                  display: block;
+                }
+              }
+              &:active,
+              &:focus {
+                outline: none;
+
+                &:after {
+                  content: "Copied!";
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .feeBox {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .fee {
+          p {
+            margin: 0;
+            color: #858585;
+            font-weight: 400;
+            font-size: 12px;
+
+            span {
+            }
+          }
+        }
+      }
+
+      .keepcollectionbox {
+        padding-top: 2.4rem;
+        padding-bottom: 4rem;
+
+        h3 {
+          margin: 0;
+          padding-bottom: 1rem;
+        }
+
+        .collectionContainer {
+          border: 2px dashed #333333;
+          border-radius: 32px;
+          width: 218px;
+          height: 120px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          background: #262626;
+
+          .collectionCardSm {
+            .content {
+              text-align: center;
+              display: flex;
+              flex-direction: column;
+              gap: 0.5rem;
+              grid-gap: 0.5rem;
+
+              .imgicon {
+              }
+
+              h5 {
+                font-weight: 500;
+                font-size: 14px;
+              }
+
+              h6 {
+                color: #858585;
+                font-weight: 600;
+                font-size: 12px;
+              }
+            }
+          }
+        }
+        .formInputDropDown {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          p {
+            color: #e44757;
+            font-size: 1.3rem;
+            margin-left: 0.3rem;
+            margin-top: 0.4rem;
+            letter-spacing: 0.3px;
+            // position: absolute;
+            @include max1000() {
+              font-size: 1.4rem;
+              margin-top: 0.4rem;
+              letter-spacing: 0.3px;
+            }
+          }
+        }
+        .dropdown {
+          width: 100%;
+          height: 5.3rem;
+          border-radius: 16px;
+          z-index: 9;
+          font-weight: 500;
+          @include txt14;
+          .dropdown-header {
+            padding: 1.4rem;
+            font-size: 14px;
+          }
+        }
+      }
+
+      .FooterbtnContainer {
+        max-width: 465px;
+        width: 100%;
+
+        button {
+          // color: #FFFFFF;
+          // background-color: #E44757;
+          // background: #333333;
+          border-radius: 100px;
+          font-weight: 500;
+          font-size: 14px;
+
+          padding: 12px;
+        }
+      }
+    }
+  }
+}

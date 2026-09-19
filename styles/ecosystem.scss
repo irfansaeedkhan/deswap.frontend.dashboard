@@ -1,0 +1,335 @@
+@import "mixins";
+// variables
+.EcosystemContainer {
+  h2 {
+    font-weight: 600;
+    font-size: 6rem;
+    line-height: 140%;
+    @include max1000() {
+    }
+    @include max767() {
+      font-size: 7rem;
+    }
+  }
+  h3 {
+    font-weight: 600;
+    font-size: 4.8rem;
+    line-height: 6.72rem;
+    text-transform: uppercase;
+
+
+    @include max1680() {
+      font-size: 5rem;
+      line-height: 8rem;
+    }
+    @include max767() {
+      line-height: 6.52rem;
+      margin-bottom: 40px;
+    }
+  }
+  h4 {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+  }
+  p {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 28px;
+    @include max1000() {
+      font-size: 18px;
+      line-height: 28px;
+      font-weight: 600;
+    }
+    @include max767() {
+      font-size: 18px;
+      line-height: 28px;
+      font-weight: 400;
+    }
+  }
+  color: #ffffff;
+  margin: 0 auto;
+  width: 100%;
+  background: url(/images/bg-ecosystem.png) no-repeat center center;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-position: initial;
+  flex-direction: column;
+  width: 100%;
+  @include max767() {
+    background: #1f1f1f;
+    //   margin-top: 12rem;
+  }
+
+  // section 1
+  .section1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(/images/coins.png) no-repeat center center;
+    background-position: center 71%;
+    background-size: contain;
+    @include max1000{
+      background: none;
+    }
+    .section1Inner {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0rem 2rem 0rem 2rem;
+      flex-direction: column;
+      @include max1000() {
+      }
+      @include max767() {
+      }
+
+      .title {
+        width: 100%;
+        max-width: 88.8rem;
+        h2 {
+          margin-top: 8rem;
+          margin-bottom: 14.9rem;
+          text-align: center;
+          text-transform: uppercase;
+          @include max1000() {
+            margin-top: 18rem;
+            margin-bottom: 8rem;
+          }
+          @include max767() {
+            margin-top: 9rem;
+            margin-bottom: 8rem;
+            text-align: left;
+          }
+          @media (max-width: 350px) {
+            font-size: 5.5rem;
+          }
+        }
+      }
+      .tokenList {
+        width: 100%;
+        max-width: 1120px;
+        display: flex;
+        flex-direction: column;
+        .list {
+          display: flex;
+          align-items: flex-start;
+
+          @include max1000() {
+            flex-direction: column;
+          }
+          @include max767() {
+            flex-direction: column;
+          }
+          .heading {
+            width: 100%;
+            max-width: 308px;
+            margin-right: 15.8rem;
+            @include max1000() {
+              max-width: 100%;
+            }
+            @include max767() {
+              max-width: 100%;
+            }
+          }
+          &.l1 {
+            margin-bottom: 14.9rem;
+            @include max1000() {
+              margin-bottom: 9rem;
+            }
+            @include max767() {
+              margin-bottom: 11.9rem;
+            }
+            .content {
+              width: 100%;
+              max-width: 656px;
+              p {
+                margin-bottom: 2rem;
+
+                @include max1000() {
+                  margin-bottom: 3rem;
+                }
+                @include max767() {
+                  margin-bottom: 5.6rem;
+                }
+              }
+            }
+          }
+          &.l2 {
+            margin-bottom: 14.9rem;
+            @include max1000() {
+              margin-bottom: 9rem;
+            }
+            @include max767() {
+              margin-bottom: 11.9rem;
+            }
+            .content {
+              width: 100%;
+              max-width: 656px;
+              p {
+                margin-bottom: 1.6rem;
+
+                @include max1000() {
+                  margin-bottom: 3rem;
+                }
+                @include max767() {
+                  margin-bottom: 5.6rem;
+                }
+              }
+              .contentUl {
+                display: flex;
+                @include max1000() {
+                }
+                @include max767() {
+                  flex-direction: column;
+                }
+                .leftList {
+                  width: 45%;
+                  margin-right: 7.6rem;
+                  @include max1000() {
+                  }
+                  @include max767() {
+                    width: 100%;
+                    margin-right: 0rem;
+                  }
+                }
+
+                .rightList {
+                  width: 45%;
+                  @include max1000() {
+                  }
+                  @include max767() {
+                    width: 100%;
+                  }
+                }
+              }
+            }
+          }
+          &.l3 {
+            margin-bottom: 16rem;
+            @include max1000() {
+              margin-bottom: 9rem;
+            }
+            @include max767() {
+              // margin-top: 12rem;
+            }
+            .content {
+              width: 100%;
+              max-width: 656px;
+              p {
+                margin-bottom: 1.6rem;
+              }
+              .contentUl {
+                display: flex;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  //   section 2
+  .section2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .section2Inner {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0rem 2rem 0rem 2rem;
+      flex-direction: column;
+      @include max1000() {
+      }
+      @include max767() {
+      }
+
+      .title {
+        width: 100%;
+        max-width: 888px;
+        h2 {
+          margin-top: 16rem;
+          margin-bottom: 12rem;
+          text-align: center;
+          text-transform: uppercase;
+          @include max1000() {
+          }
+          @include max767() {
+            margin-top: 12rem;
+            margin-bottom: 8rem;
+            text-align: left;
+          }
+          @media (max-width: 350px) {
+            font-size: 5.5rem;
+          }
+        }
+      }
+
+      .featureContainer {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        margin-bottom: 10rem;
+        @include max1000() {
+          justify-content: space-between;
+        }
+        @include max767() {
+          flex-direction: column-reverse;
+          margin-bottom: 10rem;
+          align-items: center;
+        }
+        .featureCard {
+          width: 33%;
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          max-width: 424px;
+          flex-direction: column;
+          margin: 46px 0px;
+
+          @include max1680() {
+            width: 100%;
+            max-width: 330px;
+            p{
+              font-size: 16px;
+            }
+          }
+          @include max1300() {
+            width: 100%;
+            max-width: 330px;
+          }
+          @include max1000() {
+            width: 45%;
+          }
+          @include max767() {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 343px;
+            width: 100%;
+          }
+          .imgbox {
+            margin-bottom: 40px;
+            max-width: 192px;
+            width: 100%;
+          }
+          .content {
+            width: 100%;
+            max-width: 384px;
+            h4 {
+              margin-bottom: 16px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

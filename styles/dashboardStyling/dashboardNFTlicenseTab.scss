@@ -1,0 +1,427 @@
+.nftLContainer {
+    width: 100%;
+    .nftLInner {
+      width: 100%;
+      padding: 4rem;
+      @include maxWidth;
+      @include max1000 {
+        padding: 4rem;
+        padding-top: 8rem;
+        min-height:100vh;
+      }
+      @include max767 {
+        padding: 3rem;
+        padding-top: 8rem;
+      }
+      .title {
+        padding-bottom: 2.4rem;
+        h1 {
+          @include txt24;
+        }
+      }
+      .nftLMain {
+          .tabsContainer {
+            padding-top: 4rem;
+            width: 100%;
+            .nav-tabs .nav-link:hover,
+            .nav-tabs .nav-link:focus {
+              border-color: transparent;
+              isolation: isolate;
+            }
+            ul.nav-tabs {
+              width: fit-content;
+              border-bottom: none;
+              // border: 1px solid #ffffff;
+              border-radius: 100px;
+              margin: 0 auto;
+              background: $greyV3;
+              box-shadow: 0px 0px 4px 0px #ffffff;
+    
+              li {
+                margin-top: -1px;
+                button.nav-link {
+                  width: 100%;
+                  @include txt18;
+                  padding: 1rem 2.5rem;
+                  color: #ffffff;
+                  font-weight: 600;
+                  transition: border-radius 1s linear, background 0.2s linear;
+                  @include max1000 {
+                    padding: 1rem 2rem;
+                  }
+                }
+                button.nav-link.active {
+                  border-radius: 100px;
+                  color: $greyV3;
+                }
+              }
+            }
+          }
+//  nft card tab
+  // licence card tabs
+  .NftlicenseCardList {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 3rem;
+    width: 100%;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    @include max1000 {
+      grid-template-columns: 1fr 1fr;
+      padding-top: 6rem;
+    }
+    @include max767 {
+      grid-template-columns: 1fr;
+      padding-top: 6rem;
+    }
+    .NftlicenseCard {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 3rem;
+      background: $greyV3;
+      border-radius: 24px;
+      .licenseLogo {
+        width: 100%;
+        border-radius: 24px;
+        margin-bottom: 3rem;
+        span {
+          width: 100%!important;
+        }
+        img {
+          object-fit: contain;
+        }
+        @media screen and (min-width: 2000px) {
+          span {
+            width: 100%;
+          }
+          img {
+            object-fit: cover;
+          }
+        }
+      }
+      .licenseName {
+        width: 100%;
+        text-align: center;
+        padding-top: 1.7rem;
+        h5 {
+          @include txt16;
+          font-weight: 600;
+
+          &:hover {
+            color: #e44757;
+            cursor: pointer;
+          }
+        }
+      }
+      .licensecardcontent {
+        display: flex;
+        flex-direction: column;
+        grid-gap: 2.5rem;
+        gap: 2.5rem;
+        width: 100%;
+        .networkPayment {
+          display: flex;
+          justify-content: space-between;
+          h3 {
+            @include txt16;
+            font-weight: 600;
+          }
+          .rates {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+
+            h5 {
+              font-weight: 600;
+              @include txt16;
+              span{
+                color: $greytxt;
+              }
+            }
+          }
+        }
+        .description{
+          width: 100%;
+          p{
+            color: $greytxt;
+            @include txt14;
+          }
+        }
+        .quantity{
+          display: flex;
+          justify-content: space-between;
+          h3{
+            color: $greytxt;
+            @include txt14;
+          }
+          .quantityInputContainer{
+            @include txt14;
+            .counter {
+              border: 1px solid #474747;
+box-sizing: border-box;
+border-radius: 10px;
+              display: flex;
+              width: 100%;
+              align-items: center;
+              justify-content: center;
+
+              width:80px;
+              height:35px;
+              &--output {
+                font-size: 18px;
+                text-align: right;
+                padding-bottom: 3px;
+                display: flex;
+                width: 150px;
+                height: 50px;
+                border: 1px solid #00cccc;
+                background-color: #e6ffff;
+                border-radius: 2px;
+                margin: 14px 0;
+                padding: 0 18px;
+                align-items: center;
+                justify-content: flex-start;
+                color: #004d4d;
+                background: transparent;
+                border: none;
+                text-align: center;
+                color: #fff;
+                width: 50px;
+                height: 25px;
+              }
+              
+              input[type=number]::-webkit-inner-spin-button,
+              input[type=number]::-webkit-outer-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+            
+              &--arrow-inc,
+              &--arrow-dec {
+                width: 2px;
+                height: 28px;
+                padding: 0;
+                cursor: pointer;
+                border: none;
+    background: transparent;
+    box-shadow: none;
+                &:hover {
+                    // background-color: #008080; 
+                  }
+                
+                &.js-noevent {
+                  pointer-events: none;
+                  background-color: #e6e6e6;
+                  border: none;
+                }
+            
+                span {
+                  height: 90px;
+                  color: transparent;
+                  font-size: 0;
+                  &:before {
+                    display: flex;
+                    height: 100%;
+                    font-size: 12px;
+                  
+                    color: white;
+                    transition: opacity ease 0.3s;
+                    justify-content: center;
+                    align-items: center;
+                    content: "\25bc";
+                  }
+                 
+                }
+              }
+              &--arrow-inc {
+                span {
+                  &:before {
+                    transform: rotate(180deg);
+                  }
+                }
+              }
+            }
+          }
+        }
+        .ClaimLockup {
+          display: flex;
+          justify-content: space-between;
+          h3{
+            color: $greytxt;
+            @include txt14;
+          }
+          h4{
+            @include txt14;
+
+          }
+        }
+      }
+      .buyButton {
+        padding-top: 3rem;
+        width: 100%;
+        button {
+          @include txt18;
+          padding: 1.6rem 0;
+          @include max1000 {
+            padding: 1.5rem 2rem;
+          }
+        }
+      }
+    }
+  }
+
+  // active nft licensecard list
+  .ActiveNftlicenseCardList {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 3rem;
+    width: 100%;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    @include max1000 {
+      grid-template-columns: 1fr 1fr;
+      padding-top: 6rem;
+    }
+    @include max767 {
+      grid-template-columns: 1fr;
+      padding-top: 6rem;
+    }
+    .ActiveNftlicenseCard {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 3rem;
+      background: $greyV3;
+      border-radius: 24px;
+      .licenseLogo {
+        width: 100%;
+        border-radius: 24px;
+        margin-bottom: 3rem;
+        @media screen and (min-width: 2000px) {
+          span {
+            width: 100%;
+          }
+          img {
+            object-fit: cover;
+          }
+        }
+      }
+      .licenseName {
+        width: 100%;
+        text-align: center;
+        padding-top: 1.7rem;
+        h5 {
+          @include txt16;
+          font-weight: 600;
+
+          &:hover {
+            color: #e44757;
+            cursor: pointer;
+          }
+        }
+      }
+      .licensecardcontent {
+        display: flex;
+        flex-direction: column;
+        grid-gap: 1.8rem;
+        gap: 1.8rem;
+        width: 100%;
+        .networkPayment {
+          display: flex;
+          justify-content: space-between;
+          h3 {
+            @include txt16;
+            font-weight: 600;
+          }
+          .rates {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+
+            h5 {
+              font-weight: 600;
+              @include txt16;
+              span{
+                color: $greytxt;
+              }
+            }
+          }
+        }
+        .description{
+          width: 100%;
+          p{
+            color: $greytxt;
+            @include txt14;
+          }
+        }
+      
+        .details {
+          display: flex;
+          justify-content: space-between;
+          h3{
+            color: $greytxt;
+            @include txt14;
+          }
+          h4{
+            @include txt14;
+
+          }
+        }
+      }
+      .buyButton {
+        padding-top: 3rem;
+        width: 100%;
+        button {
+          @include txt18;
+          padding: 1.6rem 0;
+          @include max1000 {
+            padding: 1.5rem 2rem;
+          }
+        }
+      }
+    }
+  }
+
+
+
+
+
+
+
+
+
+        //   modal styling
+        .contentbody {
+          text-align: center;
+          padding-bottom: 9rem;
+          .imgContainer {
+            padding-bottom: 2rem;
+          }
+          h6 {
+            font-weight: 600;
+            @include txt18;
+            padding-bottom: 1rem;
+          }
+          p {
+            color: #999999;
+            @include txt14;
+          }
+        }
+        .modalFooter {
+          display: flex;
+          justify-content: space-between;
+          width:100%;
+          button{
+            width: 45%;
+            padding: 1.5rem 2rem;
+          }
+        }
+      }
+    }
+  }
+  
+  
+  
+  
+  

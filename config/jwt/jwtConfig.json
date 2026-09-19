@@ -1,0 +1,6 @@
+{
+  "issuer": "Deswap",
+  "subject": "Authentication",
+  "expiresIn": "50m",
+  "algorithm": "HS256"
+}

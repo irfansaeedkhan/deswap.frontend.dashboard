@@ -1,0 +1,466 @@
+/* navbar */
+// .navContainer {
+//   overflow-x: hidden;
+
+//   width: 100%;
+// }
+
+//  nav bar
+nav {
+  width: 100%;
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+
+// stickynavbar
+  z-index: 3;
+  // position: fixed;
+  top: 0;
+  position: -webkit-sticky;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+
+
+
+
+
+  @media screen and (max-width: 767px) {
+    display: block;
+    position: fixed;
+    top: 0;
+    height: 72px;
+    overflow-x: hidden;
+    width: 100%;
+    overflow: hidden;
+    position: -webkit-sticky;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+
+    z-index: 3;
+    position: fixed;
+    top: 0;
+    position: -webkit-sticky;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+
+    &.open {
+      background-color: #00000087;
+      height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+      min-height: -webkit-fill-available;
+      // height: calc(var(--vh, 1vh) * 100);
+    }
+  }
+
+  // mobile nav links
+  .logo.mobile {
+    display: none;
+  }
+  .mobilenavContainer {
+    display: none;
+    @include max767() {
+      display: block;
+    }
+  }
+  .nav-linksMobile {
+    display: flex;
+    list-style: none;
+    width: 88%;
+    // width: calc(var(--vw, 1vw) * 88);
+    padding: 0 0.7vw;
+    justify-content: space-evenly;
+    align-items: center;
+    text-transform: uppercase;
+  }
+  .nav-linksMobile li a {
+    text-transform: capitalize;
+    text-decoration: none;
+    margin: 0 0.7vw;
+    font-size: 1.4rem;
+    color: #ffffff;
+    font-weight: 400;
+
+    @media screen and (max-width: 1100px) {
+      // width: 50%;
+    }
+    @media screen and (max-width: 767px) {
+      font-weight: 600;
+      font-size: 2.2rem;
+      line-height: 3.2rem;
+    }
+  }
+
+  .nav-linksMobile li a.active {
+    color: #e44757;
+  }
+  .nav-linksMobile li a:hover {
+    color: #e44757;
+  }
+  .nav-linksMobile li {
+    position: relative;
+  }
+  .nav-linksMobile li a::before {
+    content: "";
+    display: block;
+    height: 3px;
+    width: 0%;
+    background-color: #e44757;
+    position: absolute;
+    transition: all ease-in-out 250ms;
+    margin: -3px 0 0 10%;
+  }
+  .nav-linksMobile li a:hover::before {
+    width: 80%;
+  }
+
+  @media screen and (max-width: 767px) {
+    .nav-linksMobile {
+      position: fixed;
+      top: 72px;
+      background: #0a0a0b;
+      height: 100vh;
+      width: 100%;
+      flex-direction: column;
+      padding: 0;
+      justify-content: flex-start;
+      padding-top: 7%;
+      padding-left: 30%;
+      text-align: left;
+      align-items: flex-start;
+      transition: all 0.4s ease-out;
+      pointer-events: none;
+      transform: translateX(-200%);
+      background: #232323;
+      backdrop-filter: blur(16px);
+      -webkit-transform: translate3d(-200%, 0, 0);
+      -moz-transform: translate3d(-200%, 0, 0);
+      -ms-transform: translate3d(-200%, 0, 0);
+      -o-transform: translate3d(-200%, 0, 0);
+      position: -webkit-sticky;
+      transform: translate3d(0, 0, 0);
+      -webkit-transform: translate3d(-200%, 0, 0);
+      -o-transform: translate3d(-200%, 0, 0);
+      transform: translate3d(-200%, 0, 0);
+      background: #23232385;
+    }
+    .nav-linksMobile.open {
+      //clip-path: circle(1000px at 90% -10%);
+      //-webkit-clip-path: circle(1000px at 90% -10%);
+      pointer-events: all;
+      transform: translateX(-24%);
+      -webkit-transform: translateX(-24%);
+      -moz-transform: translateX(-24%);
+      -ms-transform: translateX(-24%);
+      -o-transform: translateX(-24%);
+
+      li{
+        opacity: 1!important;
+      }
+    }
+    .nav-linksMobile li {
+      opacity: 0;
+      padding: 2rem 0px;
+
+    }
+
+    li.fade {
+      opacity: 1;
+    }
+  }
+
+  // register custom btn
+  .registerBtn{
+    background-color: #E44757;
+    padding: 7px 13px !important;
+    border-radius: 5px;
+    margin-top: 9px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    box-shadow: 0px 0px 4px 1px #0c0c0c80;
+    a{
+      font-weight: 500!important;
+    }
+}
+  .navInner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-right: 2rem;
+    padding-left: 2rem;
+
+
+
+    @media screen and (max-width: 1100px) {
+      // width: 50%;
+    }
+    @media screen and (max-width: 767px) {
+      position: fixed;
+      height: 100%;
+      width: 100%;
+      height: 72px;
+      top: 0;
+      position: -webkit-sticky;
+    }
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    height: 72px;
+    top: 0;
+    position: -webkit-sticky;
+    /*Styling logo*/
+    .logo {
+      text-align: center;
+      line-height: 0;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      width: 29.2rem;
+      @include max1000() {
+        width: 7.2rem;
+      }
+    }
+    .logo.desktop{
+      display: flex;
+      align-items: flex-start;
+      a{
+        width: 150px;
+      }
+    }
+    .logo img {
+      // height: 3.4rem;
+      width: 100%;
+    }
+
+    /*Styling Links*/
+    .nav-links {
+      display: flex;
+      list-style: none;
+      width: 88%;
+      padding: 0 0.7vw;
+      justify-content: center;
+      align-items: center;
+      text-transform: uppercase;
+      margin-bottom: 0;
+    }
+    .nav-links li a {
+      text-transform: capitalize;
+      text-decoration: none;
+      margin: 0 1.1vw;
+      font-size: 1.4rem;
+      color: #ffffff;
+      font-weight: bold;
+      @include max1680() {
+        font-size: 1.7rem;
+        line-height: 2.8rem;
+      }
+      @media screen and (max-width: 1100px) {
+        // width: 50%;
+      }
+      @media screen and (max-width: 767px) {
+        font-weight: 600;
+        font-size: 1.4rem;
+        line-height: 2.4rem;
+        display: none;
+      }
+    }
+    .nav-links li a.active {
+      color: #e44757;
+    }
+    .nav-links li a:hover {
+      color: #e44757;
+    }
+    .nav-links li {
+      position: relative;
+    }
+    .nav-links li a::before {
+      content: "";
+      display: block;
+      height: 3px;
+      width: 0%;
+      background-color: #e44757;
+      position: absolute;
+      transition: all ease-in-out 250ms;
+      margin: -3px 0 0 10%;
+    }
+    .nav-links li a:hover::before {
+      width: 80%;
+    }
+
+    /*Styling Hamburger Icon*/
+    .hamburger div {
+      width: 30px;
+      height: 3px;
+      background: #e44757;
+      margin: 5px;
+      transition: all 0.3s ease;
+    }
+    .hamburger {
+      display: none;
+    }
+
+    /*Stying for small screens*/
+    @media screen and (max-width: 1000px) {
+      .logo.desktop {
+        display: none;
+      }
+      .logo.mobile {
+        display: block;
+      }
+    }
+    @media screen and (max-width: 767px) {
+      .hamburger div {
+        width: 24px;
+      }
+      .logo.mobile {
+        display: block;
+      }
+      .SimpleButton {
+        position: absolute;
+        cursor: pointer;
+        left: 75%;
+        top: 50%;
+        transform: translate(-75%, -50%);
+        width: 100%;
+        height: 4rem;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 0px;
+        padding: 0;
+        min-height: 2.6rem;
+        padding: 2.6rem 0px;
+      }
+      .flagContainer {
+        position: absolute;
+        cursor: pointer;
+        right: 1%;
+        top: 50%;
+        transform: translate(-3%, -50%);
+      }
+      .logo {
+        position: absolute;
+        cursor: pointer;
+        left: 25%;
+        top: 50%;
+        transform: translate(-25%, -50%);
+        z-index: 2;
+        transition: all 0.7s ease;
+        width: 3.2rem;
+        img {
+          height: 5.4rem;
+          width: 5.9rem;
+        }
+      }
+      .hamburger {
+        display: block;
+        position: absolute;
+        cursor: pointer;
+        left: 5%;
+        top: 50%;
+        transform: translate(-5%, -50%);
+        z-index: 2;
+        transition: all 0.7s ease;
+      }
+    }
+    /*Animating Hamburger Icon on Click*/
+    .toggle .line1 {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .toggle .line2 {
+      transition: all 0.7s ease;
+      width: 0;
+    }
+    .toggle .line3 {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+  }
+
+  .flagContainer {
+    margin-left: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 100%;
+    }
+  }
+}
+
+// document.body.style.height = window.innerHeight + 'px';
+
+// testing
+.navContainer {
+  padding: 0 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  // overflow-x: hidden;
+  width: 100%;
+  z-index: 999;
+  // background: #23232300;
+  height: 73px;
+  position: -webkit-sticky;
+position: -moz-sticky;
+position: -o-sticky;
+position: -ms-sticky;
+position: sticky;
+
+background: #232323cc;
+-webkit-backdrop-filter: blur(16px);
+backdrop-filter: blur(16px);
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  background: #232323cc;
+}
+
+/* slightly transparent fallback for Firefox (not supporting backdrop-filter) */
+@supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  background: #232323;
+}
+
+
+}
+@include max767() {
+  .navContainer {
+    padding: 0 0;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    overflow-x: hidden;
+    width: 100%;
+    z-index: 999;
+   background: transparent;
+    height: 72px;
+    position: -webkit-sticky;
+position: -moz-sticky;
+position: -o-sticky;
+position: -ms-sticky;
+position: sticky;
+backdrop-filter: blur(0px);
+  }
+  .navInner{
+    background: #232323;
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+  }
+  .navContainer.open {
+    height: 100vh;
+  }
+  nav.customnav{
+    position: relative;
+  }
+  nav.customnav.open{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}

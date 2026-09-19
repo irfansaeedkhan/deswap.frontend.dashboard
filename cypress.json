@@ -1,0 +1,10 @@
+
+{
+    "viewportWidth"  : 414,
+    "viewportHeight" : 736,
+    "baseUrl" : "http://localhost:3000",
+    "defaultCommandTimeout" : 20000,
+    "env" : {
+        "somevalue" : "random value 123"
+    }
+}

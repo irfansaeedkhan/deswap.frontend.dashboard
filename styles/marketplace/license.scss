@@ -1,0 +1,244 @@
+@font-face {
+  font-family: "Sui-generis-rg";
+  src: url("/fonts/s.otf");
+}
+
+.licenseContainer {
+  padding: 8rem 3.5rem;
+  width: 100%;
+  .innerLicense {
+    display: flex;
+    grid-gap: 5rem;
+    gap: 5rem;
+    width: 100%;
+    max-width: 1680px;
+    @include max1000 {
+      flex-direction: column;
+    }
+    .Lcontent {
+      p {
+        color: #858585;
+        font-size: 16px;
+        line-height: 28px;
+      }
+      .head {
+        display: flex;
+        gap: 3.2rem;
+        align-items: center;
+        @include max1000 {
+          gap: 2.2rem;
+          flex-direction: column;
+        }
+        .logoicon {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          margin-right: 5rem;
+          .imgbox {
+            width: 44px;
+          }
+          h3 {
+            font-weight: 600 !important;
+            font-size: 20px;
+            margin: 0;
+          }
+        }
+        p {
+          margin: 0;
+        }
+      }
+      .details {
+        padding-top: 5rem;
+        h2 {
+          font-weight: 600 !important;
+          font-size: 34px;
+          line-height: 42px;
+          padding-bottom: 2rem;
+        }
+        p {
+          margin-bottom: 3rem;
+        }
+        .terms {
+          padding-bottom: 6.3rem;
+          h6 {
+            font-size: 16px;
+            line-height: 24px;
+            padding-bottom: 0.6rem;
+          }
+          ul {
+            display: flex;
+            flex-direction: column;
+            gap: 1.4rem;
+            padding-left: 16px;
+            li {
+              position: relative;
+              font-weight: 400 !important;
+              font-size: 16px;
+              line-height: 21px;
+              color: #999999;
+              list-style: none;
+            }
+            li::before {
+              content: "";
+              position: absolute;
+              width: 7px;
+              height: 2px;
+              background: #e44757;
+              top: 50%;
+              left: -13px;
+              transform: translateY(-50%);
+            }
+          }
+        }
+        .checklist {
+          display: flex;
+          gap: 1.6rem;
+          align-items: center;
+          padding-bottom: 5rem;
+          input {
+            width: 20px;
+            height: 20px;
+          }
+          h5 {
+            font-size: 16px;
+            line-height: 24px;
+            margin: 0;
+          }
+        }
+        .btnContainer {
+          width: 100%;
+          max-width: 600px;
+          display: flex;
+          gap: 2rem;
+          button {
+            padding: 12px 0px !important;
+          }
+        }
+      }
+    }
+    .Lcard {
+      .LcardInner {
+        border: 2px solid #333333;
+        border-radius: 20px;
+        padding: 24px;
+        .profile {
+          display: flex;
+          gap: 12px;
+          padding-bottom: 24px;
+          .profileImg {
+            width: 50px;
+          }
+          .profileName {
+            h3 {
+              font-size: 18px;
+              line-height: 27px;
+              margin: 0;
+            }
+            h4 {
+              font-size: 13px;
+              color: #858585;
+              margin: 0;
+            }
+          }
+        }
+        .detailbox {
+          background: #262626;
+          border-radius: 16px;
+          padding: 8px 16px;
+          margin-bottom: 22px;
+          h5 {
+            color: #858585;
+            font-size: 12px;
+            line-height: 18px;
+          }
+          h6 {
+            font-size: 14px;
+            line-height: 21px;
+          }
+        }
+
+        h2 {
+          font-size: 20px;
+          line-height: 30px;
+          padding-top: 1.8rem;
+          padding-bottom: 1rem;
+        }
+        .licenseCard {
+          width: 290px;
+          height: 438px;
+          background: url("/images/licensecardback.png");
+          backdrop-filter: blur(60px);
+          filter: drop-shadow(0px 12px 32px rgba(0, 0, 0, 0.1));
+          border-radius: 16px;
+          overflow: hidden;
+          .cardTop {
+            height: 310px;
+            padding: 24px;
+            .cardtitle {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              h3 {
+                font-weight: 400 !important;
+                font-family: "Sui-generis-rg", sans-serif !important;
+                font-size: 14px;
+                line-height: 17px;
+              }
+            }
+            .cardImg {
+              width: 126px;
+              height: 181px;
+              margin: 0 auto;
+              margin-top: 47px;
+            }
+          }
+          .cardFooter {
+            height: 148px;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            background: url("/images/cardfooterbackground.png");
+            background-color: #0a0a0a;
+            .detailbox {
+              background: transparent;
+              padding: 24px;
+              margin: 0;
+              h5 {
+                color: #858585;
+                font-weight: 400 !important;
+                font-family: "Sui-generis-rg", sans-serif !important;
+                font-size: 12px;
+                line-height: 14px;
+              }
+              h6 {
+                font-weight: 400 !important;
+                font-family: "Sui-generis-rg", sans-serif !important;
+                font-size: 14px;
+                line-height: 17px;
+              }
+            }
+            .cardBottom {
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.licenseModal {
+  p {
+    font-weight: 600 !important;
+    font-size: 2rem;
+    line-height: 3rem;
+  }
+}
+.ModalFooterbtnContainer {
+  width: 100%;
+  padding-top: 3rem;
+  border-top: 1px solid #262626;
+}

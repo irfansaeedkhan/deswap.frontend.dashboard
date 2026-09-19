@@ -1,0 +1,147 @@
+.NetworkDetailsContainer {
+  width: 100%;
+  
+  .NetworkDetailsInner {
+    width: 100%;
+    padding: 4rem;
+    @include maxWidth;
+    @include max1000 {
+      padding: 4rem;
+      padding-top: 8rem;
+      min-height: 100vh;
+    }
+    @include max767 {
+      padding: 3rem;
+      padding-top: 8rem;
+    }
+    .title {
+      // padding-bottom: 2.5rem;
+      h1 {
+        @include txt24;
+      }
+    }
+    
+    .NetworkDetailsMain {
+      .networklinesDataContainer {
+        padding-bottom: 2.5rem;
+        .uplineDataBox {
+          padding: 1.5rem;
+          background: #232323;
+          border-radius: 1rem;
+          margin-bottom: 4rem;
+          p {
+            @include txt16;
+            text-align: left;
+            padding: 1rem 0;
+            text-transform: capitalize;
+          }
+        }
+      }
+      .downlineDataBoxContainer {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 2rem;
+        @include max767{
+          grid-template-columns: 1fr;
+        }
+        .smbox {
+          padding: 2rem;
+          border: 2px solid #464646;
+          border-radius: 16px;
+          -webkit-border-radius: 16px;
+          -moz-border-radius: 16px;
+          -ms-border-radius: 16px;
+          -o-border-radius: 16px;
+          transition: all 0.3s linear;
+          -webkit-transition: all 0.3s linear;
+          -moz-transition: all 0.3s linear;
+          -ms-transition: all 0.3s linear;
+          -o-transition: all 0.3s linear;
+          &:hover {
+            cursor: pointer;
+            border-color: #e44757 !important;
+            box-shadow: inset 0px 0px 5px 1px #e44757;
+            transform: translateY(-10px);
+          }
+          .textTitle {
+            @include txt16;
+            text-transform: uppercase;
+            display: block;
+            padding: 10px 0px 10px 0px;
+          }
+          .textNumber {
+            @include txt16;
+            display: block;
+            padding: 10px 0px 10px 0px;
+          }
+        }
+      }
+      //  your Deswap
+      .userlevelTableContainer {
+        background: #232323;
+        border-radius: 24px;
+        padding: 2.4rem;
+        margin-bottom: 4rem;
+        margin-top: 4rem;
+        .hashColumn{
+            @include txt18;
+        }
+        h3 {
+          @include txt18;
+          padding-bottom: 4.3rem;
+          font-weight: 300;
+
+          @include max1000 {
+            padding-left: 5px;
+            padding-top: 5px;
+            padding-bottom: 3.3rem;
+          }
+        }
+
+        .userlevelTable {
+          overflow-x: auto;
+        }
+        table {
+          width: 100%;
+
+          @include max1000 {
+            min-width: 380px;
+          }
+          thead {
+            tr {
+              th {
+                text-align: left;
+                @include txt16;
+                padding: 15px 0px;
+                border-bottom: 2px solid #727272;
+                &:nth-child(3){
+                  min-width: 100px;
+                }
+              }
+            }
+          }
+          tbody {
+            tr {
+              td {
+                @include txt14;
+                padding: 15px 0px;
+              }
+            }
+            .locked {
+              width: 50px;
+              padding: 5px 5px;
+              background: #424242;
+              border-radius: 8px;
+              text-align: center;
+              font-weight: 600;
+              transition: all 0.2s linear;
+            &:hover{
+              background: #e44757;
+            }
+            }
+          }
+        }
+      }
+    }
+  }
+}

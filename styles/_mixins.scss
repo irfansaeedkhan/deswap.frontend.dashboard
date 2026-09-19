@@ -1,0 +1,88 @@
+@mixin max1920{
+    @media screen and (max-width: 1920px) {
+        @content;
+      }
+}
+@mixin max1680{
+    @media screen and (max-width: 1680px) {
+        @content;
+      }
+}
+@mixin max1500{
+    @media screen and (max-width: 1500px) {
+        @content;
+      }
+}
+@mixin max1300{
+    @media screen and (max-width: 1300px) {
+        @content;
+      }
+}
+
+@mixin max1000{
+    @media screen and (max-width: 1000px) {
+        @content;
+      }
+}
+@mixin max767{
+    @media (max-width: 767px) {
+        @content;
+    }
+}
+
+@mixin supportfilter{
+    @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+        @content;
+      }
+}
+@mixin notsupportfilter{
+     /* slightly transparent fallback for Firefox (not supporting backdrop-filter) */
+  @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+      @content;
+  }
+}
+@mixin max800{
+    @media (max-width: 800px) {
+        @content;
+    }
+}
+@mixin max1900{
+    @media (max-width: 1900px) {
+        @content;
+    }
+}
+@mixin max2000{
+    @media (max-width: 2000px) {
+        @content;
+    }
+}
+
+// for ipad screen
+
+@mixin ipadView{
+    @media screen and (min-width:768px) and (max-width: 1000px) {
+        @content;
+    }
+}
+// min widths
+
+@mixin min768{
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+@mixin min1000{
+    @media screen and (min-width: 1000px) {
+        @content;
+      }
+}
+@mixin min1500{
+    @media screen and (min-width: 1500px) {
+        @content;
+      }
+}
+@mixin min1700{
+    @media screen and (min-width: 1700px) {
+        @content;
+      }
+}

@@ -1,0 +1,139 @@
+/* modal.module.css */
+@import "mixins";
+.modal__wrap {
+  position: fixed;
+  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  z-index: 100;
+  overflow-x: hidden;
+  pointer-events: none;
+  opacity: 0;
+  
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  transition: opacity 250ms 400ms ease;
+  -webkit-transition: opacity 250ms 400ms ease;
+  -moz-transition: opacity 250ms 400ms ease;
+  -ms-transition: opacity 250ms 400ms ease;
+  -o-transition: opacity 250ms 400ms ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+
+  background: rgba(20, 20, 20, 0.72);
+  background: rgb(0 0 0 / 51%);
+  backdrop-filter: blur(45px);
+
+
+
+  @include max1000() {
+    // height: auto;
+  }
+  @include max767() {
+    height: 100%;
+  }
+
+}
+
+.visible {
+  pointer-events: auto;
+  opacity: 1;
+  transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  -moz-transition: all 300ms ease-in-out;
+  -ms-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+}
+
+.modal {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: relative;
+  display: block;
+
+  height: auto;
+  min-width: 400px;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  padding-bottom: 20px;
+  background-color: #fff;
+  align-self: center;
+  box-shadow: 0 12px 25px 0 rgba(199, 175, 189, 0.25);
+  opacity: 0;
+  transform: scale(0.6);
+  transform: scale(0);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 24px 24px 40px;
+  background: #0a0a0a;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: none;
+  max-height: min-content;
+  flex-direction: column;
+  width: 100%;
+
+@include min1000{
+  max-width: 53rem;
+  width: 60vw;
+}
+  @include max1000() {
+    max-width: 65%;
+  }
+  @include max767() {
+    padding: 25px 40px 0px 40px;
+    max-width: unset;
+    max-height: unset;
+    height: 100%;
+    // padding: 8px 30px 0px;
+    margin: 0px;
+  }
+  transition: opacity 550ms 250ms ease, transform 300ms 250ms ease;
+  -webkit-transition: opacity 550ms 250ms ease, transform 300ms 250ms ease;
+  -moz-transition: opacity 550ms 250ms ease, transform 300ms 250ms ease;
+  -ms-transition: opacity 550ms 250ms ease, transform 300ms 250ms ease;
+  -o-transition: opacity 550ms 250ms ease, transform 300ms 250ms ease;
+  background: rgb(124 124 124 / 11%);
+  backdrop-filter: blur(80px);
+  border-radius: 16px;
+}
+
+.visible .modal {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 350ms 500ms ease, transform 350ms 500ms ease;
+  -webkit-transition: opacity 350ms 500ms ease, transform 350ms 500ms ease;
+  -moz-transition: opacity 350ms 500ms ease, transform 350ms 500ms ease;
+  -ms-transition: opacity 350ms 500ms ease, transform 350ms 500ms ease;
+  -o-transition: opacity 350ms 500ms ease, transform 350ms 500ms ease;
+}
+
+.modalTitleContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  padding: 0rem 0px 5rem;
+}
+.title {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28.8px;
+}
+.closeicon {
+  cursor: pointer;
+}

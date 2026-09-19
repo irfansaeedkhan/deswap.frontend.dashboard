@@ -1,0 +1,487 @@
+.MarketNavbar {
+  width: 100%;
+  // height: 10.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 0px;
+  @include max1680() {
+    padding: 3rem 0px;
+    height: auto;
+  }
+  @include max1000() {
+    padding: 2rem 0px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    height: auto;
+    background: #0000001f;
+    // backdrop-filter: blur(16px);
+  }
+  .MarketNavbarInner {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    @include max1000() {
+      flex-direction: row;
+      padding-left: 0rem;
+      padding-right: 0rem;
+      // padding: 2.5rem 0px;
+      justify-content: space-between;
+    }
+
+    .logoDesktop {
+      width: 154px;
+    }
+    &.adminDashboard {
+      justify-content: space-between;
+    }
+    .textBox {
+      button {
+        padding: 1rem 3rem !important;
+        @include min1700 {
+          padding: 1rem 3rem;
+        }
+      }
+    }
+  }
+  .mobileDashboardBurgerBox {
+    display: none;
+    @include max1000 {
+      display: block;
+    }
+    .logo {
+      margin-left: 60px;
+      margin-top: 2px;
+    }
+
+    .hamburger {
+      display: block;
+      position: absolute;
+      cursor: pointer;
+      left: 12px;
+      top: 17px;
+      // transform: translate(-5%, -50%);
+      z-index: 2;
+      transition: all 0.7s ease;
+      @media screen and (max-width: 1000px) {
+        div {
+          width: 30px;
+          height: 3px;
+          background: #e44757;
+          margin: 5px;
+          transition: all 0.3s ease;
+          width: 24px;
+        }
+      }
+      @media screen and (max-width: 767px) {
+        left: 10px;
+        top: 3px;
+      }
+      /*Animating Hamburger Icon on Click*/
+      &.toggle .line1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+      }
+      &.toggle .line2 {
+        transition: all 0.7s ease;
+        width: 0;
+      }
+      &.toggle .line3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+      }
+    }
+  }
+  .searchContainer {
+    box-sizing: border-box;
+    position: relative;
+    padding: 16px;
+    height: 47px;
+    width: 22vw;
+    border: 1.5px solid #333333;
+    border-radius: 48px;
+    @include max767 {
+      height: 6.6rem;
+      grid-column-start: 1;
+      grid-column-end: 3;
+      margin: 0 auto;
+      display: none;
+    }
+    input {
+      position: absolute;
+      width: 100%;
+      border-radius: 16px;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: transparent !important;
+      border-color: transparent !important;
+      padding: 2rem 2rem;
+      font-size: 1.4rem;
+      padding-left: 40px;
+      color: #c2c2c2;
+      font-size: 14px;
+      color: #707070;
+    }
+    .searchIcon {
+      position: absolute;
+      top: 11px;
+      left: 12px;
+    }
+  }
+  .linkBox {
+    // width: 256px;
+    // width: 340px;
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    margin-left: 2rem;
+    align-items: center;
+    @include max1000() {
+      max-width: 32rem;
+      width: auto;
+      display: flex;
+      justify-content: center;
+      justify-content: flex-end;
+      margin-left: 0;
+      align-items: center;
+    }
+    .saveBtnContainer {
+      //   border-right: 1px solid #333333;
+
+      @include max1000 {
+        position: absolute;
+        top: 67px;
+        right: -10px;
+        border: none;
+      }
+      button {
+        display: flex;
+        // outline: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
+        padding: 0.8rem 1.4rem;
+        align-items: center;
+        justify-content: space-between;
+        margin-right: 2rem;
+        background: transparent;
+        outline: none;
+        border: none;
+        p {
+          @include txt14;
+          margin: auto;
+        }
+      }
+      .reportdots {
+        position: relative;
+        .toggleBtn {
+          background: #262626;
+          border-radius: 14px;
+          width: 44px;
+          height: 44px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: none;
+          outline: none;
+        }
+        .toggleList {
+          display: flex;
+          flex-direction: column;
+          display: none;
+          position: absolute;
+          top: 65px;
+          right: 0;
+          border-radius: 16px;
+          background: #0a0a0a;
+          box-shadow: 0px 10px 40px rgb(0 0 0 / 40%);
+          &.show {
+            display: block;
+          }
+          .reportBtn {
+            border: none;
+            outline: none;
+            background: #0a0a0a;
+            border-radius: 16px;
+            color: #f5f5f5;
+            font-size: 14px;
+            line-height: 24px;
+            padding: 12px 0;
+            width: 28rem;
+            height: 57px;
+            transition: all 0.2s linear;
+
+            &:hover {
+              background: rgba(255, 255, 255, 0.03);
+            }
+          }
+        }
+      }
+    }
+    .createBtnContainer {
+      //   border-right: 1px solid #333333;
+
+      @include max1000 {
+        position: absolute;
+        top: 67px;
+        right: -10px;
+        border: none;
+      }
+      button {
+        @include txt14;
+        display: flex;
+        // outline: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
+        padding: 0.8rem 1.4rem;
+        align-items: center;
+        justify-content: space-between;
+        margin-right: 2rem;
+        background: transparent;
+        outline: none;
+        border: none;
+        p {
+          @include txt14;
+          margin: auto;
+        }
+        &:hover {
+          color: #e44757;
+        }
+      }
+      .reportdots {
+        position: relative;
+        .toggleBtn {
+          background: #262626;
+          border-radius: 14px;
+          width: 44px;
+          height: 44px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: none;
+          outline: none;
+        }
+        .toggleList {
+          width: 220px;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          display: none;
+          position: absolute;
+          top: 40px;
+          right: 7px;
+          border-radius: 16px;
+          background: #0a0a0a;
+          box-shadow: 0px 10px 40px rgb(0 0 0 / 40%);
+          gap: 13px;
+          padding: 12px 8px;
+          &.show {
+            display: flex;
+            z-index: 999999;
+          }
+          .reportBtn {
+            border: none;
+            outline: none;
+            background: rgba(228, 71, 87, 0.12);
+            border-radius: 999999px;
+            color: #e44757;
+            font-size: 14px;
+            line-height: 24px;
+            width: 100%;
+            height: 38px;
+            transition: all 0.1s linear;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 !important;
+            margin: 0;
+            text-decoration: none;
+            &:hover {
+              background: #e44757;
+              color: #ffffff;
+            }
+          }
+        }
+      }
+    }
+    .textBox {
+      //   margin-left: 2rem;
+      height: 36px;
+      @include max1000() {
+        display: none;
+      }
+      button.SimpleButton {
+        background-color: #e44757;
+        max-width: 28.3rem;
+        font-weight: 500;
+        padding: 0.8rem 2.6rem;
+      }
+      h6 {
+        font-weight: normal;
+        font-size: 2rem;
+        line-height: 160%;
+        color: #ffffff;
+        @include max1000() {
+          margin-bottom: 2rem;
+          font-size: 3rem;
+        }
+      }
+
+      h5 {
+        font-weight: 600;
+        color: #ffffff;
+        @include txt18;
+        margin-top: 6px;
+      }
+
+      &.adminName {
+        display: block;
+      }
+    }
+    .linkBoxImg {
+      // margin-left: 3.5rem;
+      cursor: pointer;
+      // width: 3.5rem;
+      @include max1000() {
+        // width: 5.5rem;
+      }
+      button {
+        background: transparent;
+        outline: none;
+        border: none;
+        width: 100%;
+      }
+      &.adminAvatar {
+        margin-left: 2rem;
+        width: 32px;
+        @include max1000 {
+          width: 31px;
+        }
+      }
+
+      &.flag {
+        margin-left: 10px;
+      }
+      &.star {
+        margin-left: 10px;
+      }
+    }
+    .toggleProfile {
+      position: relative;
+      .toggleList {
+        display: flex;
+        flex-direction: column;
+        display: none;
+        position: absolute;
+        top: 65px;
+        right: 0;
+        border-radius: 20px;
+        background: #141414;
+        box-shadow: 0px 10px 40px rgb(0 0 0 / 40%);
+        &.show {
+          display: block;
+          z-index: 99;
+        }
+        .profileBtn {
+          border: none;
+          outline: none;
+          background: #141414;
+          border-radius: 20px;
+          color: #f5f5f5;
+          font-size: 14px;
+          line-height: 24px;
+          width: 28rem;
+          height: 57px;
+          transition: all 0.2s linear;
+          text-align: left;
+          display: flex;
+          align-items: center;
+          gap: 1.3rem;
+          grid-gap: 1.3rem;
+          padding: 10px 20px;
+          &:hover {
+            background: rgba(255, 255, 255, 0.03);
+          }
+        }
+        .bottomSocialContainer {
+          background: #1f1f1f;
+          border-radius: 20px;
+          padding: 1.4rem 3rem;
+          margin: 6px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .socialicon {
+            transition: all 0.2s linear;
+            &:hover {
+              transform: scale(1.3);
+              svg path,
+              svg #tok {
+                fill: #e44757;
+              }
+            }
+          }
+        }
+      }
+      &.active {
+        border-bottom: 2px solid #e44757;
+      }
+    }
+    .linkBoxButton {
+      margin-left: 2rem;
+      @include max1000 {
+        display: none;
+      }
+    }
+  }
+  .icon {
+    --size: 6rem;
+    --transition-duration: 500ms;
+    --transition-easing: ease-out;
+
+    // width: var(--size);
+    // height: var(--size);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    color: var(--foreground-color);
+    font-size: 2rem;
+    // border: 1px solid rgba(white, 0.6);
+    background-color: rgba(white, 0.1);
+    backdrop-filter: blur(2px);
+    // border-radius: 0.5rem;
+    box-shadow: 0px calc(var(--size) / 6) calc(var(--size) / 3) rgba(black, 0.1);
+
+    transition: transform var(--transition-duration) var(--transition-easing);
+
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      background: rgba(white, 0.4);
+      width: 60%;
+      height: 100%;
+      top: 0%;
+      left: -125%;
+      transform: skew(45deg);
+      position: absolute;
+      transition: left var(--transition-duration) var(--transition-easing);
+    }
+
+    &:hover {
+      // transform: translateY(-20%);
+
+      &::before {
+        left: 150%;
+      }
+    }
+  }
+}

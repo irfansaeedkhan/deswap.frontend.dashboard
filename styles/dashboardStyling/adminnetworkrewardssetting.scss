@@ -1,0 +1,242 @@
+.NetworkRewardsSettingTabContainer {
+  width: 100%;
+  .NetworkRewardsSettingTabInner {
+    width: 100%;
+    padding: 4rem;
+    padding-bottom: 8rem;
+    @include max1000 {
+      padding: 4rem;
+      padding-top: 8rem;
+      min-height:100vh;
+    }
+    @include max767 {
+      padding: 3rem;
+      padding-top: 8rem;
+    }
+    .title {
+        display: none;
+      padding-bottom: 2.4rem;
+      @include max1000{
+          display: block;
+      }
+      h1 {
+        @include txt24;
+      }
+    }
+    .packMain {
+      .loadingData{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+        h3{
+
+        }
+      }
+      .NetworkRewardsSettingCardsContainer {
+        @media screen and (min-width: 768px) {
+          display: grid;
+          grid-column-gap: 2rem;
+          grid-row-gap: 2rem;
+          grid-template-columns: 1fr 1fr;
+        }
+        @media screen and (min-width: 1230px) {
+          display: grid;
+          grid-column-gap: 4rem;
+          grid-row-gap: 4rem;
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+        @media screen and (min-width: 1430px) {
+          display: grid;
+          grid-column-gap: 4rem;
+          grid-row-gap: 4rem;
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+        @media screen and (min-width: 1919px) {
+          display: grid;
+          grid-column-gap: 4rem;
+          grid-row-gap: 4rem;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        .networkRewardSettingCard {
+          position: relative;
+          width: 100%;
+          background: #232323;
+          border-radius: 24px;
+
+          @include max767{
+            margin-bottom: 4rem;
+          }
+          &.DeactivateCard{
+            .inputListContainer {
+                h6{
+                    color: #474747!important;
+                }
+                input{
+                    color: #474747!important;
+                }
+                &.packtype {
+                    .dropdown-header {
+                        color: #474747!important;
+                        font-size: 14px;
+                    }
+                  }
+            }
+          }
+          .networkRewardSettingCardInner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 4rem;
+            .formList {
+                width: 100%;
+              .inputListContainer {
+                position: relative;
+                padding-bottom: 2.5rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                h6 {
+                  color: #adadad;
+                  font-weight: 500;
+                  @include txt14;
+                }
+                .formInputDropDown {
+                  display: flex;
+                  flex-direction: column;
+                  width: 52%;
+                  p {
+                    color: #e44757;
+                    font-size: 1.3rem;
+                    margin-left: 0.3rem;
+                    margin-top: 0.4rem;
+                    letter-spacing: 0.3px;
+                    // position: absolute;
+                    @include max1000() {
+                      font-size: 1.4rem;
+                      margin-top: 0.4rem;
+                      letter-spacing: 0.3px;
+                    }
+                  }
+                }
+                .dropdown {
+                  width: 100%;
+                  height: 5.3rem;
+                  border-radius: 16px;
+                  z-index: 9;
+                  font-weight: 500;
+                  @include txt14;
+                  .dropdown-header {
+                    padding: 1.4rem;
+                    font-size: 14px;
+                  }
+                }
+                input {
+                  background: transparent;
+                  padding: 12px 16px;
+                  width: 100%;
+                  height: 5.3rem;
+                  box-sizing: border-box;
+                  border: 1px solid #474747;
+                  border-radius: 16px;
+                  font-weight: 500;
+                  @include txt14;
+                  color: #ffffff;
+                }
+
+                &.Active {
+                  .dropdown {
+                    .dropdown-header {
+                      color: #40dd3e;
+                      font-size: 14px;
+                    }
+                  }
+                }
+                &.Deactivate {
+                  .dropdown {
+                    .dropdown-header {
+                      color: #dd3e3e;
+                      font-size: 14px;
+                    }
+                  }
+                }
+
+                .formInputs{
+                  display: flex;
+                  flex-direction: column;
+                  width: 52%;
+                  p {
+                    color: #e44757;
+                    font-size: 1.3rem;
+                    margin-left: 0.3rem;
+                    margin-top: 0.4rem;letter-spacing: 0.3px;
+                    position: absolute;
+                    bottom: 0px;
+                    right: 0;
+                    height: 1.1rem;
+                    @include max1000() {
+                      font-size: 1.4rem;
+                      margin-top: 0.4rem;letter-spacing: 0.3px;
+                    }
+                  }
+                }
+                &.disabled{
+                  h6{color: #474747;}
+                  input{color: #474747;}
+                }
+              }
+            }
+            .footerCard {
+              display: grid;
+              grid-column-gap: 2rem;
+              grid-template-columns: 1fr 3fr;
+              width: 100%;
+              padding-top: 4rem;
+              .SimpleButton {
+                width: 100%;
+                padding: 1.6rem 2rem;
+              }
+              .deletebtn {
+                background: none;
+                box-shadow: none;
+                border: none;
+                // display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                padding: 10px;
+                position: static;
+                width: 45px;
+                  height: 45px;
+                left: 0px;
+                top: 0px;
+                background: rgba(228, 71, 87, 0.12);
+                border-radius: 100px;
+
+                // span{
+                //   width: 25px;
+                //   height:  25px;
+                // }
+              }
+            }
+          }
+
+          // modal 
+          .NRSCard{
+            .footerCard{
+              display: grid;
+              grid-column-gap: 2rem;
+              grid-template-columns: 1fr 1fr;
+              width: 100%;
+              padding-top: 4rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+

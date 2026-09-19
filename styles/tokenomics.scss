@@ -1,0 +1,502 @@
+@import "mixins";
+.TokenomicsContainer {
+  color: #ffffff;
+  margin: 0 auto;
+  width: 100%;
+  background: url(/images/bg-Shapetokenomics.png) no-repeat center
+    center;
+  background-size: 100% 100%;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-position: initial;
+  flex-direction: column;
+  width: 100%;
+  @include max767() {
+    background: #1f1f1f;
+    //   margin-top: 12rem;
+  }
+
+  // section 1
+  .section1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .section1Inner {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0rem 2rem 0rem 2rem;
+      flex-direction: column;
+      @include max1000() {
+      }
+      @include max767() {
+      }
+
+      .title {
+        h2 {
+          font-weight: 600;
+          font-size: 6rem;
+          line-height: 140%;
+          margin-top: 8rem;
+          margin-bottom: 8rem;
+          @include max1000() {
+            margin-top: 9rem;
+            margin-bottom: 8rem;
+          }
+          @include max767() {
+            margin-top: 9rem;
+            margin-bottom: 8rem;
+          }
+          @media (max-width: 350px) {
+            font-size: 5.5rem;
+          }
+        }
+      }
+      .tokenList {
+        width: 100%;
+        max-width: 888px;
+        display: flex;
+        flex-direction: column;
+        .list {
+          display: flex;
+          align-items: center;
+
+          @include max1000() {
+            flex-direction: column;
+          }
+          @include max767() {
+            flex-direction: column;
+          }
+          p {
+            font-weight: normal;
+            font-size: 1.8rem;
+            line-height: 2.8rem;
+            @include max1680() {
+              font-size: 2rem;
+              line-height: 3.2rem;
+            }
+            @include max1000() {
+              font-size: 2.6rem;
+              line-height: 4rem;
+              font-weight: 600;
+            }
+            @include max767() {
+              font-size: 2.5rem;
+              line-height: 4rem;
+              font-weight: 600;
+            }
+          }
+          .imgContainer {
+            width: 100%;
+            max-width: 308px;
+            margin-right: 4rem;
+          }
+          span {
+            color: #e44757;
+          }
+          &.l1 {
+            margin-bottom: 5.8rem;
+            @include max1000() {
+              margin-bottom: 8rem;
+            }
+            @include max767() {
+              margin-bottom: 8rem;
+            }
+            .content {
+              width: 100%;
+              max-width: 34.6rem;
+              @include max1000() {
+                max-width: 540px;
+              }
+        
+            }
+          }
+          &.l2 {
+            margin-bottom: 5.8rem;
+            @include max1000() {
+              margin-bottom: 8rem;
+            }
+            @include max767() {
+              margin-bottom: 8rem;
+            }
+            .content {
+              width: 100%;
+              max-width: 540px;
+              p {
+                margin-bottom: 1.6rem;
+
+                @include max1000() {
+                  margin-bottom: 5.6rem;
+                }
+                @include max767() {
+                  margin-bottom: 5.6rem;
+                }
+              }
+              .contentUl {
+                display: flex;
+                @include max1000() {
+                }
+                @include max767() {
+                  flex-direction: column;
+                }
+                .leftList {
+                  width: 45%;
+                  margin-right: 7.6rem;
+                  @include max1000() {
+                  }
+                  @include max767() {
+                    width: 100%;
+                    margin-right: 0rem;
+                  }
+                }
+
+                .rightList {
+                  width: 45%;
+                  @include max1000() {
+                  }
+                  @include max767() {
+                    width: 100%;
+                  }
+                }
+              }
+            }
+          }
+          &.l3 {
+            margin-bottom: 16rem;
+            @include max1000() {
+              margin-bottom: 16rem;
+            }
+            @include max767() {
+              margin-bottom: 16rem;
+            }
+            .content {
+              width: 100%;
+              max-width: 540px;
+              p {
+                margin-bottom: 1.6rem;
+              }
+              .contentUl {
+                display: flex;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  // section 2
+  .section2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .section2Inner {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 8rem 2rem 16rem 2rem;
+      @include max1000() {
+      }
+      @include max767() {
+        flex-direction: column-reverse;
+      }
+
+      .leftbox {
+        max-width: 656px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        @include max1000() {
+        }
+        @include max767() {
+          justify-content: space-between;
+          margin-top: 40px;
+        }
+        .analicCard {
+          width: 50%;
+          @include max1000() {
+          }
+          @include max767() {
+            width: 45%;
+          }
+          max-width: 308px;
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 6.4rem;
+          .percentageContainer {
+            display: flex;
+            align-items: center;
+            .circle {
+              width: 24px;
+              height: 24px;
+              border-radius: 50%;
+
+              @include max1000() {
+              }
+              @include max767() {
+                width: 18px;
+                height: 18px;
+              }
+              &.blue {
+                background-color: #0494e8;
+              }
+              &.green {
+                background-color: #40dd3e;
+              }
+              &.yellow {
+                background-color: #e8dc09;
+              }
+              &.pink {
+                background-color: #eb76e0;
+              }
+              &.red {
+                background-color: #e44757;
+              }
+            }
+            h3 {
+              margin-left: 1.1rem;
+              font-weight: 600;
+              font-size: 4.8rem;
+              line-height: 140%;
+
+              @include max1000() {
+              }
+              @include max767() {
+                font-size: 6.8rem;
+              }
+            }
+          }
+          p {
+            margin-top: 1.6rem;
+            font-weight: normal;
+            font-size: 1.8rem;
+            line-height: 2.8rem;
+
+            @include max1000() {
+            }
+            @include max767() {
+              font-size: 2.6rem;
+              line-height: 3.9rem;
+            }
+          }
+        }
+      }
+      .rightbox {
+        width: 35%;
+        @include max1000() {
+          width: 100%;
+
+        }
+        .imgContainer {
+          width: 100%;
+          max-width: 424px;
+          @include max1000() {
+            max-width: 343px;
+          }
+          @include max767() {
+            max-width: 343px;
+          }
+        }
+      }
+    }
+  }
+  //   section 3
+  .section3 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .section3Inner {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      padding: 16rem 2rem 0rem 2rem;
+      @include max1000() {
+        padding: 0rem 2rem 0rem 2rem;
+      }
+      @include max767() {
+      }
+      .title {
+        max-width: 888px;
+        h2 {
+          font-weight: 600;
+          font-size: 6rem;
+          line-height: 140%;
+          margin-bottom: 12rem;
+          text-transform: uppercase;
+          text-align: center;
+          padding: 0px 2rem;
+          @include max1000() {
+          }
+          @include max767() {
+            font-size: 6.3rem;
+            text-align: left;
+          }
+          @media (max-width: 350px) {
+            font-size: 5.5rem;
+          }
+          
+        }
+      }
+    }
+  }
+}
+
+//   section 4
+.section4.tokenomics {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .section4Inner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 0rem 2rem 18rem 2rem;
+    @include max1000() {
+    }
+    @include max767() {
+      padding: 0rem 2rem 8rem 2rem;
+    }
+
+    .content {
+      .topList {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 5rem;
+
+        @media (max-width: 350px) {
+          flex-direction: column;
+        }
+        @include max1000() {
+          grid-template-columns: 1fr 1fr;
+          grid-gap: 3rem;
+        }
+        .topListCard {
+          width: 100%;
+
+          @media (max-width: 350px) {
+            width: 100%;
+          max-width: 100%;
+          }
+          h5 {
+            font-weight: 600;
+            font-size: 2.4rem;
+            line-height: 3.6rem;
+            margin-bottom: 1.2rem;
+
+            @include max1000() {
+            }
+            @include max767() {
+              font-size: 3.4rem;
+              line-height: 5.2rem;
+            }
+          }
+          .card {
+            display: flex;
+            background: transparent !important;
+            flex-direction: row;
+            .imgContainer {
+              width: 32px !important;
+              height: 32px !important;
+              margin-right: 8px;
+              span {
+                width: 32px !important;
+                height: 32px !important;
+              }
+            }
+
+            p {
+              font-weight: 300;
+              font-size: 18px;
+              line-height: 28px;
+            }
+          }
+        }
+      }
+      .hrLine {
+        padding: 6.4rem 0px;
+        width: 100%;
+        @include max1000() {
+        }
+        @include max767() {
+          display: none;
+        }
+      }
+      .hrLinemobile {
+        display: none;
+        padding: 7rem 0px 10rem 0;
+        @include max1000() {
+        }
+        @include max767() {
+          display: block;
+        }
+      }
+      .bottomList {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 5rem;
+        @media (max-width: 350px) {
+          flex-direction: column;
+        }
+        @include max1000() {
+          grid-template-columns: 1fr 1fr;
+          grid-gap: 3rem;
+        }
+        .bottomListCard {
+          width: 100%;
+         
+          @media (max-width: 350px) {
+            width: 100%;
+          max-width: 100%;
+          }
+          h5 {
+            font-weight: 600;
+            font-size: 2.4rem;
+            line-height: 3.6rem;
+            margin-bottom: 1.2rem;
+
+            @include max1000() {
+            }
+            @include max767() {
+              font-size: 3.4rem;
+              line-height: 5.2rem;
+            }
+          }
+          .card {
+            display: flex;
+            background: transparent !important;
+            flex-direction: row;
+            .imgContainer {
+              width: 32px !important;
+              height: 32px !important;
+              margin-right: 8px;
+              span {
+                width: 32px !important;
+                height: 32px !important;
+              }
+            }
+            p {
+              font-weight: 300;
+              font-size: 18px;
+              line-height: 28px;
+              @include max1000() {
+              }
+              @include max767() {
+                margin-bottom: 3.4rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
