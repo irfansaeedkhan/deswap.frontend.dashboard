@@ -13,6 +13,7 @@ const SimpleButton = ({
 }) => {
   return (
     <button
+      type="button"
       disabled={disabled}
       className={`SimpleButton ${!disabled && "btnHoverEffectOutline"} ${
         className ? className : ""
@@ -26,6 +27,9 @@ const SimpleButton = ({
         //  height,
         maxWidth: maxWidth,
         padding: padding,
+        position: "relative",
+        zIndex: 5,
+        cursor: "pointer",
       }}
     >
       {text}

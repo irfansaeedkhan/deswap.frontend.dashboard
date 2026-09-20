@@ -13,6 +13,11 @@ function Footer() {
 
   const handleLaunchApp = (e) => {
     e.preventDefault();
+    e.stopPropagation();
+    if (typeof window !== "undefined") {
+      window.location.assign("/user/login");
+      return;
+    }
     router.push("/user/login");
   };
   return (

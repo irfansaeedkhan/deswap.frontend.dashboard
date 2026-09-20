@@ -1,28 +1,24 @@
 import Image from "next/image";
-import { useEffect } from "react";
 import SimpleButton from "../reusables/SimpleButton";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 const NavbarToggle = () => {
+  if (typeof document === "undefined") return;
   const hamburger = document.querySelector(".hamburger");
   const navLinks = document.querySelector(".nav-linksMobile");
   const links = document.querySelectorAll(".nav-linksMobile li");
   const layoutContainer = document.getElementById("layoutContainer");
   const customnav = document.querySelector(".customnav");
   const navContainer = document.querySelector(".navContainer");
-  // const body = document.querySelector("body");
-  // body.classList.toggle("open");
-  navLinks.classList.toggle("open");
-  navContainer.classList.toggle("open");
-  layoutContainer.classList.toggle("open");
-  customnav.classList.toggle("open");
-  links.forEach((link) => {
+  navLinks?.classList.toggle("open");
+  navContainer?.classList.toggle("open");
+  layoutContainer?.classList.toggle("open");
+  customnav?.classList.toggle("open");
+  links?.forEach((link) => {
     link.classList.toggle("fade");
   });
-
-  //Hamburger Animation
-  hamburger.classList.toggle("toggle");
+  hamburger?.classList.toggle("toggle");
 };
 
 function Navbar() {
@@ -30,15 +26,21 @@ function Navbar() {
 
   const handleLaunchApp = (e) => {
     e.preventDefault();
+    e.stopPropagation();
+    // Hard navigate so login always opens even if client router is stuck
+    if (typeof window !== "undefined") {
+      window.location.assign("/user/login");
+      return;
+    }
     router.push("/user/login");
   };
-  useEffect(() => {});
+
   return (
     <div className="navContainer">
       <nav className="customnav">
         <div className="navInner deswapMax">
           <div className="logo desktop">
-            <a href="https://deswap.co/">
+            <Link href="/">
               <Image
                 width={152}
                 height={34}
@@ -46,11 +48,10 @@ function Navbar() {
                 alt="Deswap Logo"
                 priority
               />
-            </a>
+            </Link>
           </div>
           <div className="logo mobile">
-            <a href="https://deswap.co/">
-              {" "}
+            <Link href="/">
               <Image
                 width={40}
                 height={40}
@@ -58,7 +59,7 @@ function Navbar() {
                 alt="Deswap Logo"
                 priority
               />
-            </a>
+            </Link>
           </div>
           <div className="hamburger" onClick={() => NavbarToggle()}>
             <div className="line1"></div>
@@ -167,6 +168,11 @@ function Navbar() {
                 >
                   Metaverse
                 </a>
+              </Link>
+            </li>
+            <li className="registerBtn">
+              <Link legacyBehavior href="/user/login">
+                <a onClick={() => NavbarToggle()}>Launch App</a>
               </Link>
             </li>
             <li className="registerBtn">
