@@ -63,66 +63,97 @@ function LoginForm() {
   });
   const onSubmit = async (userData) => {
     const sanData = await SanitizeRequestObject(userData);
-    if (sanData) {
-      try {
-        Seterr("");
-        await setloginbutton("Logging..");
+    if (!sanData) {
+      Seterr("Invalid form data");
+      return;
+    }
 
-        const isDemo =
-          process.env.NEXT_PUBLIC_DEMO_MODE === "true" ||
-          sanData.email === "demo@deswap.co";
+    try {
+      Seterr("");
+      await setloginbutton("Logging..");
 
-        let data;
-        if (isDemo) {
-          const response = await axios.post(
-            `${process.env.NEXT_PUBLIC_PLATFORM_URL}/api/demo/login`,
-            {
-              email: sanData.email,
-              password: sanData.password,
-            },
-            { withCredentials: true }
-          );
-          data = response.data;
-        } else {
-          let encryptionData = await requestBodyEncryptionUnprotected(sanData);
-          const response = await axios.post(
-            `${process.env.NEXT_PUBLIC_PLATFORM_URL}/api/login`,
-            { data: encryptionData },
-            {
-              headers: {
-                "security-set": true,
-              },
-            }
-          );
-          data = response.data;
-        }
+      const platformUrl =
+        process.env.NEXT_PUBLIC_PLATFORM_URL ||
+        (typeof window !== "undefined" ? window.location.origin : "");
 
-        if (data) {
-          const sanObj = await SanitizeRequestObject(data);
-          const user = sanObj.user || data.user;
+      const isDemoEnv =
+        process.env.NEXT_PUBLIC_DEMO_MODE === "true" ||
+        (typeof window !== "undefined" &&
+          (window.location.hostname === "localhost" ||
+            window.location.hostname === "127.0.0.1"));
 
-          await setloginbutton("Login");
-          setloginData(
-            JSON.stringify({
-              emailid: user.emailid,
-              uuid: user.uuid,
-              verified: user.accountverified,
-              user: true,
-              publickey: user.address,
-            })
-          );
-          await Seterr("Logged in successfully");
-          await setWalletValues("metamask", false);
-          if (isDemo) {
-            return router.push("/user/dashboard");
+      const isDemoEmail =
+        String(sanData.email || "").toLowerCase() === "demo@deswap.co";
+
+      const useDemoLogin = isDemoEnv || isDemoEmail;
+
+      let data;
+      if (useDemoLogin) {
+        // Use plain axios for demo so interceptors don't choke on unencrypted payloads
+        const response = await axios.post(
+          `${platformUrl}/api/demo/login`,
+          {
+            email: sanData.email,
+            password: sanData.password,
+          },
+          {
+            withCredentials: true,
+            headers: { "Content-Type": "application/json" },
           }
-          return router.push("/user/verification");
-        }
-      } catch (error) {
-        setloginbutton("Login");
-        Seterr("Failed to login");
-        setError("Failed to login");
+        );
+        data = response.data;
+      } else {
+        let encryptionData = await requestBodyEncryptionUnprotected(sanData);
+        const response = await axios.post(
+          `${platformUrl}/api/login`,
+          { data: encryptionData },
+          {
+            headers: {
+              "security-set": true,
+            },
+          }
+        );
+        data = response.data;
       }
+
+      const user = data?.user || data?.payload?.user;
+      if (!user?.emailid) {
+        throw new Error(
+          data?.hint ||
+            data?.error ||
+            "Login response missing user. Use demo@deswap.co / Demo@1234"
+        );
+      }
+
+      await setloginbutton("Login");
+      setloginData(
+        JSON.stringify({
+          emailid: user.emailid,
+          uuid: user.uuid,
+          verified: user.accountverified,
+          user: true,
+          publickey: user.address,
+        })
+      );
+      await Seterr("Logged in successfully");
+      await setWalletValues("metamask", false);
+      if (useDemoLogin) {
+        return router.push("/user/dashboard");
+      }
+      return router.push("/user/verification");
+    } catch (error) {
+      setloginbutton("Login");
+      const hint =
+        error?.response?.data?.hint ||
+        error?.response?.data?.error ||
+        error?.message;
+      const message =
+        hint && String(hint).includes("demo@")
+          ? hint
+          : hint
+            ? `Failed to login: ${hint}`
+            : "Failed to login. Demo: demo@deswap.co / Demo@1234";
+      Seterr(message);
     }
   };
 
@@ -130,6 +161,15 @@ function LoginForm() {
     <>
       <div className="loginForm">
         <h2>Login</h2>
+        <p
+          style={{
+            fontSize: "13px",
+            marginBottom: "8px",
+            opacity: 0.85,
+          }}
+        >
+          Demo: <strong>demo@deswap.co</strong> / <strong>Demo@1234</strong>
+        </p>
         <div className="inputsList">
           <p
             className="text-danger fw-bold loginMessage"
