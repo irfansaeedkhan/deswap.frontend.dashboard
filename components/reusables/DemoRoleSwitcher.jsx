@@ -12,15 +12,15 @@ export default function DemoRoleSwitcher() {
   const current = router.pathname.startsWith("/admin") ? "admin" : "user";
   const [busy, setBusy] = useState(false);
   const [show, setShow] = useState(
-    process.env.NEXT_PUBLIC_DEMO_MODE === "true"
+    process.env.NEXT_PUBLIC_DEMO_MODE !== "false"
   );
 
   useEffect(() => {
-    if (process.env.NEXT_PUBLIC_DEMO_MODE === "true") return;
-    const host = window.location.hostname;
-    if (host === "localhost" || host === "127.0.0.1") {
-      setShow(true);
+    if (process.env.NEXT_PUBLIC_DEMO_MODE === "false") {
+      setShow(false);
+      return;
     }
+    setShow(true);
   }, []);
 
   if (!show) return null;

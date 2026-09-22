@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -23,7 +23,6 @@ import CreatePackCard from "@/components/adminDashboardComponents/packs/CreatePa
 import CreateNFTLicenseCard from "@/components/adminDashboardComponents/addnftlicense/CreateNFTLicenseCard";
 import CreateDeswapPackCard from "@/components/adminDashboardComponents/adddeswappack/CreateDeswapPackCard";
 import { usePrefetchDashboardRoutes } from "@/utils/dashboard/prefetchRoutes";
-import { ensureDashboardCss } from "@/utils/dashboard/ensureDashboardCss";
 // import Pagination from "@/components/reusables/Pagination";
 config.autoAddCss = false;
 export const NFTContext = React.createContext();
@@ -32,22 +31,6 @@ export const CategoryContext = React.createContext();
 
 export function AdminDashboardLayout({ children }) {
   usePrefetchDashboardRoutes("admin");
-  const [cssReady, setCssReady] = useState(true);
-  useLayoutEffect(() => {
-    let cancelled = false;
-    const applied = document.querySelector(
-      'link[data-deswap-dashboard-css], link[href="/css/dashboard.css"]'
-    );
-    if (!(applied && applied.sheet)) {
-      setCssReady(false);
-    }
-    ensureDashboardCss().then(() => {
-      if (!cancelled) setCssReady(true);
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
   const [loadingState, setLoadingState] = useState(false);
   // create new pack
   const [showCreatNewPack, setShowCreatNewPack] = useState(false);
@@ -342,12 +325,10 @@ export function AdminDashboardLayout({ children }) {
   return (
     <div
       className="DashboardLayout Admin"
-      style={cssReady ? undefined : { visibility: "hidden" }}
     >
       <Head>
         <link rel="stylesheet" href="/css/dashboard.css" />
       </Head>
-      {!cssReady && <Loader title="Loading" />}
       <div className="DashboardLayoutInner">
         <div className="sidebar">
           <AdminDashboardSidebar />

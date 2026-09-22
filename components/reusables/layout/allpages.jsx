@@ -19,9 +19,13 @@ export function PagesLayout({ children, title, description, imagelink }) {
   React.useEffect(() => {
     const cssWait = { current: null };
     const start = (url) => {
-      if (url.split("?")[0] !== router.asPath.split("?")[0]) {
-        setRouteLoading(true);
-      }
+      const next = url.split("?")[0];
+      const current = router.asPath.split("?")[0];
+      if (next === current) return;
+      const stayingInDashboard =
+        needsDashboardCss(next) && needsDashboardCss(current);
+      if (stayingInDashboard) return;
+      setRouteLoading(true);
       if (needsDashboardCss(url)) {
         cssWait.current = ensureDashboardCss();
       }
