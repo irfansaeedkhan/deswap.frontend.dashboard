@@ -31,7 +31,7 @@ module.exports.encryptfrontendData = async (data) => {
     data = data.trim();
     let encryptedData = await CryptoJS.AES.encrypt(
       data,
-      process.env.FRONTEND_COOKIES_SECRET_KEY
+      process.env.FRONTEND_COOKIES_SECRET_KEY || "demo-frontend-cookies-secret"
     ).toString();
     return encryptedData;
   } catch (e) {
@@ -43,7 +43,7 @@ module.exports.decryptfrontendData = async (data) => {
   try {
     let decryptedKey = await CryptoJS.AES.decrypt(
       data,
-      process.env.FRONTEND_COOKIES_SECRET_KEY
+      process.env.FRONTEND_COOKIES_SECRET_KEY || "demo-frontend-cookies-secret"
     );
     let original = await decryptedKey.toString(CryptoJS.enc.Utf8);
     return original;

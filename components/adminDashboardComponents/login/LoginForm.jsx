@@ -65,6 +65,7 @@ function LoginForm() {
         process.env.NEXT_PUBLIC_DEMO_MODE === "true" ||
         window.location.hostname === "localhost" ||
         window.location.hostname === "127.0.0.1" ||
+        window.location.hostname.endsWith(".vercel.app") ||
         String(data1.email || "").toLowerCase() === "admin@deswap.co";
 
       let data;

@@ -16,6 +16,9 @@ import {
   encryptAdminReqPayLoad,
 } from "./encryptrequestpayload";
 
+const DEMO_FRONT_USER_KEY = "deswap-demo-frontend-user-key";
+const DEMO_JWT_SECRET_KEY = "demo-jwt-secret-key-change-me";
+
 function isDemoMode() {
   if (
     process.env.NEXT_PUBLIC_DEMO_MODE === "true" ||
@@ -25,9 +28,27 @@ function isDemoMode() {
   }
   if (typeof window !== "undefined") {
     const host = window.location.hostname;
-    return host === "localhost" || host === "127.0.0.1";
+    return (
+      host === "localhost" ||
+      host === "127.0.0.1" ||
+      host.endsWith(".vercel.app")
+    );
   }
-  return false;
+  return process.env.VERCEL === "1";
+}
+
+function frontendUserKey() {
+  return (
+    process.env.FRONT_END_USER_KEY ||
+    process.env.JWT_SECRET_KEY ||
+    DEMO_FRONT_USER_KEY
+  );
+}
+
+function jwtSigningKey() {
+  return (
+    process.env.JWT_SECRET_KEY || process.env.JWT_SECRET || DEMO_JWT_SECRET_KEY
+  );
 }
 
 module.exports.createUserRefreshToken = async (refreshTokenLength = 30) => {
@@ -59,7 +80,7 @@ module.exports.createJWTToken = async (params) => {
         emailid: params.emailid,
         uid: params.uid,
       },
-      process.env.JWT_SECRET_KEY,
+      jwtSigningKey(),
       jwtConfig
     );
   } catch (e) {
@@ -70,7 +91,7 @@ module.exports.createJWTToken = async (params) => {
 //
 module.exports.verifyJWT = async (param) => {
   try {
-    return await verify(param.jwtToken, process.env.JWT_SECRET_KEY);
+    return await verify(param.jwtToken, jwtSigningKey());
   } catch (e) {
     throw e;
   }
@@ -107,7 +128,7 @@ module.exports.createPasswordResetToken = async (params) => {
         hash: params.hash,
         type: params.type,
       },
-      process.env.JWT_SECRET_KEY,
+      jwtSigningKey(),
       jwtconfig
     );
   } catch (e) {
@@ -128,7 +149,7 @@ module.exports.emailVerificationToken = async (params) => {
         hash: params.hash,
         type: params.type,
       },
-      process.env.JWT_SECRET_KEY,
+      jwtSigningKey(),
       jwtconfig
     );
   } catch (e) {
@@ -156,7 +177,7 @@ module.exports.createFrontUserToken = async (params) => {
         role: params.role,
         messageCodeAuth: params.messageCodeAuth,
       },
-      process.env.FRONT_END_USER_KEY,
+      frontendUserKey(),
       jwtconfig
     );
   } catch (e) {
@@ -183,7 +204,7 @@ module.exports.createFrontAdminToken = async (params) => {
         ip: params.ip,
         messageCodeAuth: params.messageCodeAuth,
       },
-      process.env.FRONT_END_USER_KEY,
+      frontendUserKey(),
       jwtconfig
     );
   } catch (e) {
@@ -194,7 +215,7 @@ module.exports.createFrontAdminToken = async (params) => {
 //
 module.exports.verifyFrontEndToken = async (param) => {
   try {
-    return await verify(param.jwtToken, process.env.FRONT_END_USER_KEY);
+    return await verify(param.jwtToken, frontendUserKey());
   } catch (e) {
     throw e;
   }

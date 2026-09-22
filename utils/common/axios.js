@@ -27,7 +27,11 @@ function isDemoMode() {
   if (process.env.NEXT_PUBLIC_DEMO_MODE === "true") return true;
   if (typeof window !== "undefined") {
     const host = window.location.hostname;
-    return host === "localhost" || host === "127.0.0.1";
+    return (
+      host === "localhost" ||
+      host === "127.0.0.1" ||
+      host.endsWith(".vercel.app")
+    );
   }
   return process.env.DEMO_MODE === "true";
 }
