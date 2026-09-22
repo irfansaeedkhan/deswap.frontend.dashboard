@@ -372,9 +372,8 @@ $white: #fff;
 .modalWithImage img,
 .claimmingpackDelCard img,
 .modalcontentSuccess .wallet img {
-  max-width: 100% !important;
-  width: 100% !important;
-  height: auto !important;
+  max-width: 100%;
+  height: auto;
   object-fit: contain;
 }
 
@@ -2542,77 +2541,68 @@ table .actionBtn {
 }
 
 // comapny card styling
+.modalcontentSuccess .contentbox:has(.CompanyModalCard),
+.modalcontentSuccess.buydeswap .contentbox:has(.CompanyModalCard) {
+  align-items: stretch;
+  text-align: left;
+  width: 100%;
+  max-width: 100%;
+}
+
 .CompanyModalCard {
   width: 100%;
-  min-width: 42vw;
+  min-width: min(760px, 86vw);
   text-align: left;
-  // background: rgba(255, 255, 255, 0.03);
-  // border-radius: 24px;
-  // display: grid;
-  // grid-template-columns: 20% 80%;
-  // margin-top: 2.5rem;
-  @include max1000 {
-    // grid-template-columns: 100%;
-  }
+  align-self: stretch;
+
   .cardHeader {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    grid-gap: 2rem;
     gap: 2rem;
     width: 100%;
-    @include max1000 {
-      // grid-template-columns: 100%;
-    }
-    .leftImg {
-      // width: 17%;
+    text-align: left;
 
-      // background: rgba(255, 255, 255, 0.03);
-      // border-radius: 24px 0px 0px 24px;
-      // display: flex;
-      // justify-content: center;
-      // align-items: center;
-      // @include max1000 {
-      //   border-radius: 24px 24px 0px 0px;
-      //   padding: 15px;
-      // }
+    .leftImg {
+      flex: 0 0 80px;
       .companyImgIcon {
         width: 80px;
         height: 80px;
         display: flex;
         align-items: center;
         justify-content: center;
+        overflow: hidden;
+        border-radius: 50%;
         img {
-          width: 100%;
-          height: 100%;
+          width: 80px;
+          height: 80px;
+          max-width: 80px;
           object-fit: cover;
           border-radius: 50%;
         }
       }
     }
     .rightContent {
-      // padding: 4.5rem 7rem 4.5rem 2rem;
-      // @include max1000 {
-      //   padding: 4.5rem 3rem 4.5rem 3rem;
-      // }
+      flex: 1;
+      min-width: 0;
+      text-align: left;
       h3 {
         font-weight: 500;
-        @include txt24;
-        margin: 0;
+        text-align: left !important;
+        width: auto;
+        margin: 0 0 0.4rem;
         color: #f5f5f5;
       }
       .dataList {
         display: flex;
         flex-direction: column;
-        @include max1000 {
-          display: block;
-        }
+        align-items: flex-start;
         .leftDataList {
           display: flex;
           align-items: center;
+          flex-wrap: wrap;
           h4 {
             color: #707070;
-            @include txt16;
             margin: 0;
             span {
               color: #a7a7a7;
@@ -2623,21 +2613,29 @@ table .actionBtn {
             height: 3px;
             background: #858585;
             border-radius: 50%;
-            margin: 0px 5px;
+            margin: 0 5px;
           }
         }
         .rightDataList {
           display: flex;
           align-items: center;
+          justify-content: flex-start;
           margin-top: 10px;
+          width: 100%;
           .socialIconsContainer {
             display: flex;
+            align-items: center;
+            justify-content: flex-start;
             gap: 16px;
-            grid-gap: 16px;
             button {
               background: transparent;
               outline: none;
               border: none;
+              padding: 0;
+              width: auto;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
             }
           }
         }
@@ -2645,53 +2643,42 @@ table .actionBtn {
     }
   }
   .companyInfoTable {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: space-between;
+    margin-top: 2.4rem;
+    width: 100%;
     .tableContainer {
       width: 100%;
-
       .tableContainerTable {
-        overflow-x: auto;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        @include max1000 {
-          flex-direction: column;
-        }
-      }
-      table {
-        width: 100%;
-        @include max1000 {
-          min-width: 450px;
-        }
-        tr {
-          border: none !important;
-        }
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        column-gap: 2rem;
+        row-gap: 2rem;
+        overflow: visible;
       }
     }
     .infoItem {
-      width: 25%;
-      margin: 1rem 0;
-      @include max1000 {
-        display: flex;
-        justify-content: space-between;
-        border-bottom: 1px solid #383838;
-        padding: 3px 0 0 0;
+      width: auto;
+      margin: 0;
+      grid-column: span 3;
+      text-align: left;
+      &:nth-child(n + 5) {
+        grid-column: span 4;
+      }
+      h5,
+      h6 {
+        text-align: left !important;
+        margin: 0;
+        padding: 0;
         width: 100%;
       }
       h5 {
-        @include txt14;
         color: #afafaf;
         text-transform: uppercase;
-        margin: 0;
-        padding: 0;
       }
       h6 {
-        @include txt14;
         color: #e7e7e7;
-        margin: 0;
-        padding: 0;
+        margin-top: 0.6rem;
+        line-height: 1.45;
+        white-space: nowrap;
       }
     }
   }

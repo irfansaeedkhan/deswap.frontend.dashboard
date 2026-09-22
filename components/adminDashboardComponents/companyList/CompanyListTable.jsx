@@ -324,7 +324,7 @@ function CompanyListTable() {
                   </div>
                 </div>
                 <div className="rightContent">
-                  <h3 className="text-center"> {data?.name ? data?.name : "N/A"} </h3>
+                  <h3>{data?.name ? data?.name : "N/A"}</h3>
                   <div className="dataList">
                     <div className="leftDataList">
                       <h4>@{data?.username ? data?.username : "N/A"} </h4>
