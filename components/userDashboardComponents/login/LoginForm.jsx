@@ -142,7 +142,7 @@ function LoginForm() {
       );
       toast.success("Logged in successfully", { autoClose: 2000 });
       await setWalletValues("metamask", false);
-      await ensureDashboardCss();
+      ensureDashboardCss();
       if (useDemoLogin) {
         return router.push("/user/dashboard");
       }

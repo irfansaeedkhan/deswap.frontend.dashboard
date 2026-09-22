@@ -112,7 +112,7 @@ function LoginForm() {
         })
       );
       toast.success("Logged in successfully", { autoClose: 2000 });
-      await ensureDashboardCss();
+      ensureDashboardCss();
       return router.push("/admin/dashboard");
     } catch (e) {
       console.log("Error message : ", e);

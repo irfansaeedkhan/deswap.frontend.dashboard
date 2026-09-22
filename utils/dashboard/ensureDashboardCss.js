@@ -5,21 +5,20 @@ export function needsDashboardCss(url = "") {
   return /\/(user|admin)\/dashboard/.test(String(url));
 }
 
-function findDashboardCssLink() {
+function findStylesheet() {
   if (typeof document === "undefined") return null;
-  return (
-    document.querySelector(`link[${MARK}]`) ||
-    document.querySelector(`link[href="${DASHBOARD_CSS}"]`) ||
-    document.querySelector('link[href*="/css/dashboard.css"]')
+  const links = document.querySelectorAll(
+    `link[${MARK}], link[href="${DASHBOARD_CSS}"], link[href*="/css/dashboard.css"]`
   );
+  for (let i = 0; i < links.length; i++) {
+    if (links[i].rel === "stylesheet") return links[i];
+  }
+  return null;
 }
 
 export function preloadDashboardCss() {
   if (typeof document === "undefined") return;
-  if (
-    document.querySelector(`link[${MARK}-preload]`) ||
-    findDashboardCssLink()
-  ) {
+  if (document.querySelector(`link[${MARK}-preload]`) || findStylesheet()) {
     return;
   }
   const link = document.createElement("link");
@@ -33,22 +32,42 @@ export function preloadDashboardCss() {
 export function ensureDashboardCss() {
   if (typeof document === "undefined") return Promise.resolve();
 
-  const existing = findDashboardCssLink();
-  if (existing) {
-    if (existing.sheet) return Promise.resolve();
-    return new Promise((resolve) => {
-      existing.addEventListener("load", () => resolve(), { once: true });
-      existing.addEventListener("error", () => resolve(), { once: true });
-    });
-  }
+  const existing = findStylesheet();
+  if (existing && existing.sheet) return Promise.resolve();
+
+  const link =
+    existing ||
+    (() => {
+      const el = document.createElement("link");
+      el.rel = "stylesheet";
+      el.href = DASHBOARD_CSS;
+      el.setAttribute(MARK, "1");
+      document.head.appendChild(el);
+      return el;
+    })();
 
   return new Promise((resolve) => {
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = DASHBOARD_CSS;
-    link.setAttribute(MARK, "1");
-    link.onload = () => resolve();
-    link.onerror = () => resolve();
-    document.head.appendChild(link);
+    const done = () => resolve();
+    const timer = setTimeout(done, 2500);
+    link.addEventListener(
+      "load",
+      () => {
+        clearTimeout(timer);
+        done();
+      },
+      { once: true }
+    );
+    link.addEventListener(
+      "error",
+      () => {
+        clearTimeout(timer);
+        done();
+      },
+      { once: true }
+    );
+    if (link.sheet) {
+      clearTimeout(timer);
+      done();
+    }
   });
 }
