@@ -1,7 +1,6 @@
 import React from "react";
 import Footer from "@/components/global/Footer";
 import Navbar from "@/components/global/Navbar";
-
 export function LandingpageLayout({ children }) {
   return (
     <div className="landingpage">
@@ -12,7 +11,7 @@ export function LandingpageLayout({ children }) {
           return false;
         }}
       >
-        {children}
+        <main>{children}</main>
         <Footer />
       </div>
     </div>

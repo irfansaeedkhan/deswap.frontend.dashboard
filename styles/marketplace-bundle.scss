@@ -1,5 +1,4 @@
-@import "core";
-@import "marketing";
-@import "auth";
+@import "mixins";
+@import "globals.scss";
 @import "app-dashboard";
 @import "./marketplace/marketplace.scss";

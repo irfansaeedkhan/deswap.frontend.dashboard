@@ -41,6 +41,9 @@ package-lock.json
 # Lighthouse
 /lighthouse-reports
 
+# Generated dashboard/marketplace CSS (built in next.config.js)
+/public/css
+
 # Ignore zip file
 *.zip
 

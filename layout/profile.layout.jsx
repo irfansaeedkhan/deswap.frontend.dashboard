@@ -65,7 +65,8 @@ export function ProfileLayout({ children }) {
     fblink: "",
     twitter: "",
   });
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     try {
       let { data } = await axios.post(
         `${process.env.NEXT_PUBLIC_PLATFORM_URL}/api/users/profile/info`,
@@ -111,6 +112,7 @@ export function ProfileLayout({ children }) {
     } catch (error) {
       console.log("Error layout : ", error);
     }
+      })();
   }, []);
   return (
     <main className="marketMain">

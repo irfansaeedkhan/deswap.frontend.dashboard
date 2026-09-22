@@ -1,3 +1,9 @@
+try {
+  require("./scripts/compile-page-css.js");
+} catch (err) {
+  console.warn("[compile-page-css]", err && err.message ? err.message : err);
+}
+
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
@@ -26,7 +32,21 @@ const nextConfig = {
   reactStrictMode: false,
   poweredByHeader: false,
   compress: true,
+  sassOptions: {
+    quietDeps: true,
+    silenceDeprecations: [
+      "import",
+      "legacy-js-api",
+      "global-builtin",
+      "color-functions",
+    ],
+  },
+  onDemandEntries: {
+    maxInactiveAge: 60 * 60 * 1000,
+    pagesBufferLength: 50,
+  },
   images: {
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
         protocol: "https",

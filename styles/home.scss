@@ -1,7 +1,7 @@
 .homeContainer {
   margin: 0 auto;
   width: 100%;
-  background: url('/images/bg-Shape.png') no-repeat center center;
+  background: url('/images/bg-Shape.avif') no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -44,6 +44,7 @@
       .leftbox {
         .content {
           max-width: 65.1rem;
+          h1,
           h2 {
             font-style: normal;
             font-weight: 600;

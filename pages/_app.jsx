@@ -1,13 +1,18 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { config } from "@fortawesome/fontawesome-svg-core";
-import "@fortawesome/fontawesome-svg-core/styles.css";
-import "../styles/index.scss";
+import { Poppins } from "next/font/google";
 import { wrapper } from "../redux/store/store";
 import { PagesLayout } from "@/components/reusables/layout/allpages";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/core.scss";
+import "../styles/marketing.scss";
+import "../styles/auth.scss";
 
-config.autoAddCss = false;
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-poppins",
+});
 
 function MyApp({ Component, ...rest }) {
   const { store, props } = wrapper.useWrappedStore(rest);
@@ -16,11 +21,13 @@ function MyApp({ Component, ...rest }) {
 
   return (
     <Provider store={store}>
-      <PagesLayout>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </PagesLayout>
+      <div className={`${poppins.variable} ${poppins.className}`}>
+        <PagesLayout>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </PagesLayout>
+      </div>
     </Provider>
   );
 }

@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Head from "next/head";
 import Modal from "@/components/reusables/Modal";
 import axios from "@/utils/common/axios";
 import AdminDashboardSidebar from "@/components/adminDashboardComponents/adminSidebar/AdminDashboardSidebar";
 import AdminDashboardMobileSidebar from "@/components/adminDashboardComponents/adminSidebar/AdminDashboardMobileSidebar";
 import AdminDashboardNavbar from "@/components/adminDashboardComponents/adminNavbar/AdminDashboardNavbar";
-import { checkAdminAuth } from "@/utils/auth/checkAdminAuth";
 import Loader from "@/components/reusables/loader/Loader";
 import { requestBodyEncryptionAdmin } from "@/utils/common/jwtToken";
 import { ToastContainer, toast } from "react-toastify";
@@ -19,15 +22,15 @@ import CreateCategoryCard from "@/components/adminDashboardComponents/companyCat
 import CreatePackCard from "@/components/adminDashboardComponents/packs/CreatePackCard";
 import CreateNFTLicenseCard from "@/components/adminDashboardComponents/addnftlicense/CreateNFTLicenseCard";
 import CreateDeswapPackCard from "@/components/adminDashboardComponents/adddeswappack/CreateDeswapPackCard";
-// import Pagination from "react-js-pagination";
-export const getServerSideProps = async (ctx) => {
-  return await checkAdminAuth(ctx);
-};
+import { usePrefetchDashboardRoutes } from "@/utils/dashboard/prefetchRoutes";
+// import Pagination from "@/components/reusables/Pagination";
+config.autoAddCss = false;
 export const NFTContext = React.createContext();
 export const LevelContext = React.createContext();
 export const CategoryContext = React.createContext();
 
 export function AdminDashboardLayout({ children }) {
+  usePrefetchDashboardRoutes("admin");
   const [loadingState, setLoadingState] = useState(false);
   // create new pack
   const [showCreatNewPack, setShowCreatNewPack] = useState(false);
@@ -321,6 +324,9 @@ export function AdminDashboardLayout({ children }) {
   }
   return (
     <div className="DashboardLayout Admin">
+      <Head>
+        <link rel="stylesheet" href="/css/dashboard.css" />
+      </Head>
       <div className="DashboardLayoutInner">
         <div className="sidebar">
           <AdminDashboardSidebar />
@@ -338,7 +344,7 @@ export function AdminDashboardLayout({ children }) {
             />
           </div>
           <NFTContext.Provider value={refreshNFTList}>
-            <div className="tabsData">{children}</div>
+            <main className="tabsData">{children}</main>
           </NFTContext.Provider>
         </div>
       </div>

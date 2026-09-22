@@ -1,10 +1,20 @@
 // components
+import dynamic from "next/dynamic";
 import HomeSection1 from "@/components/home/HomeSection1";
-import HomeSection2 from "@/components/home/HomeSection2";
-import HomeSection3 from "@/components/home/HomeSection3";
-import HomeSection4 from "@/components/home/HomeSection4";
-import HomeSection5 from "@/components/home/HomeSection5";
 import { LandingpageLayout } from "@/layout/landingpage.layout";
+
+const HomeSection2 = dynamic(() => import("@/components/home/HomeSection2"), {
+  ssr: true,
+});
+const HomeSection3 = dynamic(() => import("@/components/home/HomeSection3"), {
+  ssr: true,
+});
+const HomeSection4 = dynamic(() => import("@/components/home/HomeSection4"), {
+  ssr: true,
+});
+const HomeSection5 = dynamic(() => import("@/components/home/HomeSection5"), {
+  ssr: true,
+});
 
 export default function Home() {
   return (

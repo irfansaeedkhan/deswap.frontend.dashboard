@@ -8,24 +8,19 @@ function HomeSection1() {
         <link
           rel="preload"
           as="image"
-          href="/images/bg-Shape.png"
-          fetchPriority="high"
-        />
-        <link
-          rel="preload"
-          as="image"
-          href="/images/world.png"
+          type="image/avif"
+          href="/images/bg-Shape.avif"
           fetchPriority="high"
         />
       </Head>
       <div className="section1Inner deswapMax">
         <div className="leftbox">
           <div className="content">
-            <h1>
+            <h2>
               Worlds First Money Markets{" "}
               <span style={{ color: "#E44757" }}> Liquidity Protocol </span>{" "}
               Built On Polygon Chain
-            </h1>
+            </h2>
             <p>
               Deswap is the first ever Decentralised Marketplace to lend loans,
               collect interest, and mint synthetic stablecoins built on polygon
@@ -38,9 +33,10 @@ function HomeSection1() {
             <Image
               width={482}
               height={482}
-              src="/images/world.png"
+              src="/images/world.webp"
               alt="World map illustrating Deswap liquidity protocol"
               priority
+              sizes="(max-width: 1000px) 80vw, 482px"
               style={{ width: "100%", height: "auto", objectFit: "contain" }}
             />
           </div>
