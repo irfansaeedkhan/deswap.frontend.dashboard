@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -8,12 +8,30 @@ import DashboardMobileSidebar from "@/components/userDashboardComponents/sidebar
 import DashboardSidebar from "@/components/userDashboardComponents/sidebar/DashboardSidebar";
 import CreateTokenCard from "@/components/userDashboardComponents/tokens/CreateTokenCard";
 import Modal from "@/components/reusables/Modal";
+import Loader from "@/components/reusables/loader/Loader";
 import { usePrefetchDashboardRoutes } from "@/utils/dashboard/prefetchRoutes";
+import { ensureDashboardCss } from "@/utils/dashboard/ensureDashboardCss";
 
 config.autoAddCss = false;
 
 export function UserDashboardLayout({ children }) {
   usePrefetchDashboardRoutes("user");
+  const [cssReady, setCssReady] = useState(true);
+  useLayoutEffect(() => {
+    let cancelled = false;
+    const applied = document.querySelector(
+      'link[data-deswap-dashboard-css], link[href="/css/dashboard.css"]'
+    );
+    if (!(applied && applied.sheet)) {
+      setCssReady(false);
+    }
+    ensureDashboardCss().then(() => {
+      if (!cancelled) setCssReady(true);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
   const [showCreateToken, setShowCreateToken] = useState(false);
   const closeModal = () => {
     setShowCreateToken(false);
@@ -28,10 +46,14 @@ export function UserDashboardLayout({ children }) {
   };
 
   return (
-    <div className="DashboardLayout User">
+    <div
+      className="DashboardLayout User"
+      style={cssReady ? undefined : { visibility: "hidden" }}
+    >
       <Head>
         <link rel="stylesheet" href="/css/dashboard.css" />
       </Head>
+      {!cssReady && <Loader title="Loading" />}
       <div className="DashboardLayoutInner">
         <div className="sidebar">
           <DashboardSidebar />

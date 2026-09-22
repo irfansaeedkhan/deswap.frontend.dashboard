@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Joi from "joi";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
@@ -14,6 +14,10 @@ import { setloginData } from "../../../utils/auth/login";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {SanitizeRequestObject,SanitizeRequestString} from "../../../utils/common/sanitize"
+import {
+  ensureDashboardCss,
+  preloadDashboardCss,
+} from "@/utils/dashboard/ensureDashboardCss";
 
 
 const re = /^([a-z0-9\.-]{2,25})@([a-z\d]{2,20})\.([a-z\.-]{2,8})(\.[a-z]{2,8})?$/;
@@ -43,6 +47,9 @@ const schema = Joi.object({
 function LoginForm() {
   const router = useRouter();
   const [loginbutton, setloginbutton] = useState("Login");
+  useEffect(() => {
+    preloadDashboardCss();
+  }, []);
   const [passwordShown, setPasswordShown] = useState(false);
   const [confirmPasswordShown, setconfirmPasswordShown] = useState(false);
   const togglePasswordVisiblity = () => {
@@ -105,6 +112,7 @@ function LoginForm() {
         })
       );
       toast.success("Logged in successfully", { autoClose: 2000 });
+      await ensureDashboardCss();
       return router.push("/admin/dashboard");
     } catch (e) {
       console.log("Error message : ", e);

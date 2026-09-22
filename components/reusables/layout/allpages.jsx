@@ -3,6 +3,10 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import MetaTags from "../metatags";
 import { MetaDataArr } from "../constants";
+import {
+  ensureDashboardCss,
+  needsDashboardCss,
+} from "@/utils/dashboard/ensureDashboardCss";
 
 const Loader = dynamic(() => import("@/components/reusables/loader/Loader"), {
   ssr: false,
@@ -13,12 +17,24 @@ export function PagesLayout({ children, title, description, imagelink }) {
   const [routeLoading, setRouteLoading] = React.useState(false);
 
   React.useEffect(() => {
+    const cssWait = { current: null };
     const start = (url) => {
       if (url.split("?")[0] !== router.asPath.split("?")[0]) {
         setRouteLoading(true);
       }
+      if (needsDashboardCss(url)) {
+        cssWait.current = ensureDashboardCss();
+      }
     };
-    const done = () => setRouteLoading(false);
+    const done = () => {
+      const finish = () => setRouteLoading(false);
+      if (cssWait.current) {
+        cssWait.current.then(finish);
+        cssWait.current = null;
+        return;
+      }
+      finish();
+    };
     router.events.on("routeChangeStart", start);
     router.events.on("routeChangeComplete", done);
     router.events.on("routeChangeError", done);
