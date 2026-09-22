@@ -16,7 +16,7 @@ import { checkUserAuth } from "@/utils/auth/userauth";
 import BootstrapBodyModal from "@/components/reusables/BootstrapBodyModal";
 import BootstrapModal from "@/components/reusables/BootstrapModal";
 import { encryptRequestBody } from "@/utils/common/jwtToken";
-import axios from "axios"
+import axios from "@/utils/common/axios"
 
 
 import Image from "next/image";

@@ -75,7 +75,8 @@ function Usersettings() {
   });
   const coverImageInputRef = useRef(null);
   const [show, setShow] = useState(false);
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     try {
       let { data } = await axios.post(
         `${process.env.NEXT_PUBLIC_PLATFORM_URL}/api/users/profile/info`,
@@ -125,6 +126,7 @@ function Usersettings() {
     } catch (error) {
       console.log("Error layout : ", error);
     }
+      })();
   }, []);
 
   const setInitialCoverImage = useCallback(() => {

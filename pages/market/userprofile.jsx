@@ -100,7 +100,8 @@ const UserProfile = () => {
     twitter: "",
   });
 
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     try {
       let { data } = await axios.post(
         `${process.env.NEXT_PUBLIC_PLATFORM_URL}/api/users/profile/info`,
@@ -146,6 +147,7 @@ const UserProfile = () => {
     } catch (error) {
       console.log("Error layout : ", error);
     }
+      })();
   }, []);
 
   const router = useRouter();

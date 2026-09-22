@@ -9,7 +9,7 @@ import SimpleButton from "@/components/reusables/SimpleButton";
 import CollectionActivity from "../../../components/marketPlace/collection/CollectionActivity";
 import { ApolloClient, gql, InMemoryCache } from "@apollo/client";
 import { listNFTsInCollection } from "../../../subgraph/query";
-import axios from "axios";
+import axios from "@/utils/common/axios";
 import { useRouter } from "next/router";
 import { useInView } from "react-intersection-observer";
 

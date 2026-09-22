@@ -28,7 +28,7 @@ import {
 } from "../../subgraph/query";
 
 import { ethers, logger } from "ethers";
-import axios from "axios";
+import axios from "@/utils/common/axios";
 // import Web3Modal, { findMatchingRequiredOptions } from "web3modal";
 //import Web3Modal from 'web3modal'
 import { create as ipfsCreate } from "ipfs-http-client";

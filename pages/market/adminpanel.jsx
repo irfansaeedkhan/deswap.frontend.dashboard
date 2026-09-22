@@ -8,7 +8,7 @@ import {
   LRIcon,
   UsersIcon,
 } from "@/components/marketPlace/MarketIcons";
-import axios from "axios";
+import axios from "@/utils/common/axios";
 import LicenseRequest from "@/components/marketPlace/license/LicenseRequest";
 import LicenseHistory from "@/components/marketPlace/license/LicenseHistory";
 import { myRewardsDate } from "@/utils/common/date";

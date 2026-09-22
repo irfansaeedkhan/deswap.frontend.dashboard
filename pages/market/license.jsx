@@ -3,7 +3,7 @@ import Image from "next/image";
 import SimpleButton from "@/components/reusables/SimpleButton";
 import BootstrapModal from "@/components/reusables/BootstrapModal";
 import MarketNavbar from "@/components/marketPlace/MarketNavbar";
-import axios from "axios";
+import axios from "@/utils/common/axios";
 import {
   SanitizeRequestStringSync,
   SanitizeRequestObject,

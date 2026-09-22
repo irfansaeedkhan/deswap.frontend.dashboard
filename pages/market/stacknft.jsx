@@ -22,7 +22,7 @@ import { wrapper } from "../../redux/store/store";
 import { connect, useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { checkUserAuth } from "@/utils/auth/userauth";
-import axios from "axios";
+import axios from "@/utils/common/axios";
 
 var metaMaskValues = null;
 

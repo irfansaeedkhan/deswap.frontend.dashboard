@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { Component } from "react";
 import { withRouter } from "next/router";
-import axios from "axios";
+import axios from "@/utils/common/axios";
 import Loader from "@/components/reusables/loader/Loader";
 import Image from "next/image";
 import { requestBodyEncryptionUnprotected } from "@/utils/common/jwtToken";

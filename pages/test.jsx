@@ -120,7 +120,8 @@ export default function Test() {
     }
   };*/
 
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     try {
       // const client = new ApolloClient({
       //   uri: process.env.NEXT_PUBLIC_THEGRAPH_URL,
@@ -142,6 +143,7 @@ export default function Test() {
     } catch (error) {
       console.log("testing ", error);
     }
+      })();
   }, []);
   return <div></div>;
 }

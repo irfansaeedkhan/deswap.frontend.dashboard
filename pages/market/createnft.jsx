@@ -25,7 +25,7 @@ import { connect, useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import Loader from "@/components/reusables/loader/Loader";
 import CollectionABI from "../../abi/collection.json";
-import axios from "axios";
+import axios from "@/utils/common/axios";
 import { encryptRequestBody } from "@/utils/common/jwtToken";
 import CreateNFT from "@/components/marketPlace/CreateNFTForm";
 import BootstrapBodyModal from "@/components/reusables/BootstrapBodyModal";
