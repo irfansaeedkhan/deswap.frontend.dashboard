@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
 import TotalCoinpackFeeGraph from "@/components/adminDashboardComponents/stackingpackfee/TotalCoinpackFeeGraph";
 import Loader from "@/components/reusables/loader/Loader";
-import { checkAdminAuth } from "@/utils/auth/checkAdminAuth";
 import PacksClaimHistory from "@/components/adminDashboardComponents/packsrewardsclaim/PacksClaimHistory";
 import PacksClaimRequest from "@/components/adminDashboardComponents/packsrewardsclaim/PacksClaimRequest";
 import PacksClaimGraph from "@/components/adminDashboardComponents/packsrewardsclaim/PacksClaimGraph";
 import { AdminDashboardLayout } from "@/layout/admindashboard.layout";
 
-export const getServerSideProps = async (ctx) => {
-  return await checkAdminAuth(ctx);
-};
 
 function ClaimmedPack() {
   //Graph Data

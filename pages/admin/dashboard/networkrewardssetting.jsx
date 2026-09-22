@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "@/utils/common/axios";
 import { encryptRequestBody } from "@/utils/common/jwtToken";
-import { checkAdminAuth } from "@/utils/auth/checkAdminAuth";
 import NodataCard from "@/components/reusables/NodataCard";
 import Loader from "@/components/reusables/loader/Loader";
 import NetworkRewardSettingCard from "@/components/adminDashboardComponents/networkrewardsetting/NetworkRewardSettingCard";
@@ -15,10 +14,8 @@ import {
 import { requestBodyEncryptionAdmin } from "@/utils/common/jwtToken";
 import { AdminDashboardLayout } from "@/layout/admindashboard.layout";
 
-// import Pagination from "react-js-pagination";
-export const getServerSideProps = async (ctx) => {
-  return await checkAdminAuth(ctx);
-};
+// import Pagination from "@/components/reusables/Pagination";
+
 function networkrewardssetting() {
   const [loading, setLoading] = useState(false);
   const [rewardSettingList, setRewardSettingList] = useState(
@@ -135,8 +132,10 @@ function networkrewardssetting() {
     }
   };
 
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     await fetchRewardSettingList();
+      })();
   }, []);
 
   return (

@@ -2,17 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "../../../utils/common/axios";
 import { encryptRequestBody } from "@/utils/common/jwtToken";
-import { checkAdminAuth } from "@/utils/auth/checkAdminAuth";
 import NodataCard from "@/components/reusables/NodataCard";
 import Loader from "@/components/reusables/loader/Loader";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AdminDashboardLayout } from "@/layout/admindashboard.layout";
 
-// import Pagination from "react-js-pagination";
-export const getServerSideProps = async (ctx) => {
-  return await checkAdminAuth(ctx);
-};
+// import Pagination from "@/components/reusables/Pagination";
+
 
 function NetworkRewardsSetting() {
   //const [rewardSettingList, setRewardSettingList] = useState([]);
@@ -102,8 +99,10 @@ function NetworkRewardsSetting() {
     }
   };
 
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     await fetchRewardSettingList();
+      })();
   }, []);
   return (
     <div className="NetworkRewardsSettingTabContainer">

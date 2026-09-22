@@ -8,7 +8,6 @@ import {
   metaMaskValue,
 } from "../../../redux/actions/metamask";
 import { wrapper } from "../../../redux/store/store";
-import { checkUserAuth } from "../../../utils/auth/userauth";
 import { UserDashboardLayout } from "@/layout/userdashboard.layout";
 
 function Company(props) {
@@ -64,9 +63,15 @@ function Company(props) {
               </li>
             </ul>
             <div className="tab-content">
-              {displayTab == "tab1" && <ListYourCompany />}
-              {displayTab == "tab2" && <CompanyList />}
-              {displayTab == "tab3" && <ActiveCompany />}
+              <div hidden={displayTab != "tab1"}>
+                <ListYourCompany />
+              </div>
+              <div hidden={displayTab != "tab2"}>
+                <CompanyList />
+              </div>
+              <div hidden={displayTab != "tab3"}>
+                <ActiveCompany />
+              </div>
             </div>
           </div>
         </div>
@@ -75,8 +80,5 @@ function Company(props) {
   );
 }
 
-export const getServerSideProps = async (ctx) => {
-  return await checkUserAuth(ctx);
-};
 export default Company;
 Company.PageLayout = UserDashboardLayout;

@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.css";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Modal from "@/components/reusables/Modal";
 import OverviewTab from "@/components/userDashboardComponents/overviewTab/OverviewTab";
 import RewardTab from "@/components/userDashboardComponents/networkRewardsTab/RewardTab";
-import { checkUserAuth } from "../../../utils/auth/userauth";
 import { clearAllInterval } from "../../../utils/common/interval";
 import Head from "next/head";
 import { ToastContainer, toast } from "react-toastify";
@@ -22,21 +20,7 @@ function Network({ users }) {
     setKey("Rewards");
   };
 
-  useEffect(async () => {
-    try {
-    } catch (e) {
-      // toast.error(e.message, {
-      //   position: "top-center",
-      //   autoClose: 3000,
-      //   hideProgressBar: false,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      //   });
-      await clearAllInterval();
-    }
-  }, []);
+  useEffect(() => {}, []);
   return (
     <div className="networkContainer">
       <Head>
@@ -96,8 +80,5 @@ function Network({ users }) {
     </div>
   );
 }
-export const getServerSideProps = async (ctx) => {
-  return await checkUserAuth(ctx);
-};
 export default Network;
 Network.PageLayout = UserDashboardLayout;

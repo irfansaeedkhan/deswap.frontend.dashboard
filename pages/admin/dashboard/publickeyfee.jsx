@@ -2,15 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "@/utils/common/axios";
 import { requestBodyEncryptionAdmin } from "@/utils/common/jwtToken";
 import Loader from "@/components/reusables/loader/Loader";
-import { checkAdminAuth } from "../../../utils/auth/checkAdminAuth";
 import SwapMDChart from "@/components/adminDashboardComponents/charts/SwapMDChart";
 import PublickeyFeeRequested from "@/components/adminDashboardComponents/publicKeyfee/PublicKeyRequested";
 import PublickeyFeeHistory from "@/components/adminDashboardComponents/publicKeyfee/PublicKeyHistory";
 import { AdminDashboardLayout } from "@/layout/admindashboard.layout";
 
-export const getServerSideProps = async (ctx) => {
-  return await checkAdminAuth(ctx);
-};
 
 function PublickeyFee() {
   const [GraphLabels, setGraphLabels] = useState([]);

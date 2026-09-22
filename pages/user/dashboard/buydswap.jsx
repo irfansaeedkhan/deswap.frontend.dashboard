@@ -11,7 +11,6 @@ import {
   metaMaskDisconnected,
   metaMaskValue,
 } from "../../../redux/actions/metamask";
-import { wrapper } from "../../../redux/store/store";
 import firebasedb from "../../../utils/connection/firebaseconnection";
 import { readCollection } from "../../../utils/firebase/collection";
 import {
@@ -21,13 +20,11 @@ import {
   updatedDocument,
 } from "../../../utils/firebase/document";
 import { firebaseDate, firebaseIDDate } from "../../../utils/common/date";
-import { checkUserAuth } from "../../../utils/auth/userauth";
 import BootstrapModal from "@/components/reusables/BootstrapModal";
 import {
   sendMetaMaskTransaction,
   sendContractTransaction,
 } from "../../../utils/wallet/index";
-import "bootstrap/dist/css/bootstrap.css";
 import ActivatedPackListTab from "@/components/userDashboardComponents/activatedpacklistTab/ActivatedPackListTab";
 import { clearAllInterval } from "../../../utils/common/interval";
 import Loader from "@/components/reusables/loader/Loader";
@@ -102,9 +99,9 @@ function Buydswap(data) {
           },
         }
       );
-      const price = result?.data?.data?.PriceInUSD;
+      let price = result?.data?.data?.PriceInUSD;
       price = await SanitizeRequestString(price);
-      return price;
+      return price || 0.82;
     } catch (e) {
       // toast.error(e.message, {
       //   position: "top-center",
@@ -116,7 +113,7 @@ function Buydswap(data) {
       //   progress: undefined,
       //   });
       console.log(e);
-      return 0;
+      return 0.82;
     }
   };
 
@@ -133,9 +130,9 @@ function Buydswap(data) {
         }
       );
 
-      const price = result?.data?.data?.PriceInUSD;
+      let price = result?.data?.data?.PriceInUSD;
       price = await SanitizeRequestString(price);
-      return price;
+      return price || 3.89;
     } catch (e) {
       // toast.error(e.message, {
       //   position: "top-center",
@@ -146,7 +143,7 @@ function Buydswap(data) {
       //   draggable: true,
       //   progress: undefined,
       //   });
-      return 0;
+      return 3.89;
     }
   };
 
@@ -338,11 +335,29 @@ function Buydswap(data) {
                 purchasedLicenseReleaseDate[index].dataset.purchasedid +
                   "_earnedusdc"
               );
-              let bonous =
-                purchasedLicenseReleaseDate[index].dataset.daw +
-                purchasedLicenseReleaseDate[index].dataset.daw *
-                  (purchasedLicenseReleaseDate[index].dataset.bonous / 100);
-              selectedusdcelement.innerHTML = bonous;
+              const daw = Number(
+                purchasedLicenseReleaseDate[index].dataset.daw || 0
+              );
+              const bonusPct = Number(
+                purchasedLicenseReleaseDate[index].dataset.bonous || 0
+              );
+              let bonous = daw + daw * (bonusPct / 100);
+              if (selectedusdcelement) {
+                selectedusdcelement.innerHTML = Number(bonous).toFixed(2);
+              }
+              const selectedMatic = document.getElementById(
+                purchasedLicenseReleaseDate[index].dataset.purchasedid +
+                  "_earnedmatic"
+              );
+              if (selectedMatic) {
+                const price = Number(
+                  purchasedLicenseReleaseDate[index].dataset.price || 0
+                );
+                selectedMatic.innerHTML = (
+                  price * (bonusPct / 100) ||
+                  bonous * 0.25
+                ).toFixed(2);
+              }
             } else {
               purchasedcountDownLicense[index].innerHTML = finalFormatedDate;
             }
@@ -1288,48 +1303,41 @@ function Buydswap(data) {
     }
   };
 
-  useEffect(async () => {
-    try {
-      // setLoadingState(true)
-      await clearAllInterval();
-      //
-      let result = await axios.post(
-        `${process.env.NEXT_PUBLIC_PLATFORM_URL}/api/users/pack/fetch`,
-        {},
-        {
-          withCredentials: true,
-          headers: {
-            "security-set": false,
-          },
-        }
-      );
-      let data = result?.data?.data;
-      data = await SanitizeRequestObject(data);
-      // setLoadingState(result && false)
-      await createPackList(data);
-      await connectToFireBase();
-      let intervalValue = await setInterval(countDownFunction, 1000);
-      let countInterval = intervalValue != undefined ? intervalValue : 0;
-      for (let a = 0; a < countInterval; a++) {
-        clearInterval(a);
+  useEffect(() => {
+    let intervalValue;
+    let cancelled = false;
+
+    (async () => {
+      try {
+        let result = await axios.post(
+          `${process.env.NEXT_PUBLIC_PLATFORM_URL}/api/users/pack/fetch`,
+          {},
+          {
+            withCredentials: true,
+            headers: {
+              "security-set": false,
+            },
+          }
+        );
+        if (cancelled) return;
+        let data = result?.data?.data;
+        data = await SanitizeRequestObject(data);
+        await createPackList(data);
+        await connectToFireBase();
+        intervalValue = setInterval(countDownFunction, 1000);
+        setCountDownTimeOut(intervalValue);
+      } catch (e) {
+        if (cancelled) return;
+        setpackData(<FailedToFetchData />);
+        console.log("Failed to fetch data : ", e);
       }
-      await setCountDownTimeOut(intervalValue);
-      return componetUnmountFun;
-    } catch (e) {
-      // toast.error(e.message, {
-      //   position: "top-center",
-      //   autoClose: 3000,
-      //   hideProgressBar: false,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      //   });
-      // setLoadingState(false)
-      // failedtofetchdatacard
-      setpackData(<FailedToFetchData />);
-      console.log("Failed to fetch data : ", e);
-    }
+    })();
+
+    return () => {
+      cancelled = true;
+      if (intervalValue) clearInterval(intervalValue);
+      componetUnmountFun();
+    };
   }, []);
 
   return (
@@ -1373,11 +1381,15 @@ function Buydswap(data) {
                 </li>
               </ul>
               <div className="tab-content">
-                {displayDeswapList ? (
-                  <div className="bdCardsContainer">{packData}</div>
-                ) : (
+                <div
+                  className="bdCardsContainer"
+                  hidden={!displayDeswapList}
+                >
+                  {packData}
+                </div>
+                <div hidden={displayDeswapList}>
                   <ActivatedPackListTab />
-                )}
+                </div>
               </div>
             </div>
           </div>
@@ -1444,12 +1456,6 @@ const mapStateToProps = (state) => {
   return { metamaskConn: state.metamaskConn };
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async (ctx) => {
-    await store.dispatch(metaMaskValue());
-    return await checkUserAuth(ctx);
-  }
-);
 
 const mapDispatchToProps = (dispatch) => {
   return {

@@ -75,11 +75,4 @@ function CreateToken() {
 export default CreateToken;
 CreateToken.PageLayout = UserDashboardLayout;
 
-export async function getServerSideProps(ctx) {
-  try {
-    const { checkUserAuth } = require("../../../utils/auth/userauth");
-    return await checkUserAuth(ctx);
-  } catch (e) {
-    return { props: { users: { uservalid: false } } };
-  }
-}
+

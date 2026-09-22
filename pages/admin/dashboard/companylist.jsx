@@ -73,11 +73,4 @@ function CompanyList() {
 export default CompanyList;
 CompanyList.PageLayout = AdminDashboardLayout;
 
-export async function getServerSideProps(ctx) {
-  try {
-    const { checkAdminAuth } = require("../../../utils/auth/checkAdminAuth");
-    return await checkAdminAuth(ctx);
-  } catch (e) {
-    return { props: {} };
-  }
-}
+

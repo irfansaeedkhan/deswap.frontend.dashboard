@@ -8,9 +8,7 @@ import { UserDashboardLayout } from "@/layout/userdashboard.layout";
 function Buydeswaptoken() {
   const [toggleGraph, setToggleGraph] = useState(false);
 
-  useEffect(async () => {
-    await clearAllInterval();
-  }, []);
+  useEffect(() => {}, []);
 
   const toggleGraphView = () => {
     if (toggleGraph) {
@@ -44,11 +42,3 @@ function Buydeswaptoken() {
 export default Buydeswaptoken;
 Buydeswaptoken.PageLayout = UserDashboardLayout;
 
-export async function getServerSideProps(ctx) {
-  try {
-    const { checkUserAuth } = require("../../../utils/auth/userauth");
-    return await checkUserAuth(ctx);
-  } catch (e) {
-    return { props: { users: { uservalid: false } } };
-  }
-}

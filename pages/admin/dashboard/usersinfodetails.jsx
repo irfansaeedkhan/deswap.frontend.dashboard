@@ -2,12 +2,8 @@ import React, { useState } from "react";
 import Dropdown from "@/components/global/DropDown";
 import CoinPackPurchasedByUser from "@/components/adminDashboardComponents/usersinfoComponents/CoinPackPurchasedByUser";
 import NetworkLicensePurchasedByUser from "@/components/adminDashboardComponents/usersinfoComponents/NetworkLicensePurchasedByUser";
-import { checkAdminAuth } from "../../../utils/auth/checkAdminAuth";
 import { AdminDashboardLayout } from "@/layout/admindashboard.layout";
 
-export const getServerSideProps = async (ctx) => {
-  return await checkAdminAuth(ctx);
-};
 
 const dropDownStatusdata = [
   { id: 0, label: "Coin Pack Purchased By User" },
@@ -15,7 +11,7 @@ const dropDownStatusdata = [
 ];
 /*
 import { checkAdminAuth } from "@/utils/auth/checkAdminAuth";
-// import Pagination from "react-js-pagination";
+// import Pagination from "@/components/reusables/Pagination";
 export const getServerSideProps = async (ctx) => {
   return  await checkAdminAuth(ctx);
 }*/

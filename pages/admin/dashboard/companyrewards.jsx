@@ -2,16 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "@/utils/common/axios";
 import { requestBodyEncryptionAdmin } from "@/utils/common/jwtToken";
 import Loader from "@/components/reusables/loader/Loader";
-import { checkAdminAuth } from "../../../utils/auth/checkAdminAuth";
 import SwapMDChart from "@/components/adminDashboardComponents/charts/SwapMDChart";
 import CompanyRewardsRequested from "@/components/adminDashboardComponents/companyrewards/CompanyRewardsRequested";
 import CompanyRewardsHistory from "@/components/adminDashboardComponents/companyrewards/CompanyRewardsHistory";
 import CompanyRewardsGraph from "@/components/adminDashboardComponents/companyrewards/CompanyRewardsGraph";
 import { AdminDashboardLayout } from "@/layout/admindashboard.layout";
 
-export const getServerSideProps = async (ctx) => {
-  return await checkAdminAuth(ctx);
-};
 
 function CompanyRewards() {
   const [GraphLabels, setGraphLabels] = useState([]);

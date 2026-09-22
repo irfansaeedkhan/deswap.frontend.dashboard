@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "@/utils/common/axios";
 import { requestBodyEncryptionAdmin } from "@/utils/common/jwtToken";
 import Loader from "@/components/reusables/loader/Loader";
-import { checkAdminAuth } from "../../../utils/auth/checkAdminAuth";
 import ClaimedNetworkRewardChart from "@/components/adminDashboardComponents/charts/ClaimedNetworkRewardChart";
 import ClaimmedNRTable from "@/components/adminDashboardComponents/claimmednetworkrewards/ClaimmedNRTable";
 import RequestedNRTable from "@/components/adminDashboardComponents/claimmednetworkrewards/RequestedNRTable";
@@ -12,9 +11,7 @@ import { SanitizeRequestObject } from "../../../utils/common/sanitize";
 import ClaimmedGraph from "@/components/adminDashboardComponents/claimmednetworkrewards/ClaimmedGraph";
 import { AdminDashboardLayout } from "@/layout/admindashboard.layout";
 
-export const getServerSideProps = async (ctx) => {
-  return await checkAdminAuth(ctx);
-};
+
 
 function ClaimmedNetworkRewards() {
   const [GraphLabels, setGraphLabels] = useState([]);
@@ -105,8 +102,10 @@ function ClaimmedNetworkRewards() {
     }
   };
 
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     fetchRewardsDetails();
+      })();
   }, []);
 
   return (

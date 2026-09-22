@@ -6,7 +6,6 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import { useRouter } from "next/router";
 import SmRightArrow from "@/assets/svgAssets/SmRightArrow";
 import SmLeftArrow from "@/assets/svgAssets/SmLeftArrow";
-import { checkAdminAuth } from "../../../utils/auth/checkAdminAuth";
 import axios from "../../../utils/common/axios";
 import TotalAccountChart from "@/components/adminDashboardComponents/dashboard/TotalAccountsChart";
 import TotalPackChart from "@/components/adminDashboardComponents/dashboard/TotalPackChart";
@@ -16,14 +15,12 @@ import {
 } from "../../../utils/common/sanitize";
 import { reducedWalletAddress } from "@/utils/common/walletaddress";
 import moment from "moment";
-import Pagination from "react-js-pagination";
+import Pagination from "@/components/reusables/Pagination";
 import { maticToDollar } from "../../../utils/common/tokenconversion";
 import { requestBodyEncryptionAdmin } from "@/utils/common/jwtToken";
 import { AdminDashboardLayout } from "@/layout/admindashboard.layout";
 
-export const getServerSideProps = async (ctx) => {
-  return await checkAdminAuth(ctx);
-};
+
 // form validations
 const schema = Joi.object({
   password: Joi.string().required().min(4).label("password").messages({
@@ -67,9 +64,11 @@ function Dashboard() {
     dataperpage: 10,
   });
 
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     await fetchData();
     await fetchPacksData();
+      })();
   }, []);
 
   const fetchData = async () => {

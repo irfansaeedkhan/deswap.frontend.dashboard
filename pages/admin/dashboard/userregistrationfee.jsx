@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
 import TotalCoinpackFeeGraph from "@/components/adminDashboardComponents/stackingpackfee/TotalCoinpackFeeGraph";
 import Loader from "@/components/reusables/loader/Loader";
-import { checkAdminAuth } from "@/utils/auth/checkAdminAuth";
 import UserRegistrationFeeTable from "@/components/adminDashboardComponents/userregistrationfees/UserRegistrationFeeTable";
 import UserRegistrationFeeHistory from "@/components/adminDashboardComponents/userregistrationfees/UserRegistrationFeeHistory";
 import UserRegistrationChart from "@/components/adminDashboardComponents/userregistrationfees/UserRegistrationChart";
 import { AdminDashboardLayout } from "@/layout/admindashboard.layout";
-export const getServerSideProps = async (ctx) => {
-  return await checkAdminAuth(ctx);
-};
 
 function Userregistrationfee() {
   //Graph Data

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { checkUserAuth } from "../../../utils/auth/userauth";
 import axios from "../../../utils/common/axios";
 import TableLoader from "@/components/reusables/loader/TableLoader";
 import { encryptRequestBody } from "@/utils/common/jwtToken";
@@ -15,9 +14,6 @@ import {
 } from "../../../utils/common/sanitize";
 import { UserDashboardLayout } from "@/layout/userdashboard.layout";
 
-export const getServerSideProps = async (ctx) => {
-  return await checkUserAuth(ctx);
-};
 const NetworkDetails = ({ users }) => {
   const [uplineData, setUplineData] = useState(
     <tbody>
@@ -228,25 +224,21 @@ const NetworkDetails = ({ users }) => {
     }
   };
 
-  useEffect(async () => {
-    try {
-      await clearAllInterval();
-      let promiseAll = [];
-      promiseAll.push(fetchUplineData());
-      promiseAll.push(fetchDownlineData());
-      await Promise.all(promiseAll);
-    } catch (e) {
-      // toast.error(e.message, {
-      //   position: "top-center",
-      //   autoClose: 3000,
-      //   hideProgressBar: false,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      //   });
-      console.log("Failed to fetch data");
-    }
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        let promiseAll = [];
+        promiseAll.push(fetchUplineData());
+        promiseAll.push(fetchDownlineData());
+        await Promise.all(promiseAll);
+      } catch (e) {
+        if (!cancelled) console.log("Failed to fetch data");
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
   }, []);
   /*let lengthOfDowlineUsers = 0;
   let lengthOfUplineUser = 0;

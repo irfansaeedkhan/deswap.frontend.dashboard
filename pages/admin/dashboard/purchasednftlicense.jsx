@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import { checkAdminAuth } from "../../../utils/auth/checkAdminAuth";
 import PurchasedNFTLicenseTable from "@/components/adminDashboardComponents/purchasednftlicense/PurchasedNFTLicenseTable";
 import RequestedNFTLicenseTable from "@/components/adminDashboardComponents/purchasednftlicense/RequestedNFTLicenseTable";
 import { AdminDashboardLayout } from "@/layout/admindashboard.layout";
-export const getServerSideProps = async (ctx) => {
-  return await checkAdminAuth(ctx);
-};
 
 function PurchasedNftLicense() {
   const [displaynftrequestedTable, setDisplaynftrequestedTable] =

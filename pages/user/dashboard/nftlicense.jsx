@@ -1,14 +1,12 @@
 import React, { useState, useEffect, Fragment } from "react";
 import Modal from "@/components/reusables/Modal";
 import BootstrapModal from "@/components/reusables/BootstrapModal";
-import "bootstrap/dist/css/bootstrap.css";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import NftLcardTab from "@/components/userDashboardComponents/nftlicenseTab/nftLcardTab";
 import ActiveNftLcardTab from "@/components/userDashboardComponents/nftlicenseTab/ActiveNftLcardTab";
 import axios from "../../../utils/common/axios";
 import { encryptRequestBody } from "@/utils/common/jwtToken";
-import { checkUserAuth } from "../../../utils/auth/userauth";
 import moment from "moment";
 import {
   claimmedDateFormated,
@@ -221,14 +219,13 @@ function Nftlicense(data) {
       console.log(e);
     }
   };
-  useEffect(async () => {
-    let intervalValue = await setInterval(countDownFunction, 1000);
-    let countInterval = intervalValue != undefined ? intervalValue : 0;
-    for (let a = 0; a < countInterval; a++) {
-      clearInterval(a);
-    }
-    await setCountDownTimeOut(intervalValue);
-    return componetUnmountFun;
+  useEffect(() => {
+    const intervalValue = setInterval(countDownFunction, 1000);
+    setCountDownTimeOut(intervalValue);
+    return () => {
+      clearInterval(intervalValue);
+      componetUnmountFun();
+    };
   }, []);
   return (
     <Fragment>
@@ -271,11 +268,12 @@ function Nftlicense(data) {
                 </li>
               </ul>
               <div className="tab-content">
-                {displayNFTLicense ? (
+                <div hidden={!displayNFTLicense}>
                   <NftLcardTab data={data} />
-                ) : (
+                </div>
+                <div hidden={displayNFTLicense}>
                   <ActiveNftLcardTab data={data} />
-                )}
+                </div>
               </div>
             </div>
           </div>
@@ -324,9 +322,6 @@ function Nftlicense(data) {
   );
 }
 
-export const getServerSideProps = async (ctx) => {
-  return await checkUserAuth(ctx);
-};
 
 export default Nftlicense;
 Nftlicense.PageLayout = UserDashboardLayout;

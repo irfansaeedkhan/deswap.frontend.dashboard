@@ -5,7 +5,6 @@ import { requestBodyEncryptionAdmin } from "@/utils/common/jwtToken";
 import { reducedWalletAddress } from "@/utils/common/walletaddress";
 import Upline from "@/components/adminDashboardComponents/lines/upline";
 import Downline from "@/components/adminDashboardComponents/lines/downline";
-import { checkAdminAuth } from "@/utils/auth/checkAdminAuth";
 import Loader from "@/components/reusables/loader/Loader";
 import DisplayUserInfoTable from "@/components/adminDashboardComponents/userinfo/DisplayUserInfoTable";
 import { ToastContainer, toast } from "react-toastify";
@@ -20,15 +19,7 @@ import PublickeyFee from "@/components/adminDashboardComponents/UserDetails/Publ
 import CompanyFee from "@/components/adminDashboardComponents/UserDetails/CompanyFee";
 import { AdminDashboardLayout } from "@/layout/admindashboard.layout";
 
-export const getServerSideProps = async (ctx) => {
-  const uuid = ctx.params.userID;
-  return {
-    props: {
-      uuid: uuid,
-      users: await checkAdminAuth(ctx),
-    },
-  };
-};
+
 
 function UsersInfo({ uuid }) {
   const router = useRouter();
@@ -125,9 +116,11 @@ function UsersInfo({ uuid }) {
     }
   };
 
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     await fetchUplineFunc(uuid);
     await fetchDownlineFunc(uuid);
+      })();
   }, [uuid]);
 
   return (

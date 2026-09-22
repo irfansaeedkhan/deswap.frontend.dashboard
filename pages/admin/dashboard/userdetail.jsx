@@ -13,11 +13,7 @@ const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
 import Image from "next/image";
 import { AdminDashboardLayout } from "@/layout/admindashboard.layout";
 import Dropdown from "@/components/global/DropDown";
-import { checkAdminAuth } from "../../../utils/auth/checkAdminAuth";
 
-export const getServerSideProps = async (ctx) => {
-  return await checkAdminAuth(ctx);
-};
 
 const DropDowndata = [
   { id: 0, label: "Active" },

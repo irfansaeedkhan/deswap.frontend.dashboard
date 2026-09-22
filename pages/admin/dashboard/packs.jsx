@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import PackCard from "@/components/adminDashboardComponents/packs/PackCard";
-import { checkAdminAuth } from "@/utils/auth/checkAdminAuth";
 import axios from "@/utils/common/axios";
 import {
   SanitizeRequestObject,
@@ -8,10 +7,7 @@ import {
 } from "../../../utils/common/sanitize";
 import { AdminDashboardLayout } from "@/layout/admindashboard.layout";
 
-// import Pagination from "react-js-pagination";
-export const getServerSideProps = async (ctx) => {
-  return await checkAdminAuth(ctx);
-};
+// import Pagination from "@/components/reusables/Pagination";
 function Packs() {
   const [packCardData, setPackCardData] = useState();
 

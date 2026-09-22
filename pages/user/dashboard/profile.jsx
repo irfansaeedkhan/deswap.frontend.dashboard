@@ -13,8 +13,7 @@ const eye = <FontAwesomeIcon icon={faEye} />;
 const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
 const EditIcon = <FontAwesomeIcon icon={faEdit} />;
 import Modal from "@/components/reusables/Modal";
-import { checkUserAuth } from "../../../utils/auth/userauth";
-import axios from "axios";
+import axios from "@/utils/common/axios";
 // import { axiosNodeApi } from "@/utils/common/axios1";
 import { encryptRequestBody } from "@/utils/common/jwtToken";
 // form validations
@@ -92,9 +91,6 @@ const labels = [
   "December",
 ];
 
-export const getServerSideProps = async (ctx) => {
-  return await checkUserAuth(ctx);
-};
 function Profile({ users }) {
   const router = useRouter();
   const [showAvatar, setShowAvatar] = useState(false);
@@ -209,16 +205,14 @@ function Profile({ users }) {
       [e.target.name]: e.target.value,
     });
   };
-  useEffect(async () => {
-    await clearAllInterval();
+  useEffect(() => {
+    let cancelled = false;
     let userNets = [];
     const fetchUsers = async () => {
       try {
         const sanData = await SanitizeRequestObject(users);
         console.log("Users : ", users);
-        //Issue is here
         let encryptionData = await encryptRequestBody(sanData);
-        //${process.env.NEXT_PUBLIC_PLATFORM_URL}
         const { data } = await axios.post(
           `/api/getUserCredentials`,
           { data: encryptionData },
@@ -229,29 +223,27 @@ function Profile({ users }) {
             },
           }
         );
+        if (cancelled) return;
         const sanObj = await SanitizeRequestObject(data);
         setUserCredentials(sanObj.UserCredentails);
-        setUserSession(sanObj.userNetwork);
-        for (let index = 0; index < sanObj.userNetwork.length; index++) {
-          let parsedData = JSON.parse(sanObj.userNetwork[index].clientAgent);
+        const networkRows = Array.isArray(sanObj.userNetwork)
+          ? sanObj.userNetwork
+          : [];
+        setUserSession(networkRows);
+        for (let index = 0; index < networkRows.length; index++) {
+          let parsedData = JSON.parse(networkRows[index].clientAgent);
           userNets.push(parsedData);
         }
         setUserNetwork(userNets);
         fetchProfilePic();
       } catch (error) {
-        // toast.error(error.message, {
-        //   position: "top-center",
-        //   autoClose: 3000,
-        //   hideProgressBar: false,
-        //   closeOnClick: true,
-        //   pauseOnHover: true,
-        //   draggable: true,
-        //   progress: undefined,
-        //   });
         console.log("error fetching user credentails :", error);
       }
     };
-    await fetchUsers();
+    fetchUsers();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   useEffect(() => {

@@ -4,11 +4,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import GeneralSettings from "@/components/userDashboardComponents/editProfile/GeneralSettings";
 import PasswordSettings from "@/components/userDashboardComponents/editProfile/PasswordSettings";
-import { checkUserAuth } from "../../../utils/auth/userauth";
 import { UserDashboardLayout } from "@/layout/userdashboard.layout";
-export const getServerSideProps = async (ctx) => {
-  return await checkUserAuth(ctx);
-};
 
 //
 function EditProfile({ users }) {
@@ -64,15 +60,12 @@ function EditProfile({ users }) {
                 </li>
               </ul>
               <div className="tab-content">
-                {displayGeneralTab ? (
-                  <div className="epTabContainer">
-                    <GeneralSettings users={users} />
-                  </div>
-                ) : (
-                  <div className="epTabContainer">
-                    <PasswordSettings users={users} />
-                  </div>
-                )}
+                <div className="epTabContainer" hidden={!displayGeneralTab}>
+                  <GeneralSettings users={users} />
+                </div>
+                <div className="epTabContainer" hidden={displayGeneralTab}>
+                  <PasswordSettings users={users} />
+                </div>
               </div>
             </div>
           </div>

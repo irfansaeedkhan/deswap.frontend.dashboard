@@ -14,12 +14,8 @@ import UsersInfoDetails from "./usersinfodetails";
 //import Upline from "./upline";
 //import Downline from "./downline";
 import { useRouter } from "next/router";
-import { checkAdminAuth } from "../../../utils/auth/checkAdminAuth";
 import { AdminDashboardLayout } from "@/layout/admindashboard.layout";
 
-export const getServerSideProps = async (ctx) => {
-  return await checkAdminAuth(ctx);
-};
 
 function UsersInformationPanel() {
   const router = useRouter();

@@ -4,7 +4,6 @@ import axios from "@/utils/common/axios";
 import { encryptRequestBody } from "@/utils/common/jwtToken";
 import NodataCard from "@/components/reusables/NodataCard";
 import NFTLicenseCard from "@/components/adminDashboardComponents/addnftlicense/NFTLicenseCard";
-import { checkAdminAuth } from "../../../utils/auth/checkAdminAuth";
 import FailedToFetchData from "@/components/reusables/FailedToFetchData";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,9 +16,7 @@ import {
 } from "../../../utils/common/sanitize";
 import { AdminDashboardLayout } from "@/layout/admindashboard.layout";
 
-export const getServerSideProps = async (ctx) => {
-  return await checkAdminAuth(ctx);
-};
+
 function AddNFTLicense() {
   const [NFTList, setNFTList] = useState([]);
   const [loadingState, setLoadingState] = useState(false);
@@ -53,8 +50,6 @@ function AddNFTLicense() {
       }
 
       setLoadingState(false);
-      const data = result?.data?.data;
-      data = await SanitizeRequestObject(data);
       return result?.data?.data;
     } catch (e) {
       // toast.error(e.message, {
@@ -74,8 +69,10 @@ function AddNFTLicense() {
   };
 
   //   use effect to fetch latest data
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     await fetchNFTListFunc();
+      })();
   }, [refreshNFTList]);
 
   const handleDelete = async (licenseId) => {

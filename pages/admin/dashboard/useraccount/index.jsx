@@ -7,7 +7,6 @@ import { useRouter } from "next/router";
 import axios from "../../../../utils/common/axios";
 import { encryptRequestBody } from "@/utils/common/jwtToken";
 import { reducedWalletAddress } from "@/utils/common/walletaddress";
-import { checkAdminAuth } from "../../../../utils/auth/checkAdminAuth";
 import Loader from "@/components/reusables/loader/Loader";
 import NodataCard from "@/components/reusables/NodataCard";
 import FailedToFetchData from "@/components/reusables/FailedToFetchData";
@@ -20,9 +19,7 @@ import {
 } from "../../../../utils/common/sanitize";
 import { AdminDashboardLayout } from "@/layout/admindashboard.layout";
 
-export const getServerSideProps = async (ctx) => {
-  return await checkAdminAuth(ctx);
-};
+
 
 const DropDowndata = [
   { id: 0, label: "30/page" },
@@ -180,8 +177,10 @@ function UserAccount() {
     });
   };
 
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     await fetchTotalUsers();
+      })();
   }, []);
 
   return (

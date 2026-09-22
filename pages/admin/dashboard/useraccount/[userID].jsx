@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "@/utils/common/axios";
 import { requestBodyEncryptionAdmin } from "@/utils/common/jwtToken";
 import Loader from "@/components/reusables/loader/Loader";
-import { checkAdminAuth } from "../../../../utils/auth/checkAdminAuth";
 import SwapMDChart from "@/components/adminDashboardComponents/charts/SwapMDChart";
 import RegistrationFee from "@/components/adminDashboardComponents/UserDetails/RegistrationFee";
 import NFTLicesnseFee from "@/components/adminDashboardComponents/UserDetails/NFTLicesnseFee";
@@ -10,15 +9,6 @@ import PublickeyFee from "@/components/adminDashboardComponents/UserDetails/Publ
 import CompanyFee from "@/components/adminDashboardComponents/UserDetails/CompanyFee";
 import { AdminDashboardLayout } from "@/layout/admindashboard.layout";
 
-export const getServerSideProps = async (ctx) => {
-  const uuid = ctx.params.userID;
-  return {
-    props: {
-      uuid: uuid,
-      users: await checkAdminAuth(ctx),
-    },
-  };
-};
 
 function UserDetails({ uuid }) {
   const [loadingState, setLoadingState] = useState(false);

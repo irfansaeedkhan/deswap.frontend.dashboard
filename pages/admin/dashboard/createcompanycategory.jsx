@@ -4,7 +4,6 @@ import axios from "@/utils/common/axios";
 import { encryptRequestBody } from "@/utils/common/jwtToken";
 import NodataCard from "@/components/reusables/NodataCard";
 import CategoryCard from "@/components/adminDashboardComponents/companyCategory/CategoryCard";
-import { checkAdminAuth } from "../../../utils/auth/checkAdminAuth";
 import FailedToFetchData from "@/components/reusables/FailedToFetchData";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,9 +16,7 @@ import {
 } from "../../../utils/common/sanitize";
 import { AdminDashboardLayout } from "@/layout/admindashboard.layout";
 
-export const getServerSideProps = async (ctx) => {
-  return await checkAdminAuth(ctx);
-};
+
 function CreateCompanyCategory() {
   const [categoryList, setCategoryList] = useState([]);
   const [loadingState, setLoadingState] = useState(false);
@@ -63,9 +60,7 @@ function CreateCompanyCategory() {
       }
 
       setLoadingState(false);
-      const data = result?.data?.data;
-      data = await SanitizeRequestObject(data);
-      return data;
+      return result?.data?.data;
     } catch (e) {
       // toast.error(e.message, {
       //   position: "top-center",
@@ -84,11 +79,13 @@ function CreateCompanyCategory() {
   };
 
   //   use effect to fetch latest data
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     await fetchCategoryListFunc({
       offset: 0,
       limit: 10,
     });
+      })();
   }, [refreshList]);
   // handle update
   const handleUpdate = async (Updatedata) => {

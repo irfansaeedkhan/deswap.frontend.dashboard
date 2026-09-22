@@ -12,7 +12,6 @@ const eye = <FontAwesomeIcon icon={faEye} />;
 const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
 import Image from "next/image";
 import CopyIcon from "@/assets/svgAssets/CopyIcon";
-import { checkUserAuth } from "../../../utils/auth/userauth";
 import axios from "../../../utils/common/axios";
 import { reducedWalletAddress } from "../../../utils/common/walletaddress";
 import { clearAllInterval } from "../../../utils/common/interval";
@@ -75,9 +74,6 @@ const schema = Joi.object({
   }),
 });
 
-export const getServerSideProps = async (ctx) => {
-  return await checkUserAuth(ctx);
-};
 
 function Dashboard({ users }) {
   const router = useRouter();
@@ -113,9 +109,9 @@ function Dashboard({ users }) {
           },
         }
       );
-      const data = result?.data?.conversion;
-      data = await SanitizeRequestString(data);
-      return data;
+      let conversion = result?.data?.conversion;
+      conversion = await SanitizeRequestString(conversion);
+      return conversion;
     } catch (e) {
       // toast.error(e.message, {
       //   position: "top-center",
@@ -203,8 +199,7 @@ function Dashboard({ users }) {
       console.log("error fetching user credentails :", error);
     }
   };
-  useEffect(async () => {
-    await clearAllInterval();
+  useEffect(() => {
     fetchUsers();
     fetchTotalRewards();
   }, []);
@@ -249,17 +244,21 @@ function Dashboard({ users }) {
     }
   };
   useEffect(() => {
-    document.getElementById("readUrl").addEventListener("change", function () {
-      if (this.files[0]) {
-        var picture = new FileReader();
-        picture.readAsDataURL(this.files[0]);
-        picture.addEventListener("load", function (event) {
-          document
-            .getElementById("uploadedImage")
-            .setAttribute("srcset", event.target.result);
-        });
-      }
-    });
+    const readUrl = document.getElementById("readUrl");
+    if (readUrl) {
+      readUrl.addEventListener("change", function () {
+        if (this.files[0]) {
+          var picture = new FileReader();
+          picture.readAsDataURL(this.files[0]);
+          picture.addEventListener("load", function (event) {
+            const uploaded = document.getElementById("uploadedImage");
+            if (uploaded) {
+              uploaded.setAttribute("srcset", event.target.result);
+            }
+          });
+        }
+      });
+    }
     fetchProfileData();
   }, []);
 

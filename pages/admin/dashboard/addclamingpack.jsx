@@ -4,7 +4,6 @@ import axios from "@/utils/common/axios";
 import { encryptRequestBody } from "@/utils/common/jwtToken";
 import NodataCard from "@/components/reusables/NodataCard";
 import DeswapPackCard from "@/components/adminDashboardComponents/adddeswappack/DeswapPackCard";
-import { checkAdminAuth } from "@/utils/auth/checkAdminAuth";
 import Modal from "@/components/reusables/Modal";
 import Image from "next/image";
 import SimpleButton from "@/components/reusables/SimpleButton";
@@ -18,11 +17,9 @@ import {
 import { requestBodyEncryptionAdmin } from "@/utils/common/jwtToken";
 import { AdminDashboardLayout } from "@/layout/admindashboard.layout";
 
-// import Pagination from "react-js-pagination";
+// import Pagination from "@/components/reusables/Pagination";
 
-export const getServerSideProps = async (ctx) => {
-  return await checkAdminAuth(ctx);
-};
+
 
 function AddDeswapPack(serversidePropsData) {
   const [ClaimingPackList, setClaimingPackList] = useState([]);
@@ -191,8 +188,10 @@ function AddDeswapPack(serversidePropsData) {
   };
 
   //use effect to fetch latest data
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     await fetchClaimingPackListFunc();
+      })();
   }, []);
   return (
     <div className="deswapstackContainer">
@@ -229,11 +228,12 @@ function AddDeswapPack(serversidePropsData) {
             <div className="iconBox">
               <div className="wallet">
                 <Image
-                  width={1221}
-                  height={1221}
+                  width={280}
+                  height={280}
                   src="/images/Claimrewards.png"
                   alt={"Successfully registered image"}
                   loading="lazy"
+                  style={{ width: "100%", height: "auto", maxWidth: "100%", objectFit: "contain" }}
                 />
               </div>
             </div>
@@ -273,11 +273,12 @@ function AddDeswapPack(serversidePropsData) {
             <div className="iconBox">
               <div className="wallet">
                 <Image
-                  width={1221}
-                  height={1221}
+                  width={280}
+                  height={280}
                   src="/images/Claimrewards.png"
                   alt={"Successfully registered image"}
                   loading="lazy"
+                  style={{ width: "100%", height: "auto", maxWidth: "100%", objectFit: "contain" }}
                 />
               </div>
             </div>

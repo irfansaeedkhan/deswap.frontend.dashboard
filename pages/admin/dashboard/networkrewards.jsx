@@ -9,8 +9,7 @@ import TableLoader from "@/components/reusables/loader/TableLoader";
 import axios from "@/utils/common/axios";
 import { requestBodyEncryptionAdmin } from "@/utils/common/jwtToken";
 import NodataCard from "@/components/reusables/NodataCard";
-import { checkAdminAuth } from "../../../utils/auth/checkAdminAuth";
-import Pagination from "react-js-pagination";
+import Pagination from "@/components/reusables/Pagination";
 import FailedToFetchData from "@/components/reusables/FailedToFetchData";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -18,9 +17,7 @@ import { SanitizeRequestObject } from "../../../utils/common/sanitize";
 import TotalNetworkRewardsGraph from "@/components/adminDashboardComponents/networkRewards/TotalNetworkRewardsGraph";
 import { AdminDashboardLayout } from "@/layout/admindashboard.layout";
 
-export const getServerSideProps = async (ctx) => {
-  return await checkAdminAuth(ctx);
-};
+
 function NetworkRewards() {
   const [ntrChanged, setNTRChanged] = useState("0,00");
   const [ntrPercentageChanged, setNTRPercentageChanged] = useState("0,00");
@@ -188,8 +185,10 @@ function NetworkRewards() {
     }
   };
 
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     await fetchnetworkRewardListFunc({ offset: 0, limit: 10, activePageNo: 1 });
+      })();
   }, []);
   //   debugger
   return (

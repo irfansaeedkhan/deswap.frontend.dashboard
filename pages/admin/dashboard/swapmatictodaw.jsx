@@ -2,15 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "@/utils/common/axios";
 import { requestBodyEncryptionAdmin } from "@/utils/common/jwtToken";
 import Loader from "@/components/reusables/loader/Loader";
-import { checkAdminAuth } from "../../../utils/auth/checkAdminAuth";
 import SwapMDChart from "@/components/adminDashboardComponents/charts/SwapMDChart";
 import SwapRequested from "@/components/adminDashboardComponents/swapmatictodaw/SwapRequested";
 import SwapHistory from "@/components/adminDashboardComponents/swapmatictodaw/SwapHistory";
 import { AdminDashboardLayout } from "@/layout/admindashboard.layout";
 
-export const getServerSideProps = async (ctx) => {
-  return await checkAdminAuth(ctx);
-};
 
 function SwapMaticToDaw() {
   const [GraphLabels, setGraphLabels] = useState([]);
