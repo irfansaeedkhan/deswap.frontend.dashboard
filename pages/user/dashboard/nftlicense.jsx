@@ -3,7 +3,7 @@ import Modal from "@/components/reusables/Modal";
 import BootstrapModal from "@/components/reusables/BootstrapModal";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
-import NftLcardTab from "@/components/userDashboardComponents/nftlicenseTab/nftLcardTab";
+import NftLcardTab from "@/components/userDashboardComponents/nftlicenseTab/NftLcardTab";
 import ActiveNftLcardTab from "@/components/userDashboardComponents/nftlicenseTab/ActiveNftLcardTab";
 import axios from "../../../utils/common/axios";
 import { encryptRequestBody } from "@/utils/common/jwtToken";

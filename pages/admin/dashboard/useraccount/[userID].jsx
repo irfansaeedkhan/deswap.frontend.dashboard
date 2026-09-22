@@ -3,10 +3,10 @@ import axios from "@/utils/common/axios";
 import { requestBodyEncryptionAdmin } from "@/utils/common/jwtToken";
 import Loader from "@/components/reusables/loader/Loader";
 import SwapMDChart from "@/components/adminDashboardComponents/charts/SwapMDChart";
-import RegistrationFee from "@/components/adminDashboardComponents/UserDetails/RegistrationFee";
-import NFTLicesnseFee from "@/components/adminDashboardComponents/UserDetails/NFTLicesnseFee";
-import PublickeyFee from "@/components/adminDashboardComponents/UserDetails/PublickeyFee";
-import CompanyFee from "@/components/adminDashboardComponents/UserDetails/CompanyFee";
+import RegistrationFee from "@/components/adminDashboardComponents/userDetails/RegistrationFee";
+import NFTLicesnseFee from "@/components/adminDashboardComponents/userDetails/NFTLicesnseFee";
+import PublickeyFee from "@/components/adminDashboardComponents/userDetails/PublickeyFee";
+import CompanyFee from "@/components/adminDashboardComponents/userDetails/CompanyFee";
 import { AdminDashboardLayout } from "@/layout/admindashboard.layout";
 
 
