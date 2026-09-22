@@ -7,12 +7,13 @@ function HomeSection2() {
           <div className="cardContent">
             <div className="imagebox">
               <Image
-                width={800}
-                height={600}
+                width={192}
+                height={192}
                 src="/images/audit.png"
                 alt="audit icon"
-                loading="lazy"
-               style={{ width: "100%", height: "auto", objectFit: "contain" }} />
+                sizes="192px"
+                style={{ width: "100%", height: "auto", objectFit: "contain" }}
+              />
             </div>
             <div className="contentbox">
               <h2>Audited by Techrate</h2>
@@ -24,12 +25,12 @@ function HomeSection2() {
                 <p>Readmore</p>
                 <div className="imgCustomArrow">
                   <Image
-                    width={800}
-                    height={600}
+                    width={31}
+                    height={31}
                     src="/images/arrowRight.svg"
                     alt="arrow icon"
-                    loading="lazy"
-                   style={{ width: "100%", height: "auto", objectFit: "contain" }} />
+                    style={{ width: 31, height: 31 }}
+                  />
                 </div>
               </a>
             </div>

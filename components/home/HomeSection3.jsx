@@ -24,12 +24,12 @@ function HomeSection3() {
               <p>View Detail</p>
               <div className="imgCustomArrow">
                 <Image
-                  width={800}
-                  height={600}
+                  width={31}
+                  height={31}
                   src="/images/arrowRight.svg"
                   alt="arrow icon"
-                  loading="lazy"
-                 style={{ width: "100%", height: "auto", objectFit: "contain" }} />
+                  style={{ width: 31, height: 31 }}
+                />
               </div>
             </a>
           </div>
