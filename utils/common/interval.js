@@ -1,12 +1,8 @@
-module.exports.clearAllInterval = async ()=>{
-	try {
-		let intervalValue = await setInterval(()=>{ }, 1000);
-        let countInterval = intervalValue != undefined ? intervalValue : 0;
-        for (let a = 0; a <= countInterval; a++) {
-        clearInterval(a);
-        }
-	} catch (e) {
-		throw e;
-	}
-}
-
+/**
+ * Historically this cleared EVERY interval ID up to the latest,
+ * which breaks React/Next timers and causes white screens on navigation.
+ * Keep a no-op so call sites stay safe.
+ */
+module.exports.clearAllInterval = async () => {
+  return;
+};

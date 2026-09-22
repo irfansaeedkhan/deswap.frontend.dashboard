@@ -16,6 +16,20 @@ import {
   encryptAdminReqPayLoad,
 } from "./encryptrequestpayload";
 
+function isDemoMode() {
+  if (
+    process.env.NEXT_PUBLIC_DEMO_MODE === "true" ||
+    process.env.DEMO_MODE === "true"
+  ) {
+    return true;
+  }
+  if (typeof window !== "undefined") {
+    const host = window.location.hostname;
+    return host === "localhost" || host === "127.0.0.1";
+  }
+  return false;
+}
+
 module.exports.createUserRefreshToken = async (refreshTokenLength = 30) => {
   try {
     return await randomBytes(refreshTokenLength).toString("hex");
@@ -127,8 +141,11 @@ module.exports.emailVerificationToken = async (params) => {
 module.exports.createFrontUserToken = async (params) => {
   try {
     let jwtconfig = JSON.parse(JSON.stringify(jwtConfig));
-    //TO DO : Change
-    jwtconfig.expiresIn = "5m";
+    jwtconfig.expiresIn =
+      process.env.DEMO_MODE === "true" ||
+      process.env.NEXT_PUBLIC_DEMO_MODE === "true"
+        ? "24h"
+        : "5m";
 
     return await sign(
       {
@@ -149,10 +166,12 @@ module.exports.createFrontUserToken = async (params) => {
 
 module.exports.createFrontAdminToken = async (params) => {
   try {
-    console.log("params", params.ip);
     let jwtconfig = JSON.parse(JSON.stringify(jwtConfig));
-    //TO DO : Change
-    jwtconfig.expiresIn = "5m";
+    jwtconfig.expiresIn =
+      process.env.DEMO_MODE === "true" ||
+      process.env.NEXT_PUBLIC_DEMO_MODE === "true"
+        ? "24h"
+        : "5m";
 
     return await sign(
       {
@@ -182,6 +201,7 @@ module.exports.verifyFrontEndToken = async (param) => {
 };
 
 module.exports.encryptRequestBody = async (param) => {
+  if (isDemoMode()) return param;
   try {
     //
 
@@ -206,6 +226,7 @@ module.exports.encryptRequestBody = async (param) => {
     requestToken = await encodeURIComponent(requestToken);
     return requestToken;
   } catch (e) {
+    if (isDemoMode()) return param;
     throw e;
   }
 };
@@ -266,6 +287,7 @@ module.exports.decodeResponseBody = async (param) => {
 
 //Request unprotected
 module.exports.requestBodyEncryptionUnprotected = async (param) => {
+  if (isDemoMode()) return param;
   try {
     //
     let jwtconfig = JSON.parse(JSON.stringify(jwtConfig));
@@ -286,6 +308,7 @@ module.exports.requestBodyEncryptionUnprotected = async (param) => {
     requestToken = await encodeURIComponent(requestToken);
     return requestToken;
   } catch (e) {
+    if (isDemoMode()) return param;
     throw e;
   }
 };
@@ -335,6 +358,7 @@ module.exports.decodeResponseBodyUnprotected = async (param) => {
 
 //Admin request
 module.exports.requestBodyEncryptionAdmin = async (param) => {
+  if (isDemoMode()) return param;
   try {
     //
     let jwtconfig = JSON.parse(JSON.stringify(jwtConfig));
@@ -356,6 +380,7 @@ module.exports.requestBodyEncryptionAdmin = async (param) => {
     requestToken = await encodeURIComponent(requestToken);
     return requestToken;
   } catch (e) {
+    if (isDemoMode()) return param;
     throw e;
   }
 };

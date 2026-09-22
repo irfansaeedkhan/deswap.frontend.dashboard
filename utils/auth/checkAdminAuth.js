@@ -5,6 +5,31 @@ import { verifyFrontEndToken, decodeJWT, verifyJWT, createFrontUserToken,createF
 import { decryptData, decryptfrontendData } from "../common/crypto";
 
 module.exports.checkAdminAuth = async (ctx) => {
+    // Demo mode: allow access with demo session cookie
+    if (
+      process.env.DEMO_MODE === "true" ||
+      process.env.NEXT_PUBLIC_DEMO_MODE === "true"
+    ) {
+      const header = ctx?.req?.headers?.cookie || "";
+      const isDemoSession = header.includes("deswap_demo_session=1");
+      const isDemoAdmin = header.includes("deswap_demo_role=admin");
+      if (isDemoSession && isDemoAdmin) {
+          return {
+            props: {
+              users: {
+                uservalid: true,
+                emailid: "admin@deswap.co",
+                uuid: "demo-admin-uuid-0001",
+                emailverified: true,
+                role: "DeswapAdminRole",
+              },
+              link: process.env.PLATFORM_URL || "http://localhost:3000",
+              demo: true,
+            },
+          };
+      }
+    }
+
     //Fetching cookie before pages loads
     let allcookie = await cookies(ctx);
     try {

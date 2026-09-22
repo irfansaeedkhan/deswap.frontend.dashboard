@@ -1,43 +1,37 @@
 import Cookies from "cookies";
 import CryptoJS from "crypto-js";
-import { createFrontUserToken } from "../../../utils/common/jwtToken";
-import { demoUser, DEMO_CREDENTIALS } from "../../../lib/mock-data";
+import { createFrontAdminToken } from "../../../utils/common/jwtToken";
+import { demoAdmin, DEMO_ADMIN_CREDENTIALS } from "../../../lib/mock-data";
 
-/**
- * Demo login — no Mongo/Redis required.
- * POST { email, password } with demo credentials.
- */
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
   try {
-    const email = String(req.body?.email || req.body?.demoEmail || "")
+    const email = String(req.body?.email || "")
       .trim()
       .toLowerCase();
-    const password = String(
-      req.body?.password || req.body?.demoPassword || ""
-    );
+    const password = String(req.body?.password || "");
 
     if (
-      email !== DEMO_CREDENTIALS.email.toLowerCase() ||
-      password !== DEMO_CREDENTIALS.password
+      email !== DEMO_ADMIN_CREDENTIALS.email.toLowerCase() ||
+      password !== DEMO_ADMIN_CREDENTIALS.password
     ) {
       return res.status(401).json({
         error: "Invalid login",
-        hint: `Demo credentials: ${DEMO_CREDENTIALS.email} / ${DEMO_CREDENTIALS.password}`,
+        hint: `Demo admin: ${DEMO_ADMIN_CREDENTIALS.email} / ${DEMO_ADMIN_CREDENTIALS.password}`,
       });
     }
 
-    const loginTime = Date.now();
-    const frontToken = await createFrontUserToken({
-      uuid: demoUser.uuid,
-      time: loginTime,
+    const frontToken = await createFrontAdminToken({
+      uuid: demoAdmin.uuid,
+      time: Date.now(),
       verificationStatus: true,
-      emailid: demoUser.emailid,
-      role: "User",
+      emailid: demoAdmin.emailid,
+      role: "DeswapAdminRole",
       messageCodeAuth: true,
+      ip: "127.0.0.1",
     });
 
     const encryptedFrontendKey = CryptoJS.AES.encrypt(
@@ -56,36 +50,35 @@ export default async function handler(req, res) {
         path: "/",
       }
     );
-
     cookies.set("deswap_demo_session", "1", {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
       sameSite: "lax",
       path: "/",
     });
-    cookies.set("deswap_demo_role", "user", {
+    cookies.set("deswap_demo_role", "admin", {
       httpOnly: false,
       maxAge: 24 * 60 * 60 * 1000,
       sameSite: "lax",
       path: "/",
     });
 
-    // Plain JSON for the browser — avoids encrypted-response decode failures in demo
     return res.status(200).json({
       user: {
-        emailid: demoUser.emailid,
-        uuid: demoUser.uuid,
+        emailid: demoAdmin.emailid,
+        uuid: demoAdmin.uuid,
         accountverified: true,
-        address: demoUser.address,
+        address: demoAdmin.address,
+        role: "DeswapAdminRole",
       },
       type: "noauth",
       demo: true,
-      message: "Demo login successful",
+      message: "Demo admin login successful",
     });
   } catch (e) {
-    console.error("Demo login failed:", e.message);
+    console.error("Demo admin login failed:", e.message);
     return res.status(500).json({
-      error: "Demo login failed",
+      error: "Demo admin login failed",
       hint: e.message,
     });
   }

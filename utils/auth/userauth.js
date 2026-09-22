@@ -4,6 +4,20 @@ import CryptoJS from "crypto-js";
 import {verifyFrontEndToken,decodeJWT,verifyJWT,createFrontUserToken} from "../common/jwtToken";
 import {decryptData,decryptfrontendData} from "../common/crypto";
 
+function readCookieHeader(ctx, name) {
+    const header = ctx?.req?.headers?.cookie;
+    if (!header) return undefined;
+    const parts = header.split(";");
+    for (let i = 0; i < parts.length; i++) {
+        const row = parts[i];
+        const eq = row.indexOf("=");
+        if (eq === -1) continue;
+        if (row.slice(0, eq).trim() === name) {
+            return row.slice(eq + 1).trim();
+        }
+    }
+    return undefined;
+}
 
 module.exports.checkUserAuth = async (ctx)=>{
     // Demo mode: allow access with demo session cookie
@@ -11,8 +25,7 @@ module.exports.checkUserAuth = async (ctx)=>{
       process.env.DEMO_MODE === "true" ||
       process.env.NEXT_PUBLIC_DEMO_MODE === "true"
     ) {
-      let allcookieDemo = await cookies(ctx);
-      if (allcookieDemo["deswap_demo_session"] === "1") {
+      if (readCookieHeader(ctx, "deswap_demo_session") === "1") {
         return {
           props: {
             users: {

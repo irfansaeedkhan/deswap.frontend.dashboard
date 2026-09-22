@@ -1,13 +1,24 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
 const Connection = async () => {
-  // connecting to mongodb atlas
+  if (
+    process.env.DEMO_MODE === "true" ||
+    process.env.NEXT_PUBLIC_DEMO_MODE === "true"
+  ) {
+    return { demo: true };
+  }
+
+  if (!process.env.CONNECTION_STRING) {
+    console.log("CONNECTION_STRING missing — skipping Mongo connect");
+    return null;
+  }
+
   try {
     const connect = await mongoose.connect(process.env.CONNECTION_STRING, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      family:4,
-      maxPoolSize:450,
+      family: 4,
+      maxPoolSize: 450,
       connectTimeoutMS: 10000,
     });
 

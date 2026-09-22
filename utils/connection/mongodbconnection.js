@@ -10,25 +10,37 @@ global.color = {
   blue: "\x1b[34m",
 };
 
-//
+function isDemoMode() {
+  return (
+    process.env.DEMO_MODE === "true" ||
+    process.env.NEXT_PUBLIC_DEMO_MODE === "true"
+  );
+}
+
 /**
- *
- *
+ * Mongo connection — no-op in demo mode (client demos without a database).
  */
 async function getMongoDBConnection() {
   try {
-    //
-    //
+    if (isDemoMode()) {
+      connection.isConnected = false;
+      connection.demo = true;
+      return { demo: true };
+    }
+
     if (connection.isConnected) {
+      return;
+    }
+
+    if (!process.env.MONGODB_URI) {
       console.log(
-        global.color.green,
-        "Already connected to mongodb !!!!",
+        global.color.yellow,
+        "MONGODB_URI missing — skipping DB connect",
         global.color.reset
       );
       return;
     }
 
-    //
     const mongodbConn = await mongoose.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -37,7 +49,6 @@ async function getMongoDBConnection() {
       connectTimeoutMS: 10000,
     });
 
-    //
     if (mongodbConn.connect) {
       connection.isConnected = true;
       connection.dbConnection = mongodbConn;
@@ -49,15 +60,9 @@ async function getMongoDBConnection() {
     } else {
       connection.isConnected = false;
       connection.dbConnection = null;
-      console.log(
-        global.color.red,
-        "Failed to connect to DB XXXX",
-        global.color.reset
-      );
     }
   } catch (e) {
-    console.log("Failed to connect to mongodb database : ", e);
-    console.error("Failed to connect to mongodb database : ", e);
+    console.error("Failed to connect to mongodb database : ", e.message);
   }
 }
 
