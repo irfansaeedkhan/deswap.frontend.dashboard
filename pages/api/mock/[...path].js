@@ -16,10 +16,6 @@ import {
  *   GET /api/mock/companies?offset=10&limit=10
  */
 export default function handler(req, res) {
-  if (process.env.DEMO_MODE !== "true" && process.env.NEXT_PUBLIC_DEMO_MODE !== "true") {
-    return res.status(404).json({ error: "Demo mode disabled" });
-  }
-
   const segments = [].concat(req.query.path || []);
   const resource = (segments[0] || "").toLowerCase();
   const page = req.query.page || req.query.Page || 1;

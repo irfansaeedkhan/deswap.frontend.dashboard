@@ -9,7 +9,6 @@ const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
 import Link from "next/link";
 import { useRouter } from "next/router";
 import axios from "../../../utils/common/axios";
-import { requestBodyEncryptionUnprotected } from "@/utils/common/jwtToken";
 import { setloginData } from "../../../utils/auth/login";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -77,49 +76,18 @@ function LoginForm() {
     try {
       await setloginbutton("Logging..");
 
-      const isDemoEnv =
-        process.env.NEXT_PUBLIC_DEMO_MODE === "true" ||
-        (typeof window !== "undefined" &&
-          (window.location.hostname === "localhost" ||
-            window.location.hostname === "127.0.0.1" ||
-            window.location.hostname.endsWith(".vercel.app")));
-
-      const isDemoEmail =
-        String(sanData.email || "").toLowerCase() === "demo@deswap.co";
-
-      const useDemoLogin = isDemoEnv || isDemoEmail;
-
-      let data;
-      if (useDemoLogin) {
-        // Relative URL — works on any local port (:3000, :3002, etc.)
-        const response = await axios.post(
-          `/api/demo/login`,
-          {
-            email: sanData.email,
-            password: sanData.password,
-          },
-          {
-            withCredentials: true,
-            headers: { "Content-Type": "application/json" },
-          }
-        );
-        data = response.data;
-      } else {
-        const platformUrl =
-          process.env.NEXT_PUBLIC_PLATFORM_URL ||
-          (typeof window !== "undefined" ? window.location.origin : "");
-        let encryptionData = await requestBodyEncryptionUnprotected(sanData);
-        const response = await axios.post(
-          `${platformUrl}/api/login`,
-          { data: encryptionData },
-          {
-            headers: {
-              "security-set": true,
-            },
-          }
-        );
-        data = response.data;
-      }
+      const response = await axios.post(
+        `/api/demo/login`,
+        {
+          email: sanData.email,
+          password: sanData.password,
+        },
+        {
+          withCredentials: true,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      const data = response.data;
 
       const user = data?.user || data?.payload?.user;
       if (!user?.emailid) {
@@ -143,10 +111,7 @@ function LoginForm() {
       toast.success("Logged in successfully", { autoClose: 2000 });
       await setWalletValues("metamask", false);
       ensureDashboardCss();
-      if (useDemoLogin) {
-        return router.push("/user/dashboard");
-      }
-      return router.push("/user/verification");
+      return router.push("/user/dashboard");
     } catch (error) {
       setloginbutton("Login");
       const hint =

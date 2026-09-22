@@ -9,12 +9,8 @@ import {
   decodeResponseBodyAdmin,
 } from "../../utils/common/jwtToken";
 
-const demoAxios =
-  process.env.NEXT_PUBLIC_DEMO_MODE === "true" ||
-  process.env.DEMO_MODE === "true";
-
 axiosRetry(axios, {
-  retries: demoAxios ? 0 : 2,
+  retries: 0,
   retryDelay: (retryCount) => retryCount * 1000,
   retryCondition: (error) => {
     return error.response && error.response.status === 401;
@@ -24,16 +20,7 @@ axiosRetry(axios, {
 axios.defaults.timeout = 12000;
 
 function isDemoMode() {
-  if (process.env.NEXT_PUBLIC_DEMO_MODE === "true") return true;
-  if (typeof window !== "undefined") {
-    const host = window.location.hostname;
-    return (
-      host === "localhost" ||
-      host === "127.0.0.1" ||
-      host.endsWith(".vercel.app")
-    );
-  }
-  return process.env.DEMO_MODE === "true";
+  return true;
 }
 
 /** Fix stale NEXT_PUBLIC_PLATFORM_URL port (e.g. :3000 while app is on :3002). */

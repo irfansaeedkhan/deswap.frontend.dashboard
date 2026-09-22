@@ -20,21 +20,7 @@ const DEMO_FRONT_USER_KEY = "deswap-demo-frontend-user-key";
 const DEMO_JWT_SECRET_KEY = "demo-jwt-secret-key-change-me";
 
 function isDemoMode() {
-  if (
-    process.env.NEXT_PUBLIC_DEMO_MODE === "true" ||
-    process.env.DEMO_MODE === "true"
-  ) {
-    return true;
-  }
-  if (typeof window !== "undefined") {
-    const host = window.location.hostname;
-    return (
-      host === "localhost" ||
-      host === "127.0.0.1" ||
-      host.endsWith(".vercel.app")
-    );
-  }
-  return process.env.VERCEL === "1";
+  return true;
 }
 
 function frontendUserKey() {
@@ -162,11 +148,7 @@ module.exports.emailVerificationToken = async (params) => {
 module.exports.createFrontUserToken = async (params) => {
   try {
     let jwtconfig = JSON.parse(JSON.stringify(jwtConfig));
-    jwtconfig.expiresIn =
-      process.env.DEMO_MODE === "true" ||
-      process.env.NEXT_PUBLIC_DEMO_MODE === "true"
-        ? "24h"
-        : "5m";
+    jwtconfig.expiresIn = "24h";
 
     return await sign(
       {
@@ -188,11 +170,7 @@ module.exports.createFrontUserToken = async (params) => {
 module.exports.createFrontAdminToken = async (params) => {
   try {
     let jwtconfig = JSON.parse(JSON.stringify(jwtConfig));
-    jwtconfig.expiresIn =
-      process.env.DEMO_MODE === "true" ||
-      process.env.NEXT_PUBLIC_DEMO_MODE === "true"
-        ? "24h"
-        : "5m";
+    jwtconfig.expiresIn = "24h";
 
     return await sign(
       {

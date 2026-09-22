@@ -21,11 +21,7 @@ function readCookieHeader(ctx, name) {
 
 module.exports.checkUserAuth = async (ctx)=>{
     // Demo mode: allow access with demo session cookie
-    if (
-      process.env.DEMO_MODE === "true" ||
-      process.env.NEXT_PUBLIC_DEMO_MODE === "true"
-    ) {
-      if (readCookieHeader(ctx, "deswap_demo_session") === "1") {
+    if (readCookieHeader(ctx, "deswap_demo_session") === "1") {
         return {
           props: {
             users: {
@@ -39,7 +35,6 @@ module.exports.checkUserAuth = async (ctx)=>{
             demo: true,
           },
         };
-      }
     }
 
     let allcookie = await cookies(ctx);

@@ -1,29 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "@/utils/common/axios";
 import { toast } from "react-toastify";
 
 /**
- * User <-> Admin switcher for client demos — lives in dashboard sidebar only.
+ * User <-> Admin switcher — lives in dashboard sidebar only.
  * Role follows the current URL so browser back/forward stays in sync.
  */
 export default function DemoRoleSwitcher() {
   const router = useRouter();
   const current = router.pathname.startsWith("/admin") ? "admin" : "user";
   const [busy, setBusy] = useState(false);
-  const [show, setShow] = useState(
-    process.env.NEXT_PUBLIC_DEMO_MODE !== "false"
-  );
-
-  useEffect(() => {
-    if (process.env.NEXT_PUBLIC_DEMO_MODE === "false") {
-      setShow(false);
-      return;
-    }
-    setShow(true);
-  }, []);
-
-  if (!show) return null;
 
   const switchTo = async (role) => {
     if (busy) return;

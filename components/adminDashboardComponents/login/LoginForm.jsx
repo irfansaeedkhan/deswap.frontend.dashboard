@@ -9,7 +9,6 @@ const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
 import Link from "next/link";
 import { useRouter } from "next/router";
 import axios from "@/utils/common/axios";
-import {requestBodyEncryptionUnprotected } from "@/utils/common/jwtToken";
 import { setloginData } from "../../../utils/auth/login";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -68,33 +67,12 @@ function LoginForm() {
       if (!data1) return;
       await setloginbutton("Logging..");
 
-      const isDemo =
-        process.env.NEXT_PUBLIC_DEMO_MODE === "true" ||
-        window.location.hostname === "localhost" ||
-        window.location.hostname === "127.0.0.1" ||
-        window.location.hostname.endsWith(".vercel.app") ||
-        String(data1.email || "").toLowerCase() === "admin@deswap.co";
-
-      let data;
-      if (isDemo) {
-        // Relative URL — works on any local port
-        const response = await axios.post(
-          `/api/demo/admin-login`,
-          { email: data1.email, password: data1.password },
-          { withCredentials: true }
-        );
-        data = response.data;
-      } else {
-        const platformUrl =
-          process.env.NEXT_PUBLIC_PLATFORM_URL || window.location.origin;
-        let encryptionData = await requestBodyEncryptionUnprotected(data1);
-        const response = await axios.post(
-          `${platformUrl}/api/admin/login`,
-          { data: encryptionData },
-          { headers: { "security-set": true } }
-        );
-        data = response.data;
-      }
+      const response = await axios.post(
+        `/api/demo/admin-login`,
+        { email: data1.email, password: data1.password },
+        { withCredentials: true }
+      );
+      const data = response.data;
 
       const user = data?.user;
       if (!user?.emailid) {

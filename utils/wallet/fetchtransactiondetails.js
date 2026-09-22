@@ -5,10 +5,7 @@ module.exports.formatWei = async (wei) => {
 };
 
 function isDemoMode() {
-  return (
-    process.env.NEXT_PUBLIC_DEMO_MODE === "true" ||
-    process.env.DEMO_MODE === "true"
-  );
+  return true;
 }
 
 module.exports.ConnectToWeb3 = async (checkPriceTransactionHash) => {

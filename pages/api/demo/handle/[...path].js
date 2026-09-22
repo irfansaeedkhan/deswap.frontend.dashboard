@@ -2,7 +2,7 @@ import { resolveDemoPayload } from "../../../../lib/demo-api-router";
 
 /**
  * Catch-all demo handler. Axios rewrites /api/* → /api/demo/handle/*
- * when NEXT_PUBLIC_DEMO_MODE is on.
+ * Dummy API catch-all. Every /api/* data call is rewritten here.
  */
 export default function handler(req, res) {
   const segments = [].concat(req.query.path || []);

@@ -24,11 +24,9 @@ yarn lighthouse  # requires server on :3000
 ## Environment
 
 1. Copy `.env.example` → `.env.local`
-2. For local demo without Mongo/Redis:
+2. App runs without Mongo. Dummy data is always on. User / Admin switcher is at the bottom of the dashboard sidebar.
 
 ```env
-DEMO_MODE=true
-NEXT_PUBLIC_DEMO_MODE=true
 NEXT_PUBLIC_PLATFORM_URL=http://localhost:3000
 PLATFORM_URL=http://localhost:3000
 ```
@@ -42,7 +40,7 @@ PLATFORM_URL=http://localhost:3000
 | User | `demo@deswap.co` | `Demo@1234` |
 | Admin | `admin@deswap.co` | `Admin@1234` |
 
-With `DEMO_MODE=true`, all `/api/*` data calls are rewritten to `/api/demo/handle/*` (no MongoDB). Use the bottom **User / Admin** switcher on dashboards to flip roles.
+All `/api/*` data calls go to `/api/demo/handle/*` (no MongoDB). Use the bottom **User / Admin** switcher on dashboards to flip roles.
 
 Demo login: `POST /api/demo/login` · Admin: `POST /api/demo/admin-login` · Switch: `POST /api/demo/switch-role`  
 Mock lists: `GET /api/mock/packs?page=1&limit=10`
