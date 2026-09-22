@@ -27,7 +27,6 @@ function Navbar() {
   const handleLaunchApp = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    // Hard navigate so login always opens even if client router is stuck
     if (typeof window !== "undefined") {
       window.location.assign("/user/login");
       return;
@@ -61,52 +60,80 @@ function Navbar() {
               />
             </Link>
           </div>
-          <div className="hamburger" onClick={() => NavbarToggle()}>
+          <div
+            className="hamburger"
+            role="button"
+            tabIndex={0}
+            aria-label="Open navigation menu"
+            onClick={() => NavbarToggle()}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                NavbarToggle();
+              }
+            }}
+          >
             <div className="line1"></div>
             <div className="line2"></div>
             <div className="line3"></div>
           </div>
           <ul className="nav-links">
             <li>
-              <Link legacyBehavior href="/">
-                <a className={router.pathname == "/" ? "active" : ""}>Home</a>
+              <Link
+                href="/"
+                className={router.pathname == "/" ? "active" : ""}
+                aria-current={router.pathname == "/" ? "page" : undefined}
+                style={
+                  router.pathname == "/"
+                    ? { color: "#e44757", fontWeight: 700, fontSize: 19 }
+                    : undefined
+                }
+              >
+                Home
               </Link>
             </li>
             <li>
-              <Link legacyBehavior href="/about">
-                <a className={router.pathname == "/about" ? "active" : ""}>
-                  About Deswap
-                </a>
+              <Link
+                href="/about"
+                className={router.pathname == "/about" ? "active" : ""}
+              >
+                About Deswap
               </Link>
             </li>
             <li>
-              <Link legacyBehavior href="/tokenomics">
-                <a className={router.pathname == "/tokenomics" ? "active" : ""}>
-                  Tokenomics
-                </a>
+              <Link
+                href="/tokenomics"
+                className={router.pathname == "/tokenomics" ? "active" : ""}
+              >
+                Tokenomics
               </Link>
             </li>
             <li>
-              <Link legacyBehavior href="/ecosystem">
-                <a className={router.pathname == "/ecosystem" ? "active" : ""}>
-                  Ecosystem
-                </a>
+              <Link
+                href="/ecosystem"
+                className={router.pathname == "/ecosystem" ? "active" : ""}
+              >
+                Ecosystem
               </Link>
             </li>
             <li>
-              <Link legacyBehavior href="/metaverse">
-                <a className={router.pathname == "/metaverse" ? "active" : ""}>
-                  Metaverse
-                </a>
+              <Link
+                href="/metaverse"
+                className={router.pathname == "/metaverse" ? "active" : ""}
+              >
+                Metaverse
               </Link>
             </li>
           </ul>
           <SimpleButton
             border="none"
             backgroundColor="#E44757"
+            color="#FFFFFF"
             onClick={handleLaunchApp}
             text="Launch App"
             maxWidth="17.8rem"
+            fontSize={19}
+            fontWeight={700}
           />
           <div className="flagContainer">
             <Image
@@ -121,68 +148,71 @@ function Navbar() {
         <div className="mobilenavContainer">
           <ul className="nav-linksMobile">
             <li>
-              <Link legacyBehavior href="/">
-                <a
-                  onClick={() => NavbarToggle()}
-                  className={router.pathname == "/" ? "active" : ""}
-                >
-                  Home
-                </a>
+              <Link
+                href="/"
+                onClick={() => NavbarToggle()}
+                className={router.pathname == "/" ? "active" : ""}
+                aria-current={router.pathname == "/" ? "page" : undefined}
+                style={
+                  router.pathname == "/"
+                    ? { color: "#e44757", fontWeight: 700, fontSize: 19 }
+                    : undefined
+                }
+              >
+                Home
               </Link>
             </li>
             <li>
-              <Link legacyBehavior href="/about">
-                <a
-                  onClick={() => NavbarToggle()}
-                  className={router.pathname == "/about" ? "active" : ""}
-                >
-                  About Deswap
-                </a>
+              <Link
+                href="/about"
+                onClick={() => NavbarToggle()}
+                className={router.pathname == "/about" ? "active" : ""}
+                style={
+                  router.pathname == "/about" ? { color: "#F07884" } : undefined
+                }
+              >
+                About Deswap
               </Link>
             </li>
             <li>
-              <Link legacyBehavior href="/tokenomics">
-                <a
-                  onClick={() => NavbarToggle()}
-                  className={router.pathname == "/tokenomics" ? "active" : ""}
-                >
-                  Tokenomics
-                </a>
+              <Link
+                href="/tokenomics"
+                onClick={() => NavbarToggle()}
+                className={router.pathname == "/tokenomics" ? "active" : ""}
+              >
+                Tokenomics
               </Link>
             </li>
             <li>
-              <Link legacyBehavior href="/ecosystem">
-                <a
-                  onClick={() => NavbarToggle()}
-                  className={router.pathname == "/ecosystem" ? "active" : ""}
-                >
-                  Ecosystem
-                </a>
+              <Link
+                href="/ecosystem"
+                onClick={() => NavbarToggle()}
+                className={router.pathname == "/ecosystem" ? "active" : ""}
+              >
+                Ecosystem
               </Link>
             </li>
             <li>
-              <Link legacyBehavior href="/metaverse">
-                <a
-                  onClick={() => NavbarToggle()}
-                  className={router.pathname == "/metaverse" ? "active" : ""}
-                >
-                  Metaverse
-                </a>
+              <Link
+                href="/metaverse"
+                onClick={() => NavbarToggle()}
+                className={router.pathname == "/metaverse" ? "active" : ""}
+              >
+                Metaverse
               </Link>
             </li>
             <li className="registerBtn">
-              <Link legacyBehavior href="/user/login">
-                <a onClick={() => NavbarToggle()}>Launch App</a>
+              <Link href="/user/login" onClick={() => NavbarToggle()}>
+                Launch App
               </Link>
             </li>
             <li className="registerBtn">
-              <Link legacyBehavior href="/user/register">
-                <a
-                  onClick={() => NavbarToggle()}
-                  className={router.pathname == "/register" ? "active" : ""}
-                >
-                  Register
-                </a>
+              <Link
+                href="/user/register"
+                onClick={() => NavbarToggle()}
+                className={router.pathname == "/register" ? "active" : ""}
+              >
+                Register
               </Link>
             </li>
           </ul>

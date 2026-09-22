@@ -37,13 +37,18 @@ function Footer() {
                 text="Download White Paper"
                 backgroundColor="#E44757"
                 maxWidth="28.3rem"
+                fontSize={19}
+                fontWeight={700}
               />
               </a> */}
               <Link href={"/files/Deswap_Whitepaper.pdf"} download passHref>
                 <SimpleButton
                   text="Download White Paper"
                   backgroundColor="#E44757"
+                  color="#FFFFFF"
                   maxWidth="28.3rem"
+                  fontSize={19}
+                  fontWeight={700}
                 />
               </Link>
             </div>
@@ -82,38 +87,42 @@ function Footer() {
               <p>Copyright © 2021</p>
             </div>
             <div className="linkBox">
-              <div className="linkBoxImg  navItem1 Svgneon-button">
+              <a
+                className="linkBoxImg  navItem1 Svgneon-button"
+                href="https://t.me/deswap"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Deswap on Telegram"
+              >
                 <TelegramIcon />
-                {/* <Image  width={800} height={600}   src="/images/telegram.png"    alt="telegram"  style={{ width: "100%", height: "auto", objectFit: "contain" }} /> */}
-              </div>
-              <div className="linkBoxImg navItem2 Svgneon-button">
+              </a>
+              <a
+                className="linkBoxImg navItem2 Svgneon-button"
+                href="https://www.reddit.com/r/deswap"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Deswap on Reddit"
+              >
                 <RedditIcon />
-                {/* <Image  width={800} height={600}  
-                  className="linkBoxImg navItem1 Svgneon-button"
-                  
-                  src="/images/redit.png"
-                  alt="redit"
-                 style={{ width: "100%", height: "auto", objectFit: "contain" }} /> */}
-              </div>
-              <div className="linkBoxImg navItem3 Svgneon-button">
+              </a>
+              <a
+                className="linkBoxImg navItem3 Svgneon-button"
+                href="https://medium.com/@deswap"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Deswap on Medium"
+              >
                 <MediumIcon />
-                {/* <Image  width={800} height={600}  
-                  className="linkBoxImg navItem1 Svgneon-button"
-                  
-                  src="/images/medium.png"
-
-                  alt="medium"
-                 style={{ width: "100%", height: "auto", objectFit: "contain" }} /> */}
-              </div>
-              <div className="linkBoxImg navItem4 Svgneon-button">
-                {/* <Image  width={800} height={600}  
-                  className="linkBoxImg"
-                  
-                  src="/images/twitter.png"
-                  alt="twitter"
-                 style={{ width: "100%", height: "auto", objectFit: "contain" }} /> */}
+              </a>
+              <a
+                className="linkBoxImg navItem4 Svgneon-button"
+                href="https://twitter.com/deswap"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Deswap on X"
+              >
                 <TwitterIcon />
-              </div>
+              </a>
             </div>
           </div>
         </div>

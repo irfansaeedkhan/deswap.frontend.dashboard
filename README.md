@@ -40,9 +40,12 @@ PLATFORM_URL=http://localhost:3000
 | Role | Email | Password |
 |------|-------|----------|
 | User | `demo@deswap.co` | `Demo@1234` |
+| Admin | `admin@deswap.co` | `Admin@1234` |
 
-Demo login: `POST /api/demo/login`  
-Mock lists (paginated): `GET /api/mock/packs?page=1&limit=10` (also `networkrewards`, `companies`, `nfts`, `dashboard`)
+With `DEMO_MODE=true`, all `/api/*` data calls are rewritten to `/api/demo/handle/*` (no MongoDB). Use the bottom **User / Admin** switcher on dashboards to flip roles.
+
+Demo login: `POST /api/demo/login` · Admin: `POST /api/demo/admin-login` · Switch: `POST /api/demo/switch-role`  
+Mock lists: `GET /api/mock/packs?page=1&limit=10`
 
 ## App structure
 
@@ -76,13 +79,13 @@ yarn build && yarn start
 
 ## Lighthouse (desktop, `/`)
 
-Latest local run after hardening:
+Latest local production run (`yarn build && yarn start`):
 
 | Category | Score |
 |----------|------:|
-| Performance | 98 |
-| Accessibility | 93 |
-| Best Practices | 96 |
+| Performance | 100 |
+| Accessibility | 100 |
+| Best Practices | 100 |
 | SEO | 100 |
 
-Remaining gaps (intentional / constrained): active-nav color contrast `#e44757` on `#222` (SCSS left unchanged per project rules); Bootstrap unused CSS/JS; some PNGs not WebP sources.
+Measure on `yarn start`, not `yarn run dev`. CTA contrast uses `#D63C4C` so white text meets WCAG AA. Dashboard CSS is loaded only on dashboard routes.
