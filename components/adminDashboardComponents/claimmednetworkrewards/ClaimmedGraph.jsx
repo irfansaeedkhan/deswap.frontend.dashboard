@@ -30,13 +30,13 @@ import { MonthDropdown } from "@/components/global/DropDown";
 const ClaimmedGraph = (props) => {
 
   const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const [users,setUsers]=useState();
-  const [labelss,setLabels]=useState([0])
-  const [data,setData]=useState({labels:"",datasets: [{
+  const [users,setUsers]=useState([]);
+  const [labelss,setLabels]=useState([])
+  const [data,setData]=useState({labels:[],datasets: [{
     label: "Total Value of Claimmed Network Rewards",
     fill: false,
     borderColor: '#0494E8',
-    data: "",
+    data: [],
   }
 ]});
 
@@ -68,9 +68,15 @@ const ClaimmedGraph = (props) => {
             }
         );
         let arr = new Array();
-        result.data.data.map((data)=>{
-            arr.push({ x: parseInt(data._id.split("-")[2]), y: data.totalQty });
-        })
+        const series = Array.isArray(result?.data?.data) ? result.data.data : [];
+        series.forEach((point) => {
+          const day = String(point?._id || "").split("-")[2];
+          if (!day) return;
+          arr.push({
+            x: parseInt(day, 10),
+            y: Number(point.totalQty ?? point.Amount ?? 0),
+          });
+        });
         
         let labelss = new Array();
         for (let i = 1; i <= lastDay.getDate(); i++) {
@@ -110,12 +116,12 @@ const ClaimmedGraph = (props) => {
         <div
       style={{
         width: '100%',
-        height:"100%"
+        minHeight: 280,
       }}
     >
-      <Line
-        data={data}
-      />
+      {Array.isArray(data.labels) && data.labels.length > 0 ? (
+        <Line data={data} />
+      ) : null}
     </div>
   
       </span>
