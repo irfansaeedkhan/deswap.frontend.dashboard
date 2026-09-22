@@ -30,8 +30,8 @@ function CompanyLevel(props) {
             <img
               width={156}
               height={156}
-              src={props.data && props.data.ipfSURL}
-              alt="del icon"
+              src={(props.data && props.data.ipfSURL) || "/images/companylogo1.png"}
+              alt="company logo"
             />
           </div>
         </div>

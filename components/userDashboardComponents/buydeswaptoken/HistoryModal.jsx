@@ -7,7 +7,7 @@ import {
   convertToEuroWithoutPrecision,
 } from "../../../utils/common/currencyconversion";
 import { myRewardsDate } from "../../../utils/common/date";
-import Pagination from "react-js-pagination";
+import Pagination from "@/components/reusables/Pagination";
 import FailedToFetchData from "@/components/reusables/FailedToFetchData";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -205,7 +205,8 @@ function HistoryModal() {
     }
   };
 
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     try {
       //let result =
       //
@@ -227,6 +228,7 @@ function HistoryModal() {
       
       console.log("Failed to fetch transaction ", e);
     }
+      })();
   }, []);
 
   return (

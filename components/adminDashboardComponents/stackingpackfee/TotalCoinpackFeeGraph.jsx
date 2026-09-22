@@ -1,5 +1,5 @@
 import { useState, useEffect, Fragment } from "react";
-import axios from "axios";
+import axios from "@/utils/common/axios";
 import {requestBodyEncryptionUnprotected } from "@/utils/common/jwtToken";
 import {
   Chart as ChartJS,
@@ -91,7 +91,8 @@ const TotalCoinpackFeeGraph = ({ graphData, duration, setNTRChanged, setNTRPerce
     }
   }
 
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     try{
       const sanData=await SanitizeRequestString(duration)
       let encryptionData = await requestBodyEncryptionUnprotected({
@@ -142,6 +143,7 @@ const TotalCoinpackFeeGraph = ({ graphData, duration, setNTRChanged, setNTRPerce
       //   });
       console.log("Error message : ",e)
     }
+      })();
   },[]);
 
   //useEffect(async () => {});

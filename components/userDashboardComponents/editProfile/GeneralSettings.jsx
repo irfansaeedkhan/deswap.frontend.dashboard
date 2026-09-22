@@ -363,7 +363,8 @@ function GeneralSettings({ users }) {
       });
     }
   }, []);
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     await clearAllInterval();
     let userNets = [];
     const fetchUsers = async () => {
@@ -396,6 +397,7 @@ function GeneralSettings({ users }) {
       }
     };
     await fetchUsers();
+      })();
   }, []);
 
   const fetchProfilePic = async () => {

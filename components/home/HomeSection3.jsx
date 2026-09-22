@@ -20,7 +20,7 @@ function HomeSection3() {
               chain, the Deswap Protocol is designed to enable a comprehensive
               algorithmic money market protocol.
             </p>
-            <a href="#">
+            <a href="/about">
               <p>View Detail</p>
               <div className="imgCustomArrow">
                 <Image

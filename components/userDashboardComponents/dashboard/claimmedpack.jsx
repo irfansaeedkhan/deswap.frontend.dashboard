@@ -26,27 +26,29 @@ function ClaimmedPack() {
     try {
       let tableDataArray = [];
       for (let index in data) {
+        const row = data[index];
+        const amount = row?.TotalAmount;
+        const bonusPct = row?.PackID?.Bonous;
+        const bonusAmt =
+          amount && bonusPct ? (amount * bonusPct) / 100 : null;
+        const tx =
+          row?.TxHash || row?.txhash || row?.transactionHash || "N/A";
+        const ts = row?.claimed_at || row?.created_at;
         tableDataArray.push(
           <tr>
-            <td>
-              {data[index]?.TotalAmount && data[index]?.PackID?.Bonous
-                ? data[index].TotalAmount +
-                  (data[index].TotalAmount * data[index].PackID.Bonous) / 100
-                : "N/A"}
+            <td>{amount ? amount : "N/A"}</td>
+            <td className="price">
+              <p>{bonusAmt != null ? bonusAmt.toFixed(2) : "N/A"}</p>
+              <p>{bonusPct ? `Bonus ${bonusPct}%` : ""}</p>
             </td>
             <td>
-              {data[index]?.created_at &&
-              data[index]?.PackID?.LockedPeriod &&
-              data[index]?.PackID?.LockedPeriodType
-                ? claimmedDate(
-                    data[index].created_at,
-                    data[index].PackID.LockedPeriod,
-                    data[index].PackID.LockedPeriodType
-                  )
-                : "N/A"}
+              {typeof tx === "string" && tx.length > 12
+                ? `${tx.slice(0, 6)}...${tx.slice(-4)}`
+                : tx}
             </td>
-            <td>
-              <button className="locked btnHoverEffectOutline">Locked</button>
+            <td className="timestamp">
+              <p>{ts ? moment(ts).format("YYYY.MM.DD") : "N/A"}</p>
+              <p>{ts ? moment(ts).format("HH:mm:ss") : ""}</p>
             </td>
           </tr>
         );
@@ -125,7 +127,8 @@ function ClaimmedPack() {
     }
   };
 
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     try {
       await fetchData();
       //
@@ -147,6 +150,7 @@ function ClaimmedPack() {
         </tr>
       );
     }
+      })();
   }, []);
   return (
     <div className="TransactionHistory">

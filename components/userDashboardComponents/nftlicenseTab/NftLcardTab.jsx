@@ -36,6 +36,7 @@ import {
   SanitizeRequestString,
   SanitizeRequestObject,
 } from "../../../utils/common/sanitize";
+import { subscribeDashboardSearch } from "@/utils/dashboard/searchBus";
 
 const noDataComponent = NodataCard;
 var metaMaskValues = null;
@@ -45,6 +46,9 @@ function NftLcardTab(data) {
   const [loading, setLoading] = useState(false);
 
   const [packData, setpackData] = useState(null);
+  const [licenseRows, setLicenseRows] = useState([]);
+  const [maxLicense, setMaxLicense] = useState({ Index: 100 });
+  const [nftSearch, setNftSearch] = useState("");
   const [firebaseCollection, setFirebaseCollection] = useState(null);
   const [currentFirebaseID, setcurrentFirebaseID] = useState("");
   const [transactionInProgess, setTransactionInProgress] = useState(false);
@@ -880,7 +884,25 @@ function NftLcardTab(data) {
     }
   };
 
-  useEffect(async () => {
+  useEffect(() => {
+    return subscribeDashboardSearch(setNftSearch);
+  }, []);
+
+  useEffect(() => {
+    if (!licenseRows.length && !nftSearch) return;
+    const needle = String(nftSearch || "").trim().toLowerCase();
+    const rows = needle
+      ? licenseRows.filter((row) =>
+          String(row.Name || row.name || "")
+            .toLowerCase()
+            .includes(needle)
+        )
+      : licenseRows;
+    createNFTLicense(rows, maxLicense);
+  }, [licenseRows, nftSearch, maxLicense]);
+
+  useEffect(() => {
+    void (async () => {
     try {
       setLoading(true);
       let result = await axios.post(
@@ -895,8 +917,13 @@ function NftLcardTab(data) {
       );
       let data = result.data.data;
       setLoading(result && false);
-      await createNFTLicense(data, result.data.max);
-      await connectToFireBase();
+      setLicenseRows(Array.isArray(data) ? data : []);
+      setMaxLicense(result.data.max || { Index: 100 });
+      try {
+        await connectToFireBase();
+      } catch (fbErr) {
+        console.log("Demo firebase skipped", fbErr);
+      }
     } catch (e) {
       // toast.error(e.message, {
       //   position: "top-center",
@@ -911,6 +938,7 @@ function NftLcardTab(data) {
       setpackData(<FailedToFetchData />);
       console.log("Failed to fetch data : ", e);
     }
+      })();
   }, []);
 
   const buyNFTLicenseFunction = () => {

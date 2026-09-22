@@ -60,7 +60,8 @@ function SwapGraphComponent() {
     }
   };
 
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     try {
       let MaticToDAW = await fetchMaticToDAW({
         amount: 1,
@@ -79,6 +80,7 @@ function SwapGraphComponent() {
       //   });
       console.log("Error message : ", e);
     }
+      })();
   }, []);
 
   return (

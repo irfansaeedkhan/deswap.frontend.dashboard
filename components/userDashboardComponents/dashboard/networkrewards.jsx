@@ -26,17 +26,17 @@ function NetworkRewards() {
     try {
       let tableDataArray = [];
       for (let index in data) {
+        const wallets = data[index]?.UserFrom?.walletaddress;
+        const holder = Array.isArray(wallets)
+          ? wallets[wallets.length - 1]
+          : wallets || "N/A";
+        const holderDisplay =
+          typeof holder === "string" && holder.length > 12
+            ? `${holder.slice(0, 6)}...${holder.slice(-4)}`
+            : holder;
         tableDataArray.push(
           <tr>
-            <td>
-              {data[index]?.UserFrom?.walletaddress[
-                data[index]?.UserFrom?.walletaddress
-              ]
-                ? data[index].UserFrom.walletaddress[
-                    data[index].UserFrom.walletaddress.length - 1
-                  ]
-                : "N/A"}
-            </td>
+            <td>{holderDisplay}</td>
             <td>
               {data[index]?.Amount && data[index]?.RewardsPercentage
                 ? data[index].Amount * data[index].RewardsPercentage
@@ -49,7 +49,7 @@ function NetworkRewards() {
             </td>
 
             <td>
-              {data.Status == "Claimmed" ? (
+              {data[index]?.Status == "Claimmed" ? (
                 <button className="locked">Claimmed</button>
               ) : (
                 <button className="locked btnHoverEffectOutline">Locked</button>
@@ -132,7 +132,8 @@ function NetworkRewards() {
     }
   };
 
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     try {
       await fetchData();
       //
@@ -154,6 +155,7 @@ function NetworkRewards() {
         </tr>
       );
     }
+      })();
   }, []);
 
   return (

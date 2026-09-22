@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import WalletConnectButton from "@/components/reusables/walletConnectButton";
 import Searchicon from "@/assets/svgAssets/SearchIcon";
+import { setDashboardSearch } from "@/utils/dashboard/searchBus";
 const DashboardNavbarToggle = () => {
   const hamburger = document.querySelector(".hamburger");
   const sidebar = document.querySelector(".sidebar");
@@ -14,6 +15,7 @@ const DashboardNavbarToggle = () => {
 };
 function DashboardNavbar({ ShowCreateTokenFunction }) {
   const router = useRouter();
+  const [nftQuery, setNftQuery] = useState("");
   return (
     <div className="DashboardNavbarInner">
       <div className="mobileDashboardBurgerBox">
@@ -37,7 +39,16 @@ function DashboardNavbar({ ShowCreateTokenFunction }) {
       </div>
       {router.pathname == "/user/dashboard/nftlicense" && (
         <div className="searchContainer">
-          <input type="text" autoComplete="off" placeholder="Search..." />
+          <input
+            type="text"
+            autoComplete="off"
+            placeholder="Search..."
+            value={nftQuery}
+            onChange={(e) => {
+              setNftQuery(e.target.value);
+              setDashboardSearch(e.target.value);
+            }}
+          />
           <div className="searchIcon">
             <Searchicon />
           </div>

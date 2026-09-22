@@ -6,7 +6,7 @@ import TableLoader from "@/components/reusables/loader/TableLoader";
 import NodataCard from "@/components/reusables/NodataCard";
 import FailedToFetchData from "@/components/reusables/FailedToFetchData";
 import { checkAdminAuth } from "../../../utils/auth/checkAdminAuth";
-import Pagination from "react-js-pagination";
+import Pagination from "@/components/reusables/Pagination";
 import { reducedWalletAddress } from "@/utils/common/walletaddress";
 import { convertToEuro, convertToUSD } from "@/utils/common/currencyconversion";
 import {
@@ -302,12 +302,14 @@ function PurchasedNFTLicenseTable() {
       console.log(e);
     }
   };
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     await fetchPurchasedNFTLicense({
       offset: 0,
       limit: 10,
       activePageNo: 1,
     });
+      })();
   }, []);
 
   return (

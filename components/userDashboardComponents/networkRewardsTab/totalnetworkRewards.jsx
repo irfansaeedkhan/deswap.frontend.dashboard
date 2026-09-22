@@ -141,7 +141,8 @@ function totalNetworkRewards() {
       return 0;
     }
   };
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     try {
       await fetchUSDToDeswap();
       await fetchUserRewards();
@@ -157,6 +158,7 @@ function totalNetworkRewards() {
       //   });
       console.log(e);
     }
+      })();
   }, []);
 
   const claimmingRewards = async (clammingdata) => {

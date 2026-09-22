@@ -20,9 +20,11 @@ import {
     Tooltip,
     Legend
   );
-import axios from "axios"
+import axios from "@/utils/common/axios"
 import { requestBodyEncryptionAdmin } from "@/utils/common/jwtToken";
 import {SanitizeRequestObject,SanitizeRequestString} from "../../../utils/common/sanitize"
+
+import { MonthDropdown } from "@/components/global/DropDown";
 
 
 const TotalAccountsChart = (props) => {
@@ -44,7 +46,7 @@ const TotalAccountsChart = (props) => {
 
   const fetchTotalAccounts=async(month)=> {
     let currentMonth = new Date().getMonth();
-    if (month) {
+    if (month != null) {
         currentMonth = month;
     }
 
@@ -129,22 +131,7 @@ const TotalAccountsChart = (props) => {
                   <p className="CardContainer">Total Account</p>
                   </span>
                   <span className="col-3 text-right">
-            <select className="months formInputs " defaultValue={months[new Date().getMonth()]}
-              onChange={(e)=>{fetchTotalAccounts(e.target.selectedIndex)}}
-            >
-                <option>Jan</option>
-                <option>Feb</option>
-                <option>Mar</option>
-                <option>Apr</option>
-                <option>May</option>
-                <option>Jun</option>
-                <option>Jul</option>
-                <option>Aug</option>
-                <option>Sep</option>
-                <option>Oct</option>
-                <option>Nov</option>
-                <option>Dec</option>
-            </select>
+            <MonthDropdown onSelectIndex={(index)=>{fetchTotalAccounts(index)}} />
         </span>
         </span>
         <br/>

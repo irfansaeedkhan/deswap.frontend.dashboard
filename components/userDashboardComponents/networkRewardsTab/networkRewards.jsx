@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "@/utils/common/axios";
 import { encryptRequestBody } from "@/utils/common/jwtToken";
 import React, { useEffect, useState } from "react";
 import BootstrapModal from "@/components/reusables/BootstrapModal";
@@ -419,7 +419,8 @@ function NetworkRewards() {
     setShow(false);
   };
 
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     try {
       setLoaderStatus(true);
       ///api/users/network/fetch\index.js
@@ -446,6 +447,7 @@ function NetworkRewards() {
         </tr>
       );
     }
+      })();
   }, []);
   return (
     <div className="rewardDataContainer">

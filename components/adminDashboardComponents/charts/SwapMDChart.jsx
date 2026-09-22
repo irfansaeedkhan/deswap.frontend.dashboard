@@ -1,5 +1,6 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
+import { MonthDropdown } from "@/components/global/DropDown";
 
 const SwapMDChart = (props) => {
   const months = [
@@ -37,26 +38,11 @@ const SwapMDChart = (props) => {
       <span className="SwapMDChartContainer">
         <span className="monthsContainer">
           {/* <span className="">Total Rewards</span> */}
-          <select
-            className="months"
-            defaultValue={months[new Date().getMonth()]}
-            onChange={(e) => {
-              props.fetchDAWPurchasedbyuser(e.target.selectedIndex);
+          <MonthDropdown
+            onSelectIndex={(index) => {
+              props.fetchDAWPurchasedbyuser(index);
             }}
-          >
-            <option>Jan</option>
-            <option>Feb</option>
-            <option>Mar</option>
-            <option>Apr</option>
-            <option>May</option>
-            <option>Jun</option>
-            <option>Jul</option>
-            <option>Aug</option>
-            <option>Sep</option>
-            <option>Oct</option>
-            <option>Nov</option>
-            <option>Dec</option>
-          </select>
+          />
         </span>
         <br />
         <div style={{ width: "100%" }}>

@@ -10,7 +10,7 @@ import { myRewardsDate, claimmedDate } from "@/utils/common/date";
 import NodataCard from "@/components/reusables/NodataCard";
 import FailedToFetchData from "@/components/reusables/FailedToFetchData";
 import { convertToEuro, convertToUSD } from "@/utils/common/currencyconversion";
-import Pagination from "react-js-pagination";
+import Pagination from "@/components/reusables/Pagination";
 import Joi from "joi";
 import BootstrapModal from "../../reusables/BootstrapModal";
 import EditIcon from "../../../assets/svgAssets/EditIcon";
@@ -318,8 +318,8 @@ function CompanyListTable() {
                     <img
                       width={100}
                       height={100}
-                      src={data.ipfSURL}
-                      alt="del icon"
+                      src={data.ipfSURL || "/images/companylogo1.png"}
+                      alt="company logo"
                     />
                   </div>
                 </div>
@@ -409,7 +409,8 @@ function CompanyListTable() {
   /**
    * When page loads function will send request to the server to fetch user list
    */
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     try {
       //Making request to fetch user info
       await fetchCompanyInfo({
@@ -420,6 +421,7 @@ function CompanyListTable() {
     } catch (e) {
       console.log("Failed to fetch", e);
     }
+      })();
   }, []);
 
   return (

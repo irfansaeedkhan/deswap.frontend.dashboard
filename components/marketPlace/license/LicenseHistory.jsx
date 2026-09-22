@@ -3,13 +3,13 @@ import Searchicon from "@/assets/svgAssets/SearchIcon";
 import SimpleButton from "@/components/reusables/SimpleButton";
 import Image from "next/image";
 import { HeartIcon, TickIcon } from "@/components/marketPlace/MarketIcons";
-import axios from "axios"
+import axios from "@/utils/common/axios"
 import NodataCard from "@/components/reusables/NodataCard";
 import { reducedWalletAddress } from "@/utils/common/walletaddress";
 import { myRewardsDate } from "@/utils/common/date";
 import { SanitizeRequestStringSync } from "@/utils/common/sanitize"
 import { requestBodyEncryptionAdmin } from "@/utils/common/jwtToken";
-import Pagination from "react-js-pagination";
+import Pagination from "@/components/reusables/Pagination";
 
 
 function LicenseHistory() {

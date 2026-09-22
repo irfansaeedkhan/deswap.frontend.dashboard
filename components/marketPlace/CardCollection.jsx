@@ -7,7 +7,7 @@ import {
 } from "@/components/marketPlace/MarketIcons";
 import { useState } from "react";
 import { useEffect } from "react";
-import axios from "axios";
+import axios from "@/utils/common/axios";
 import { useRouter } from "next/router";
 import { encryptRequestBody } from "@/utils/common/jwtToken";
 

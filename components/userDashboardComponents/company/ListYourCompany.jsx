@@ -806,12 +806,14 @@ function ListYourCompany() {
     }
   };
 
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     try {
       await fetchCompanyCategory();
     } catch (e) {
       console.log("Failed to fetch ", e);
     }
+      })();
   }, []);
 
   const closeConnectButtonClick = async () => {

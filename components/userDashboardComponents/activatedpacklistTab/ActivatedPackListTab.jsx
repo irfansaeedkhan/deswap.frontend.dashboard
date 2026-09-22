@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from "react";
 import ActivatedPackListCard from "./ActivatedPackListCard";
-import Modal from "@/components/reusables/Modal";
-import Loader from "@/components/reusables/loader/Loader";
 import axios from "../../../utils/common/axios";
 import { encryptRequestBody } from "@/utils/common/jwtToken";
 import NodataCard from "@/components/reusables/NodataCard";
 import BootstrapModal from "@/components/reusables/BootstrapModal";
 import Image from "next/image";
 import FailedToFetchData from "@/components/reusables/FailedToFetchData";
-const noDataComponent = NodataCard;
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function ActivatedPackListTab() {
   const [show, setShow] = useState(false);
-  const [loading, setLoading] = useState(false);
   //Modal header
   const [modalheader, setModalHeader] = useState("Connect Wallet");
   const [connectionStatus, setconnectionStatus] = useState(false);
@@ -24,7 +20,7 @@ function ActivatedPackListTab() {
 
   const [showWalletConnectMessage, setShowWalletConnectMessage] =
     useState(false);
-  const [purchasedNFTCard, setpurchasedNFTCard] = useState(false);
+  const [purchasedNFTCard, setpurchasedNFTCard] = useState(null);
 
   const ClaimPack = async (clamingdata) => {
     try {
@@ -254,17 +250,15 @@ function ActivatedPackListTab() {
 
   const createPurchasedDeswap = async (pruchasedpack) => {
     try {
-      setLoading(true);
-      if (pruchasedpack.length < 1) {
+      if (!pruchasedpack || pruchasedpack.length < 1) {
         setpurchasedNFTCard(<NodataCard />);
         return;
       }
       let result = [];
       for (let index in pruchasedpack) {
-        //
-        //quantity
         result.push(
           <ActivatedPackListCard
+            key={pruchasedpack[index]?._id || index}
             claimRewardsFunction={buttonClickHandler}
             name={pruchasedpack[index]?.PackID?.PackName}
             price={pruchasedpack[index]?.TotalAmount}
@@ -283,56 +277,39 @@ function ActivatedPackListTab() {
         );
       }
       setpurchasedNFTCard(result);
-      setLoading(false);
     } catch (e) {
-      // toast.error(e.message, {
-      //   position: "top-center",
-      //   autoClose: 3000,
-      //   hideProgressBar: false,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      //   });
-
       console.log("Error : ", e);
       setpurchasedNFTCard(<FailedToFetchData />);
     }
   };
 
-  useEffect(async () => {
-    try {
-      setLoading(true);
-      let result = await axios.post(
-        `${process.env.NEXT_PUBLIC_PLATFORM_URL}/api/users/purchasedpack/fetch/all`,
-        {},
-        {
-          withCredentials: true,
-          headers: {
-            "security-set": false,
-          },
-        }
-      );
-      let purchasedpack = result.data.data;
-      await createPurchasedDeswap(purchasedpack);
-      //await createPurchasedDeswap(purchasedpack, result.data.max);
-      setLoading(false);
-    } catch (e) {
-      // toast.error(e.message, {
-      //   position: "top-center",
-      //   autoClose: 3000,
-      //   hideProgressBar: false,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      //   });
-
-      setLoading(false);
-      setpurchasedNFTCard(<FailedToFetchData />);
-      console.log(e);
-      console.log("Failed to fetch data");
-    }
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        let result = await axios.post(
+          `${process.env.NEXT_PUBLIC_PLATFORM_URL}/api/users/purchasedpack/fetch/all`,
+          {},
+          {
+            withCredentials: true,
+            headers: {
+              "security-set": false,
+            },
+          }
+        );
+        if (cancelled) return;
+        let purchasedpack = result.data.data;
+        await createPurchasedDeswap(purchasedpack);
+      } catch (e) {
+        if (cancelled) return;
+        setpurchasedNFTCard(<FailedToFetchData />);
+        console.log(e);
+        console.log("Failed to fetch data");
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const ActivatedStackingPackDetails = [
@@ -366,17 +343,7 @@ function ActivatedPackListTab() {
     <>
       <div className="ActivatedPackListCardList">
         {purchasedNFTCard}
-        {/*<ActivatedPackListCard
-          Details={ActivatedStackingPackDetails[0]}
-          ActivatedPackClaimFunction={ActivatedPackClaimFunction}
-        />
-        <ActivatedPackListCard
-          Details={ActivatedStackingPackDetails[1]}
-          ActivatedPackClaimFunction={ActivatedPackClaimFunction}
-        />*/}
       </div>
-      {loading && <Loader />}
-      {/* wallect connect message modal */}
       <BootstrapModal
         show={show}
         handleClose={closeConnectButtonClick}
@@ -384,24 +351,6 @@ function ActivatedPackListTab() {
         modalbody={modalbody}
         modalfooter={modalfooter}
       ></BootstrapModal>
-      {/*<Modal
-        show={showWalletConnectMessage}
-        onClose={() => setShowWalletConnectMessage(false)}
-      >
-        <div className="modalcontentSuccess">
-          <div className="contentbox">
-            <h5>Wallet Not Connected</h5>
-            <p>Please Connect To Wallet Using Connect Button</p>
-            <button
-              onClick={() => {
-                setShowWalletConnectMessage(false);
-              }}
-            >
-              Ok
-            </button>
-          </div>
-        </div>
-      </Modal>*/}
       <ToastContainer
         position="top-center"
         autoClose={3000}

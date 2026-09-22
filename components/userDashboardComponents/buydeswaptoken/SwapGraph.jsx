@@ -1,5 +1,5 @@
 import { useState, useEffect, Fragment } from "react";
-import axios from "axios";
+import axios from "@/utils/common/axios";
 import {requestBodyEncryptionUnprotected } from "@/utils/common/jwtToken";
 
 import {
@@ -95,7 +95,8 @@ const SwapGraph = ({ graphData, duration, setDAWChanged, setDAWPercentageChanged
     }
   }
 
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     try{
       let encryptionData = await requestBodyEncryptionUnprotected({
         cmccoinid:process.env.NEXT_PUBLIC_DEW_CMC_ID,
@@ -144,6 +145,7 @@ const SwapGraph = ({ graphData, duration, setDAWChanged, setDAWPercentageChanged
       //   });
       console.log("Error message : ",e)
     }
+      })();
   },[]);
 
   //useEffect(async () => {});

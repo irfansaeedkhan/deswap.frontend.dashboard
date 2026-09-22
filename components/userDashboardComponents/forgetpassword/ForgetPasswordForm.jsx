@@ -9,7 +9,7 @@ import Image from "next/image";
 import Modal from "@/components/reusables/Modal";
 import { useRouter } from "next/router";
 import ArrowLeft from "@/assets/svgAssets/ArrowLeft";
-import axios from "axios";
+import axios from "@/utils/common/axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SanitizeRequestString } from "../../../utils/common/sanitize";

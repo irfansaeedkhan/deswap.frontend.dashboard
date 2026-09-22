@@ -5,7 +5,7 @@ import { checkAdminAuth } from "../../../utils/auth/checkAdminAuth";
 import Loader from "@/components/reusables/loader/Loader";
 import NodataCard from "@/components/reusables/NodataCard";
 import FailedToFetchData from "@/components/reusables/FailedToFetchData";
-import axios from "axios";
+import axios from "@/utils/common/axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { SanitizeRequestObject } from "../../../utils/common/sanitize"
@@ -51,8 +51,10 @@ function Downline({ downlineList }) {
   //   }
   //   setLoader(false);
   // };
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     //await fetchDownlineFunc();
+      })();
   }, []);
   return (
     <div className="adminDownlineContainer">

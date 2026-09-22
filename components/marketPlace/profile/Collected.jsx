@@ -615,12 +615,14 @@ function Collected({ metamaskConn }) {
     setShow(false);
   };
 
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     fetchCreatedNFTs();
     if (lastPostEntry?.isIntersecting) {
       setSkip(skip + 6);
     }
     return () => {};
+      })();
   }, [metamaskConn, lastPostRef, lastPostEntry, setSkip]);
 
   let cardDetails = {

@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import SimpleButton from "@/components/reusables/SimpleButton";
 import dynamic from "next/dynamic";
+import Head from "next/head";
+import "bootstrap/dist/css/bootstrap.min.css";
 //import WalletConnectButton from "@/components/reusables/walletConnectButton";
 const WalletConnectButton = dynamic(
   () => import("@/components/reusables/walletConnectButton"),
@@ -48,6 +50,9 @@ function MarketNavbar() {
   };
   return (
     <div className="MarketNavbar">
+      <Head>
+        <link rel="stylesheet" href="/css/marketplace.css" />
+      </Head>
       <div className="MarketNavbarInner adminDashboard">
         <div className="logoDesktop">
           <Image

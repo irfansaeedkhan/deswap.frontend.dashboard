@@ -11,7 +11,7 @@ import {
   SanitizeRequestObject,
   SanitizeRequestString,
 } from "../../../utils/common/sanitize";
-import axios from "axios";
+import axios from "@/utils/common/axios";
 
 const NetworkRewardSettingStatusdata = [
   { id: 0, label: "Active" },
@@ -94,7 +94,7 @@ function NetworkRewardSettingCard({ cardInfo, key, deleteNRSCardFunc }) {
                 {...register("Level")}
                 error={formState.errors.Level && true}
                 placeholder="0"
-                defaultValue={cardInfo?.Level ? cardInfo.Level : "N/A"}
+                defaultValue={cardInfo?.Level ?? cardInfo?.level ?? 1}
                 disabled={cardInfo.Status == "Deactivated"}
               />
               {formState.errors.Level && (
@@ -113,7 +113,7 @@ function NetworkRewardSettingCard({ cardInfo, key, deleteNRSCardFunc }) {
                 {...register("Percentage")}
                 error={formState.errors.Percentage && true}
                 defaultValue={
-                  cardInfo?.Percentage ? cardInfo.Percentage : "N/A"
+                  cardInfo?.Percentage ?? cardInfo?.percentage ?? 5
                 }
                 disabled={cardInfo.Status == "Deactivated"}
               />

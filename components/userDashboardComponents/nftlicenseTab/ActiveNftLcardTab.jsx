@@ -77,7 +77,8 @@ function ActiveNftLcardTab() {
       setpurchasedNFTCard(<FailedToFetchData />);
     }
   };
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     try {
       setLoading(true);
       let result = await axios.post(
@@ -109,6 +110,7 @@ function ActiveNftLcardTab() {
       setpurchasedNFTCard(<FailedToFetchData />);
       console.log("Failed to fetch data");
     }
+      })();
   }, []);
   //
   //

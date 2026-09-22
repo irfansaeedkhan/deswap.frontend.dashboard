@@ -10,7 +10,9 @@ function MetaTags({
 }) {
   const pageTitle = typeof title === "string" ? title : "Deswap Platform";
   const pageDescription =
-    typeof description === "string" ? description : "Official Deswap platform";
+    typeof description === "string" && description.trim()
+      ? description
+      : "Deswap is the first decentralised marketplace to lend loans, collect interest, and mint synthetic stablecoins on Polygon.";
   const pageImage = typeof imageLink === "string" ? imageLink : "";
   const pageLink = typeof link === "string" ? link : "https://deswap.co/";
 

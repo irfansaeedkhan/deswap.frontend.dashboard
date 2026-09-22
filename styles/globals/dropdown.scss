@@ -1,35 +1,42 @@
 
 .dropdown {
-  border-radius: 10px;
+  border-radius: 16px;
   box-shadow: 0 10px 25px rgb(0 0 0 / 10%);
   background-color: transparent;
   width: 12rem;
+  max-width: 100%;
   border: 1px solid #474747;
   box-sizing: border-box;
-  border-radius: 8px;
   height: 39px;
+  position: relative;
 
-  
   .dropdown-header {
-    padding: 12px;
+    padding: 0 16px;
+    height: 100%;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 8px;
     font-size: 14px;
 
+    .dropdown-label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    svg {
+      flex-shrink: 0;
+    }
   }
   .dropdown-item{
     background: #232323;
     color: #ffffff;
   }
   .dropdown-body {
-    padding: 5px;
-    border-top: 1px solid #E5E8EC;
     display: none;
-    padding: 5px;
-    border-top: 1px solid #E5E8EC;
-    display: none;
+    padding: 8px 0;
     border: 1px solid #474747;
     background: #232323;
     border-radius: 5px;
@@ -39,16 +46,24 @@
   
   .dropdown-body.open {
     display: block;
-    display: grid;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    z-index: 30;
+    max-height: 220px;
+    overflow-y: auto;
     background: #262626;
     border-radius: 16px;
   }
   
   .dropdown-item {
-    padding: 10px;
+    padding: 10px 16px;
     z-index: 99;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    gap: 8px;
   }
   
   .dropdown-item:hover {
@@ -62,6 +77,7 @@
     opacity: 0;
     color: #91A5BE;
     transition: all .2s ease-in-out;
+    flex-shrink: 0;
   }
   
   .dropdown-item-dot.selected {
@@ -79,4 +95,22 @@
     transform: rotate(90deg);
   }
 
+  &.monthDropdown {
+    width: 100%;
+    margin-left: auto;
+  }
+}
+
+select.months,
+select.formInputs,
+select.dropdowns {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #232323;
+  color: #ffffff;
+  border: 1px solid #474747;
+  border-radius: 16px;
+  height: 39px;
+  padding: 0 16px;
+  font-size: 14px;
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import ArrowLeft from "@/assets/svgAssets/ArrowLeft";
-import axios from "axios";
+import axios from "@/utils/common/axios";
 import {requestBodyEncryptionUnprotected } from "@/utils/common/jwtToken";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

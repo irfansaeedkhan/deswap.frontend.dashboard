@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Pagination from "react-js-pagination";
+import Pagination from "@/components/reusables/Pagination";
 import axios from "@/utils/common/axios";
 import { requestBodyEncryptionAdmin } from "@/utils/common/jwtToken";
 import TableLoader from "@/components/reusables/loader/TableLoader";
@@ -237,7 +237,8 @@ const UserRegistrationFeeHistory = () => {
             return 0;
         }
     };
-    useEffect(async () => {
+    useEffect(() => {
+      void (async () => {
         try {
             await fetchUserRegistrationFeeListFunc({
                 offset: 0,
@@ -256,6 +257,7 @@ const UserRegistrationFeeHistory = () => {
             });
             console.log("Error message ", e);
         }
+          })();
     }, []);
 
     return (

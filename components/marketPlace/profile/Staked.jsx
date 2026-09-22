@@ -181,10 +181,12 @@ function Staked({ metamaskConn }) {
   const closeButton = () => {
     setShow(false);
   };
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     fetchCreatedNFTs();
     fetchStakedNFTs();
     return () => {};
+      })();
   }, [metamaskConn]);
 
   let cardDetails = {

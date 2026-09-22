@@ -6,7 +6,7 @@ import TableLoader from "@/components/reusables/loader/TableLoader";
 import NodataCard from "@/components/reusables/NodataCard";
 import FailedToFetchData from "@/components/reusables/FailedToFetchData";
 import { checkAdminAuth } from "../../../utils/auth/checkAdminAuth";
-import Pagination from "react-js-pagination";
+import Pagination from "@/components/reusables/Pagination";
 import { myRewardsDate, claimmedDate } from "@/utils/common/date";
 import { reducedWalletAddress } from "@/utils/common/walletaddress";
 import { convertToEuro, convertToUSD } from "@/utils/common/currencyconversion";
@@ -743,12 +743,14 @@ function RequestedNRTable() {
       console.log(e);
     }
   };
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     await fetchRewardsNetworkRewards({
       offset: 0,
       limit: 10,
       activePageNo: 1,
     });
+      })();
   }, []);
 
   return (

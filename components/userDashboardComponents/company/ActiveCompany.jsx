@@ -22,7 +22,7 @@ import {
 import Image from "next/image";
 import { SanitizeRequestString, SanitizeRequestObject } from "../../../utils/common/sanitize"
 import { encryptRequestBody } from "@/utils/common/jwtToken";
-import Pagination from "react-js-pagination";
+import Pagination from "@/components/reusables/Pagination";
 
 
 function ActiveCompany() {
@@ -52,8 +52,10 @@ function ActiveCompany() {
   });
   const [level1Data, setLevel1Data] = useState([]);
   const [level2Data, setLevel2Data] = useState([]);
+  const [sortByLevel, setSortByLevel] = useState(false);
 
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     await fetchCompanyList({
       offset: 0,
       limit: 10,
@@ -69,6 +71,7 @@ function ActiveCompany() {
       limit: 10,
       activePageNo: 1,
     })
+      })();
   }, []);
 
 
@@ -303,12 +306,25 @@ function ActiveCompany() {
           </div>
         </div>
         <div className="sortBtn">
-          <button className="SimpleButton btnHoverEffectOutline">
+          <button
+            type="button"
+            className={`SimpleButton btnHoverEffectOutline ${
+              sortByLevel ? "active" : ""
+            }`}
+            onClick={() => setSortByLevel((prev) => !prev)}
+          >
             Sort By Level
           </button>
         </div>
       </div>
       <div className="ACListContainer">
+        {(sortByLevel
+          ? ["level2", "level1", "mine"]
+          : ["mine", "level1", "level2"]
+        ).map((section) => {
+          if (section === "mine") {
+            return (
+              <React.Fragment key="mine">
         <div className="level">
           <h4 className="Leveltitle"> My Company</h4>
           {companyData.length>0 ? companyData.map((data) => {
@@ -333,6 +349,12 @@ function ActiveCompany() {
             onChange={handlePageChange}
           />
         </div>
+              </React.Fragment>
+            );
+          }
+          if (section === "level1") {
+            return (
+              <React.Fragment key="level1">
         <div className="level">
           <h4 className="Leveltitle"> Company At (1st Level) </h4>
           {level1Data.length>0 ? level1Data.map((data) => {
@@ -357,6 +379,11 @@ function ActiveCompany() {
             onChange={handlePageChangeLevel1}
           />
         </div>
+              </React.Fragment>
+            );
+          }
+          return (
+            <React.Fragment key="level2">
         <div className="level">
           <h4 className="Leveltitle"> Company At (2nd Level) </h4>
           {level2Data.length>0 ? level2Data.map((data) => {
@@ -381,6 +408,9 @@ function ActiveCompany() {
           onChange={handlePageChangeLevel2}
         />
         </div>
+            </React.Fragment>
+          );
+        })}
         
       </div>
     </div>

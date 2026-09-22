@@ -5,7 +5,7 @@ import Loader from "@/components/reusables/loader/Loader";
 import TableLoader from "@/components/reusables/loader/TableLoader";
 import NodataCard from "@/components/reusables/NodataCard";
 import FailedToFetchData from "@/components/reusables/FailedToFetchData";
-import Pagination from "react-js-pagination";
+import Pagination from "@/components/reusables/Pagination";
 import { myRewardsDate, claimmedDate } from "@/utils/common/date";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -38,6 +38,7 @@ function CompanyList() {
   const [companyList, setCompanyList] = useState([]);
   const [companyModalData, setCompanyModalData] = useState([]);
   const [searchValue, setSearchValue] = useState();
+  const [dateSort, setDateSort] = useState("date");
   const [pagination, setPagination] = useState({
     activePage: 1,
     totalData: 0,
@@ -66,7 +67,7 @@ function CompanyList() {
         //setClaimmedNetworkRewardsList();
         for (let index in loopDate) {
           outputData.push(
-            <tr>
+            <tr key={loopDate[index]?._id || loopDate[index]?.uuid || index}>
               <td>{loopDate[index]?.name ? loopDate[index].name : "N/A"}</td>
               <td>{loopDate[index]?.owner ? loopDate[index].owner : "N/A"}</td>
               <td>
@@ -162,6 +163,7 @@ function CompanyList() {
       }
       let encryptionData = await encryptRequestBody({
         offset: data.offset,
+        sort: data.sort || dateSort,
       });
       let result = await axios.post(
         `${process.env.NEXT_PUBLIC_PLATFORM_URL}/api/users/company/fetch`,
@@ -206,6 +208,7 @@ function CompanyList() {
       let encryptionData = await encryptRequestBody({
         name: sanData,
         offset: offset,
+        sort: data?.sort || dateSort,
       });
 
       let result = await axios.post(
@@ -262,8 +265,8 @@ function CompanyList() {
                     <img
                       width={100}
                       height={100}
-                      src={data.ipfSURL}
-                      alt="del icon"
+                      src={data.ipfSURL || "/images/companylogo1.png"}
+                      alt="company logo"
                     />
                   </div>
                 </div>
@@ -350,12 +353,14 @@ function CompanyList() {
       );
     }
   };
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     await fetchCompanyList({
       offset: 0,
       limit: 10,
       activePageNo: 1,
     });
+      })();
   }, []);
 
   return (
@@ -375,7 +380,29 @@ function CompanyList() {
           </div>
         </div>
         <div className="sortBtn">
-          <button className="SimpleButton btnHoverEffectOutline">
+          <button
+            type="button"
+            className={`SimpleButton btnHoverEffectOutline ${
+              dateSort === "date" ? "active" : ""
+            }`}
+            onClick={async () => {
+              const next = dateSort === "date" ? "dateAsc" : "date";
+              setDateSort(next);
+              if (searchValue) {
+                await fetchCompanyInfo(searchValue, {
+                  offset: 0,
+                  activePageNo: 1,
+                  sort: next,
+                });
+              } else {
+                await fetchCompanyList({
+                  offset: 0,
+                  activePageNo: 1,
+                  sort: next,
+                });
+              }
+            }}
+          >
             Sort By Date
           </button>
         </div>

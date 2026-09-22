@@ -10,7 +10,7 @@ import { myRewardsDate, claimmedDate } from "@/utils/common/date";
 import NodataCard from "@/components/reusables/NodataCard";
 import FailedToFetchData from "@/components/reusables/FailedToFetchData";
 import { convertToEuro, convertToUSD } from "@/utils/common/currencyconversion";
-import Pagination from "react-js-pagination";
+import Pagination from "@/components/reusables/Pagination";
 import Joi from "joi";
 import BootstrapModal from "../../reusables/BootstrapModal";
 import EditIcon from "../../../assets/svgAssets/EditIcon";
@@ -667,7 +667,8 @@ function UserInfoData() {
   /**
    * When page loads function will send request to the server to fetch user list
    */
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     try {
       //Making request to fetch user info
       await fetchUsersInfo({
@@ -691,6 +692,7 @@ function UserInfoData() {
       //   });
       console.log("Failed to fetch", e);
     }
+      })();
   }, []);
 
   return (

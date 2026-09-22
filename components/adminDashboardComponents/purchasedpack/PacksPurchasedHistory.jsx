@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Pagination from "react-js-pagination";
+import Pagination from "@/components/reusables/Pagination";
 import axios from "@/utils/common/axios";
 import { requestBodyEncryptionAdmin } from "@/utils/common/jwtToken";
 import Loader from "@/components/reusables/loader/Loader";
@@ -279,10 +279,10 @@ const PacksPurchasedHistory = () => {
           },
         }
       );
-      let networkRewards = result.data.data;
+      let networkRewards = result.data;
       networkRewards=await SanitizeRequestObject(networkRewards)
       networkRewards.activePageNo = data.activePageNo;
-      await setTotalRewards(result.data.data.total);
+      await setTotalRewards(result.data.total);
       await createTableData(networkRewards);
       setLoadingState(result && false);
     } catch (e) {
@@ -307,7 +307,8 @@ const PacksPurchasedHistory = () => {
       return 0;
     }
   };
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     try {
       await fetchClaimmedPackListFunc({
         offset: 0,
@@ -326,6 +327,7 @@ const PacksPurchasedHistory = () => {
         });
       console.log("Error message ", e);
     }
+      })();
   }, []);
 
   return (

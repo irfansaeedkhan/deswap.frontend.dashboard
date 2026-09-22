@@ -11,13 +11,13 @@ import FailedToFetchData from "@/components/reusables/FailedToFetchData";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { SanitizeRequestString, SanitizeRequestObject } from "../../../utils/common/sanitize"
-import Pagination from "react-js-pagination";
+import Pagination from "@/components/reusables/Pagination";
 
 
 
 function ClaimmedNetworkRewardsHistory() {
     const [loaderStatus, setLoaderStatus] = useState(false);
-    const [tableData, settableData] = useState(<tbody><tr><th colSpan={7}><div className="text-center">Loading...</div></th></tr></tbody>);
+    const [tableData, settableData] = useState(null);
     const [totaltable1Data, setTotaltable1Data] = useState("");
     const [pagination, setPagination] = useState({
         activePage: 1,
@@ -35,7 +35,7 @@ function ClaimmedNetworkRewardsHistory() {
                     <tr>
                         <td>{data[index]?.created_at ? myRewardsDate(data[index].created_at) : "N/A"}</td>
                         <td>
-                            {data[index]?.ClaimmedNetworkID.PublicAddress ?
+                            {data[index]?.ClaimmedNetworkID?.PublicAddress ?
                                 <a target="_blank" href={`${process.env.NEXT_PUBLIC_POLYGON_SCANLINK}address/${data[index].ClaimmedNetworkID.PublicAddress}`}>
                                     {reducedWalletAddress(data[index].ClaimmedNetworkID.PublicAddress)}
                                 </a> : "N/A"
@@ -153,31 +153,28 @@ function ClaimmedNetworkRewardsHistory() {
         }
     }
 
-    useEffect(async () => {
-        try {
-            setLoaderStatus(true);
-            await fetchData({
-                offset: 0,
-                limit: 10,
-                activePageNo: 1,
-            });
-            setLoaderStatus(false);
-        } catch (e) {
-
-            // toast.error(e.message, {
-            //     position: "top-center",
-            //     autoClose: 3000,
-            //     hideProgressBar: false,
-            //     closeOnClick: true,
-            //     pauseOnHover: true,
-            //     draggable: true,
-            //     progress: undefined,
-            //     });
-            setLoaderStatus(true);
-            settableData(<tr><td className="text-center" colSpan={6}><FailedToFetchData /></td></tr>);
-            setLoaderStatus(false);
-        }
-    }, [])
+    useEffect(() => {
+        let cancelled = false;
+        (async () => {
+            try {
+                setLoaderStatus(true);
+                await fetchData({
+                    offset: 0,
+                    limit: 10,
+                    activePageNo: 1,
+                });
+                if (!cancelled) setLoaderStatus(false);
+            } catch (e) {
+                if (cancelled) return;
+                setLoaderStatus(true);
+                settableData(<tr><td className="text-center" colSpan={6}><FailedToFetchData /></td></tr>);
+                setLoaderStatus(false);
+            }
+        })();
+        return () => {
+            cancelled = true;
+        };
+    }, []);
 
     return (
         <div className="rewardDataContainer">
@@ -195,23 +192,13 @@ function ClaimmedNetworkRewardsHistory() {
                         </tr>
                     </thead>
                     <tbody>
-                        {tableData
-                    /* <tr>
-                    <td>02-02-2022</td>
-                    <td>sdfsdf4343443d</td>
-                    <td>1-4</td>
-                    <td>567</td>
-                    <td>sdfsf4fsf4dcccxxx</td>
-                    <td>Active</td>
-                    </tr>
-                    <tr>
-                    <td>02-02-2022</td>
-                    <td>sdfsdf4343443d</td>
-                    <td>1-4</td>
-                    <td>567</td>
-                    <td>sdfsf4fsf4dcccxxx</td>
-                    <td>Active</td>
-                    </tr> */}
+                        {tableData || (
+                          <tr>
+                            <th colSpan={7}>
+                              <div className="text-center">Loading...</div>
+                            </th>
+                          </tr>
+                        )}
                     </tbody>
                 </table>
                 <div className="pagination">

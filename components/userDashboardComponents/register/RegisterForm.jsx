@@ -9,7 +9,7 @@ import Image from "next/image";
 import Modal from "@/components/reusables/Modal";
 import ArrowLeft from "@/assets/svgAssets/ArrowLeft";
 import { useRouter } from "next/router";
-import axios from "axios";
+import axios from "@/utils/common/axios";
 import "react-toastify/dist/ReactToastify.css";
 import Web3 from "web3";
 import { ethers } from "ethers";

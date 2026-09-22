@@ -9,7 +9,7 @@ import { myRewardsDate, claimmedDate } from "@/utils/common/date";
 import NodataCard from "@/components/reusables/NodataCard";
 import FailedToFetchData from "@/components/reusables/FailedToFetchData";
 import { convertToEuro, convertToUSD } from "@/utils/common/currencyconversion";
-import Pagination from "react-js-pagination";
+import Pagination from "@/components/reusables/Pagination";
 import Joi from "joi";
 import BootstrapModal from "../../reusables/BootstrapModal";
 import EditIcon from "../../../assets/svgAssets/EditIcon";
@@ -30,6 +30,15 @@ function WhitelistIPTable() {
         pageRange: 5,
         dataperpage: 10,
     });
+    const [show, setShow] = useState(false);
+    const [modalheader, setModalheader] = useState("");
+    const [modalbody, setModalbody] = useState(null);
+    const [modalfooter, setModalfooter] = useState(null);
+
+    const closeConnectButtonClick = () => setShow(false);
+    const handlePageChange = (pageNumber) => {
+      setPagination((prev) => ({ ...prev, activePage: pageNumber }));
+    };
 
     const fetchIPLists = async () => {
         try {
@@ -69,13 +78,15 @@ function WhitelistIPTable() {
         }
     };
 
-    useEffect(async () => {
+    useEffect(() => {
+      void (async () => {
         try {
 
         } catch (e) {
           
             console.log("White list ip ", e)
         }
+          })();
     }, []);
 
   return (

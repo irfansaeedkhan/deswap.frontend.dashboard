@@ -6,7 +6,7 @@ import Searchicon from "@/assets/svgAssets/SearchIcon";
 import DropDownV2 from "@/components/global/DropDownV2";
 import SimpleButton from "@/components/reusables/SimpleButton";
 import { useRouter } from "next/router";
-import axios from "axios";
+import axios from "@/utils/common/axios";
 import OctagonLicense from "../../../abi/octagon-license";
 import {
   connectToMeta,

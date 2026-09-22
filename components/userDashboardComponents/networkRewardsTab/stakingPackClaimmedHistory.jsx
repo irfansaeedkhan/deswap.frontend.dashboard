@@ -7,12 +7,14 @@ function StakingPackClaimmedHistory(){
 
   const [tableData, settableData] = useState(<tbody><tr><th colSpan={7}><div className="text-center">Loading...</div></th></tr></tbody>);
   const [loading, setLoading] = useState(false);
-  useEffect(async ()=>{
+  useEffect(() => {
+    void (async () => {
     try{
 
     }catch(e){
 
     }
+      })();
   },[])
 
     return(

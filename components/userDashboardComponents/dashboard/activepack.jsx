@@ -125,7 +125,8 @@ function ActivePack() {
     }
   };
 
-  useEffect(async () => {
+  useEffect(() => {
+    void (async () => {
     try {
       await fetchData();
       //
@@ -147,6 +148,7 @@ function ActivePack() {
         </tr>
       );
     }
+      })();
   }, []);
 
   return (

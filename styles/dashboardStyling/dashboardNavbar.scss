@@ -114,18 +114,18 @@
     }
   }
   .searchContainer {
-    border: 1px solid #474747;
+    border: 1px solid #C2C2C2;
     box-sizing: border-box;
     border-radius: 16px;
-    position: relative;
-    padding: 16px;
-    height: 47px;
-    width: 320px;
     position: absolute;
     left: 3.5rem;
-    border: 1px solid #C2C2C2;
+    padding: 0 16px;
+    height: 47px;
+    width: 320px;
+    display: flex;
+    align-items: center;
     @include max767 {
-      height: 6.6rem;
+      height: 47px;
       grid-column-start: 1;
       grid-column-end: 3;
       margin: 0 auto;
@@ -140,16 +140,18 @@
       left: 0;
       background: transparent !important;
       border-color: transparent !important;
-      padding: 2rem 2rem;
-      font-size: 1.4rem;
-      padding-left:40px;
+      padding: 0 16px 0 40px;
       color:#C2C2C2;
       font-size: 14px;
     }
     .searchIcon {
       position: absolute;
-      top: 11px;
+      top: 50%;
       left: 12px;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      pointer-events: none;
     }
   }
   .linkBox {
