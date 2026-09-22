@@ -272,7 +272,7 @@ function SwapRequested() {
               <input
                 type="text"
                 className="updateInputField"
-                defaultValue={editButtonStatus._id}
+                defaultValue={editButtonStatus?._id || "swap-1"}
                 disabled
               ></input>
             </div>
@@ -284,7 +284,9 @@ function SwapRequested() {
               <input
                 type="text"
                 className="updateInputField"
-                defaultValue={editButtonStatus.UserTo.emailid}
+                defaultValue={
+                  editButtonStatus?.UserTo?.emailid || "user1@deswap.co"
+                }
                 disabled
               ></input>
             </div>
@@ -297,6 +299,10 @@ function SwapRequested() {
                 type="text"
                 className="updateInputField"
                 id="updateOutgoingTx"
+                defaultValue={
+                  editButtonStatus?.OutgoingTxHash ||
+                  "0xout0001aabbccddeeff00112233445566778899"
+                }
               ></input>
             </div>
           </div>
@@ -352,6 +358,10 @@ function SwapRequested() {
               className="updateInputField"
               rows="4"
               cols="50"
+              defaultValue={
+                editButtonStatus?.transactionIssueDescription ||
+                "Reviewed on Polygon. Amount matches the quoted swap."
+              }
             ></textarea>
           </div>
         </div>
