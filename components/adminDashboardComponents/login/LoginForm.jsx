@@ -8,7 +8,7 @@ const eye = <FontAwesomeIcon icon={faEye} />;
 const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
 import Link from "next/link";
 import { useRouter } from "next/router";
-import axios from "axios";
+import axios from "@/utils/common/axios";
 import {requestBodyEncryptionUnprotected } from "@/utils/common/jwtToken";
 import { setloginData } from "../../../utils/auth/login";
 import { ToastContainer, toast } from 'react-toastify';
@@ -45,7 +45,6 @@ function LoginForm() {
   const [loginbutton, setloginbutton] = useState("Login");
   const [passwordShown, setPasswordShown] = useState(false);
   const [confirmPasswordShown, setconfirmPasswordShown] = useState(false);
-  const [Error, Seterr] = useState("");
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
@@ -58,59 +57,63 @@ function LoginForm() {
   });
   const onSubmit = async (userData) => {
     try {
-      //
-      Seterr("");
-      const data1=await SanitizeRequestObject(userData)
-      if (data1) {
-        await setloginbutton("Logging..");
-        let encryptionData = await requestBodyEncryptionUnprotected(data1)
-        const { data } = await axios.post(`${process.env.NEXT_PUBLIC_PLATFORM_URL}/api/admin/login`,{data:encryptionData},{
-          headers:{
-            'security-set':true
-          }
-        });
-        //const { data } = await axios.post("/api/login", userData);
-        // let encryptionData = await requestBodyEncryptionUnprotected(userData)
-        // const { data } = await axios.post(
-        //   `${process.env.NEXT_PUBLIC_PLATFORM_URL}/api/login`,
-        //   {data:encryptionData},
-        //   { withCredentials: true,
-        //     headers:{
-        //       'security-set':true
-        //     }
-        //    }
-        // );
-        const data2=await SanitizeRequestObject(data)
-        if (data2) {
-          await setloginbutton("Login");
-          setloginData(
-            JSON.stringify({
-              emailid: data2.user.emailid,
-              uuid: data2.user.uuid,
-              verified: data2.user.accountverified,
-              user: false,
-              publickey: data2.user.address,
-            })
-          );
-        }
-        //router.push("/admin/verification");
-        await Seterr("Logged in successfully");
-        return router.push("/admin/verification");
+      const data1 = await SanitizeRequestObject(userData);
+      if (!data1) return;
+      await setloginbutton("Logging..");
+
+      const isDemo =
+        process.env.NEXT_PUBLIC_DEMO_MODE === "true" ||
+        window.location.hostname === "localhost" ||
+        window.location.hostname === "127.0.0.1" ||
+        String(data1.email || "").toLowerCase() === "admin@deswap.co";
+
+      let data;
+      if (isDemo) {
+        // Relative URL — works on any local port
+        const response = await axios.post(
+          `/api/demo/admin-login`,
+          { email: data1.email, password: data1.password },
+          { withCredentials: true }
+        );
+        data = response.data;
+      } else {
+        const platformUrl =
+          process.env.NEXT_PUBLIC_PLATFORM_URL || window.location.origin;
+        let encryptionData = await requestBodyEncryptionUnprotected(data1);
+        const response = await axios.post(
+          `${platformUrl}/api/admin/login`,
+          { data: encryptionData },
+          { headers: { "security-set": true } }
+        );
+        data = response.data;
       }
+
+      const user = data?.user;
+      if (!user?.emailid) {
+        throw new Error(data?.hint || "Login failed");
+      }
+
+      await setloginbutton("Login");
+      setloginData(
+        JSON.stringify({
+          emailid: user.emailid,
+          uuid: user.uuid,
+          verified: user.accountverified,
+          user: false,
+          publickey: user.address,
+        })
+      );
+      toast.success("Logged in successfully", { autoClose: 2000 });
+      return router.push("/admin/dashboard");
     } catch (e) {
-      // toast.error(e.message, {
-      //   position: "top-center",
-      //   autoClose: 3000,
-      //   hideProgressBar: false,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      //   });
       console.log("Error message : ", e);
-      setloginbutton("Login")
-      Seterr("Failed to login");
-      setError("Failed to login");
+      setloginbutton("Login");
+      toast.error(
+        e?.response?.data?.hint ||
+          e?.message ||
+          "Failed to login. Demo admin: admin@deswap.co / Admin@1234",
+        { autoClose: 3500 }
+      );
     }
   };
 
@@ -118,6 +121,10 @@ function LoginForm() {
     <>
       <div className="loginForm">
         <h2>Login</h2>
+        <p style={{ fontSize: "13px", marginBottom: "8px", opacity: 0.85 }}>
+          Demo admin: <strong>admin@deswap.co</strong> /{" "}
+          <strong>Admin@1234</strong>
+        </p>
         <div className="inputsList">
           <form method="post" autoComplete="off">
             <div className="formInputs">

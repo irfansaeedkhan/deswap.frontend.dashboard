@@ -203,16 +203,20 @@ const WalletConnectButton = ({
     }
   };
 
-  useEffect(async () => {
-    let storageExists = await checkLocalStorage();
-    if (!storageExists) {
-      return;
-    }
-    let walletStatus = await getWalletValues();
-    if (walletStatus.isConnected === "true") {
-      await handleMetaConnect(walletStatus.walletName);
-    }
-  }, [checkLocalStorage]);
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      let storageExists = await checkLocalStorage();
+      if (cancelled || !storageExists) return;
+      let walletStatus = await getWalletValues();
+      if (!cancelled && walletStatus.isConnected === "true") {
+        await handleMetaConnect(walletStatus.walletName);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
   return (
     <Fragment>
       <button

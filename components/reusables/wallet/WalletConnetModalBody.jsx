@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+
 function WalletConnetModalBody({ imagelink, content, subcontent }) {
   return (
     <>
@@ -7,16 +8,17 @@ function WalletConnetModalBody({ imagelink, content, subcontent }) {
         <div className="topImage">
           <div className="wallet">
             <Image
-              width={1221}
-              height={1221}
+              width={300}
+              height={300}
               src={imagelink}
               alt={"deswap image"}
+              style={{ width: "100%", height: "100%", objectFit: "contain" }}
             />
           </div>
         </div>
         <div className="contentbox">
           <h5>{content}</h5>
-          <p>{subcontent}</p>
+          {subcontent ? <p>{subcontent}</p> : null}
         </div>
       </div>
     </>

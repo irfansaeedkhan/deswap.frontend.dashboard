@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "@/utils/common/axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import WalletConnectButtonAdmin from "@/components/reusables/walletConnectButtonAdmin";
+import DemoRoleSwitcher from "@/components/reusables/DemoRoleSwitcher";
 import {
   DashboardIcon,
   UserIcon,
@@ -76,8 +77,8 @@ function AdminDashboardMobileSidebar() {
   };
 
   //   use effect to fetch latest data
-  useEffect(async () => {
-    await fetchnavbarinfoFunc();
+  useEffect(() => {
+    fetchnavbarinfoFunc();
   }, []);
   return (
     <div className="sidebarMobileContent">
@@ -407,6 +408,9 @@ function AdminDashboardMobileSidebar() {
           </div>
         </li>
 
+        <li>
+          <DemoRoleSwitcher current="admin" />
+        </li>
         <li onClick={handleLogout}>
           <div className="liIcon">
             <Image

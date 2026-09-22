@@ -1,69 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { checkUserAuth } from "@/utils/auth/userauth";
 import {
   DashboardIcon,
   UserIcon,
   BuydswapIcon,
-  DistributionIcon,
   MetaverseIcon,
   MyNetworkIcon,
   CreateTokenIcon,
   NetworkIcon,
-  StackingPackIcon,
   CompanyIcon,
 } from "./Iconssvg";
-import axios from "axios";
-import { encryptRequestBody } from "@/utils/common/jwtToken";
-import { requestBodyEncryptionUnprotected } from "@/utils/common/jwtToken";
-import { clearAllInterval } from "@/utils/common/interval";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import DemoRoleSwitcher from "@/components/reusables/DemoRoleSwitcher";
 
-export const getServerSideProps = async (ctx) => {
-  return await checkUserAuth(ctx);
-};
-function DashboardSidebar({ users }) {
-  const [userCredentials, setUserCredentials] = useState({});
+function DashboardSidebar() {
   const router = useRouter();
   const handleLogout = async (e) => {
     e.preventDefault();
     router.push("/logout");
   };
-
-  useEffect(async () => {
-    await clearAllInterval();
-    let userNets = [];
-    // const fetchUsers = async () => {
-    //   try {
-    //     let encryptionData = await requestBodyEncryptionUnprotected(users)
-    //     const { data } = await axios.post(
-    //       `${process.env.NEXT_PUBLIC_PLATFORM_URL}/api/getUserCredentials`,
-    //       {data:encryptionData},
-    //       { withCredentials: true,
-    //         headers:{
-    //           'security-set':true
-    //         }
-    //        }
-    //     );
-    //     setUserCredentials(data.UserCredentails);
-    //   } catch (error) {
-    //     toast.error(error.message, {
-    //       position: "top-center",
-    //       autoClose: 3000,
-    //       hideProgressBar: false,
-    //       closeOnClick: true,
-    //       pauseOnHover: true,
-    //       draggable: true,
-    //       progress: undefined,
-    //       });
-    //     console.log("error fetching user sidebarData credentails :", error);
-    //   }
-    // };
-    // await fetchUsers();
-  }, []);
 
   return (
     <div className="sidebarContent">
@@ -82,7 +40,7 @@ function DashboardSidebar({ users }) {
             {" "}
             <DashboardIcon />
           </div>
-          <Link legacyBehavior href="/user/dashboard">
+          <Link prefetch={true} legacyBehavior href="/user/dashboard">
             <a>Dashboard</a>
           </Link>
         </li>
@@ -98,7 +56,7 @@ function DashboardSidebar({ users }) {
             {" "}
             <UserIcon />
           </div>
-          <Link legacyBehavior href="/user/dashboard/profile">
+          <Link prefetch={true} legacyBehavior href="/user/dashboard/profile">
             <a>Profile</a>
           </Link>
         </li>
@@ -110,7 +68,7 @@ function DashboardSidebar({ users }) {
           <div className="liIcon">
             <BuydswapIcon />
           </div>
-          <Link legacyBehavior href="/user/dashboard/buydswap">
+          <Link prefetch={true} legacyBehavior href="/user/dashboard/buydswap">
             <a>Buy Deswap</a>
           </Link>
         </li>
@@ -122,7 +80,7 @@ function DashboardSidebar({ users }) {
           <div className="liIcon">
             <CompanyIcon />
           </div>
-          <Link legacyBehavior href="/user/dashboard/company">
+          <Link prefetch={true} legacyBehavior href="/user/dashboard/company">
             <a>Company</a>
           </Link>
         </li>
@@ -135,7 +93,7 @@ function DashboardSidebar({ users }) {
             {" "}
             <MetaverseIcon />
           </div>
-          <Link legacyBehavior href="/user/dashboard/metaverse">
+          <Link prefetch={true} legacyBehavior href="/user/dashboard/metaverse">
             <a>Metaverse</a>
           </Link>
         </li>
@@ -148,7 +106,7 @@ function DashboardSidebar({ users }) {
             {" "}
             <MyNetworkIcon />
           </div>
-          <Link legacyBehavior href="/user/dashboard/nftlicense">
+          <Link prefetch={true} legacyBehavior href="/user/dashboard/nftlicense">
             <a>NFT License</a>
           </Link>
         </li>
@@ -161,13 +119,13 @@ function DashboardSidebar({ users }) {
             {" "}
             <MetaverseIcon />
           </div>
-          <Link legacyBehavior href="/user/dashboard/buydeswaptoken">
+          <Link prefetch={true} legacyBehavior href="/user/dashboard/buydeswaptoken">
             <a>Buy Deswap</a>
           </Link>
         </li>
         {/* <li className={router.pathname == "/user/dashboard/stackingpack" ? "active" : ""}>
           <div className="liIcon"><StackingPackIcon /></div>
-          <Link legacyBehavior href="/user/dashboard/buydswap">
+          <Link prefetch={true} legacyBehavior href="/user/dashboard/buydswap">
             <a>Buy Pack</a>
           </Link>
         </li> */}
@@ -180,7 +138,7 @@ function DashboardSidebar({ users }) {
             {" "}
             <NetworkIcon />
           </div>
-          <Link legacyBehavior href="/user/dashboard/network">
+          <Link prefetch={true} legacyBehavior href="/user/dashboard/network">
             <a>Network</a>
           </Link>
         </li>
@@ -193,7 +151,7 @@ function DashboardSidebar({ users }) {
             {" "}
             <MyNetworkIcon />
           </div>
-          <Link legacyBehavior href="/user/dashboard/networkdetails">
+          <Link prefetch={true} legacyBehavior href="/user/dashboard/networkdetails">
             <a>My Network</a>
           </Link>
         </li>
@@ -206,40 +164,50 @@ function DashboardSidebar({ users }) {
             {" "}
             <CreateTokenIcon />
           </div>
-          <Link legacyBehavior href="/user/dashboard/createtoken">
+          <Link prefetch={true} legacyBehavior href="/user/dashboard/createtoken">
             <a>Create Token</a>
           </Link>
         </li>
         <li className="logoutList">
-          <div className="sidebarfooter">
-            <div className="footerCardContainer">
-              <div className="footerImg">
-                <Image
-                  src={"/images/avatar.png"}
-                  width={82}
-                  height={82}
-                  alt="footer profile image"
-                  loading="lazy"
-                />
-              </div>
-              <div className="logOutContent">
-                {/* <h5>0xAbsd...5eb5</h5>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 8,
+            }}
+          >
+            <DemoRoleSwitcher current="user" />
+            <div className="sidebarfooter">
+              <div className="footerCardContainer">
+                <div className="footerImg">
+                  <Image
+                    src={"/images/avatar.png"}
+                    width={82}
+                    height={82}
+                    alt="footer profile image"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="logOutContent">
+                  {/* <h5>0xAbsd...5eb5</h5>
              <h6>Deswap@123@gmail.com</h6> */}
-              </div>
+                </div>
 
-              <button
-                onClick={handleLogout}
-                className="logoutBtn SimpleButton btnHoverEffectOutline"
-              >
-                <Image
-                  src={"/images/logoutIcon.png"}
-                  width={20}
-                  height={20}
-                  alt="logo"
-                  loading="lazy"
-                />
-                <p>Logout</p>
-              </button>
+                <button
+                  onClick={handleLogout}
+                  className="logoutBtn SimpleButton btnHoverEffectOutline"
+                >
+                  <Image
+                    src={"/images/logoutIcon.png"}
+                    width={20}
+                    height={20}
+                    alt="logo"
+                    loading="lazy"
+                  />
+                  <p>Logout</p>
+                </button>
+              </div>
             </div>
           </div>
         </li>

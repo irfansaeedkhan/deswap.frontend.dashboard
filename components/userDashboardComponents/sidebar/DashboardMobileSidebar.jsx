@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 
 import WalletConnectButton from "@/components/reusables/walletConnectButton";
+import DemoRoleSwitcher from "@/components/reusables/DemoRoleSwitcher";
 import {
   DashboardIcon,
   UserIcon,
@@ -195,6 +196,9 @@ function DashboardMobileSidebar() {
             </button> */}
             <WalletConnectButton></WalletConnectButton>
           </div>
+        </li>
+        <li>
+          <DemoRoleSwitcher current="user" />
         </li>
         <li
           className={router.pathname == "/" ? "active" : ""}

@@ -50,7 +50,6 @@ function LoginForm() {
   const [loginbutton, setloginbutton] = useState("Login");
   const [passwordShown, setPasswordShown] = useState(false);
   const [confirmPasswordShown, setconfirmPasswordShown] = useState(false);
-  const [Error, Seterr] = useState("");
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
@@ -64,17 +63,12 @@ function LoginForm() {
   const onSubmit = async (userData) => {
     const sanData = await SanitizeRequestObject(userData);
     if (!sanData) {
-      Seterr("Invalid form data");
+      toast.error("Invalid form data", { autoClose: 3000 });
       return;
     }
 
     try {
-      Seterr("");
       await setloginbutton("Logging..");
-
-      const platformUrl =
-        process.env.NEXT_PUBLIC_PLATFORM_URL ||
-        (typeof window !== "undefined" ? window.location.origin : "");
 
       const isDemoEnv =
         process.env.NEXT_PUBLIC_DEMO_MODE === "true" ||
@@ -89,9 +83,9 @@ function LoginForm() {
 
       let data;
       if (useDemoLogin) {
-        // Use plain axios for demo so interceptors don't choke on unencrypted payloads
+        // Relative URL — works on any local port (:3000, :3002, etc.)
         const response = await axios.post(
-          `${platformUrl}/api/demo/login`,
+          `/api/demo/login`,
           {
             email: sanData.email,
             password: sanData.password,
@@ -103,6 +97,9 @@ function LoginForm() {
         );
         data = response.data;
       } else {
+        const platformUrl =
+          process.env.NEXT_PUBLIC_PLATFORM_URL ||
+          (typeof window !== "undefined" ? window.location.origin : "");
         let encryptionData = await requestBodyEncryptionUnprotected(sanData);
         const response = await axios.post(
           `${platformUrl}/api/login`,
@@ -135,7 +132,7 @@ function LoginForm() {
           publickey: user.address,
         })
       );
-      await Seterr("Logged in successfully");
+      toast.success("Logged in successfully", { autoClose: 2000 });
       await setWalletValues("metamask", false);
       if (useDemoLogin) {
         return router.push("/user/dashboard");
@@ -153,7 +150,7 @@ function LoginForm() {
           : hint
             ? `Failed to login: ${hint}`
             : "Failed to login. Demo: demo@deswap.co / Demo@1234";
-      Seterr(message);
+      toast.error(message, { autoClose: 3500 });
     }
   };
 
@@ -171,17 +168,6 @@ function LoginForm() {
           Demo: <strong>demo@deswap.co</strong> / <strong>Demo@1234</strong>
         </p>
         <div className="inputsList">
-          <p
-            className="text-danger fw-bold loginMessage"
-            style={{
-              color: "rgb(228, 71, 87)",
-              marginBottom: "3px",
-              fontSize: "16px",
-            }}
-          >
-            {" "}
-            {Error}
-          </p>
           <form method="post" autoComplete="off">
             <div className="formInputs">
               <input
@@ -245,7 +231,7 @@ function LoginForm() {
       </div>
       <ToastContainer
         position="top-center"
-        autoClose={3000}
+        autoClose={3500}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -253,6 +239,7 @@ function LoginForm() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
+        style={{ zIndex: 99999 }}
         toastStyle={{
           backgroundColor: "#232323",
           color: "#FFFFFF",

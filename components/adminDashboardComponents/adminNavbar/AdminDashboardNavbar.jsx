@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import SimpleButton from "@/components/reusables/SimpleButton";
-import WalletConnectButtonAdmin from "@/components/reusables/walletConnectButtonAdmin";
 
 const AdminDashboardNavbarToggle = () => {
   const hamburger = document.querySelector(".hamburger");
@@ -201,14 +200,17 @@ function AdminDashboardNavbar({
           />
         </div>
         <div className="textBox">
-          <WalletConnectButtonAdmin></WalletConnectButtonAdmin>
-          {/*<SimpleButton
-            text="Log Out"
-            color="#E44757"
-            maxWidth="28.3rem"
-            backgroundColor="rgba(228, 71, 87, 0.12)"
-            padding="1rem 3rem"
-          />*/}
+          <button
+            type="button"
+            className="SimpleButton btnHoverEffectOutline"
+            onClick={() => {
+              if (typeof window !== "undefined") {
+                window.alert("Demo mode: wallet connect simulated successfully");
+              }
+            }}
+          >
+            Connect
+          </button>
         </div>
       </div>
     </div>

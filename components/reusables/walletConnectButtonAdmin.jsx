@@ -272,11 +272,12 @@ const WalletConnectButtonAdmin = ({
             <div className="topImage">
               <div className="wallet">
                 <Image
-                  width={1221}
-                  height={1221}
+                  width={300}
+                  height={300}
                   src="/images/Connectwallet.png"
                   alt={"Connectwallet image"}
                   loading="lazy"
+                  style={{ width: "100%", height: "100%", objectFit: "contain" }}
                 />
               </div>
             </div>
@@ -295,11 +296,12 @@ const WalletConnectButtonAdmin = ({
             <div className="topImage">
               <div className="wallet">
                 <Image
-                  width={1221}
-                  height={1221}
+                  width={300}
+                  height={300}
                   src="/images/Connectwallet.png"
                   alt={"Connectwallet image"}
                   loading="lazy"
+                  style={{ width: "100%", height: "100%", objectFit: "contain" }}
                 />
               </div>
             </div>

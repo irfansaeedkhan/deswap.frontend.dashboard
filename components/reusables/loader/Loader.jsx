@@ -1,32 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import PageLoader from "./PageLoader";
 
 function Loader(data) {
-  const [loading, setLoading] = useState(data.loading ? data.loading : true);
-  const [timeduration, setTimeduration] = useState(data.loaderDuration);
-  var body;
-  if (typeof document !== "undefined") {
-    body = document.querySelector("body");
+  const loading = data.loading !== false;
 
-    if (data.loading) {
+  useEffect(() => {
+    const body = document.querySelector("body");
+    if (!body) return;
+    if (loading) {
       body.classList.add("stopScrolling");
     } else {
       body.classList.remove("stopScrolling");
     }
-  }
-  if (timeduration) {
-    setTimeout(() => {
-      setLoading(false);
-    }, timeduration);
-  }
-  return (
-    <div>
-      <div className={`customloaderModal ${loading && "loaderopen"}`}>
-        <div className="customloaderContainer">
-          <div className="customloader"></div>
-        </div>
-      </div>
-    </div>
-  );
+    return () => {
+      body.classList.remove("stopScrolling");
+    };
+  }, [loading]);
+
+  if (!loading) return null;
+
+  return <PageLoader overlay title={data.title || ""} />;
 }
 
 export default Loader;

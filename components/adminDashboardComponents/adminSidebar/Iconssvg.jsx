@@ -59,3 +59,89 @@ export function MyNetworkIcon() {
 </svg>
   );
 }
+export function LicenseIcon() {
+  return (
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="4" y="3" width="16" height="18" rx="2" stroke="#ADADAD" strokeWidth="1.5"/>
+<path d="M8 8H16M8 12H16M8 16H13" stroke="#ADADAD" strokeWidth="1.5" strokeLinecap="round"/>
+</svg>
+  );
+}
+export function LevelIcon() {
+  return (
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 17H8V20H4V17Z" stroke="#ADADAD" strokeWidth="1.5" strokeLinejoin="round"/>
+<path d="M10 12H14V20H10V12Z" stroke="#ADADAD" strokeWidth="1.5" strokeLinejoin="round"/>
+<path d="M16 7H20V20H16V7Z" stroke="#ADADAD" strokeWidth="1.5" strokeLinejoin="round"/>
+</svg>
+  );
+}
+export function CategoryIcon() {
+  return (
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="3" y="3" width="8" height="8" rx="1.5" stroke="#ADADAD" strokeWidth="1.5"/>
+<rect x="13" y="3" width="8" height="8" rx="1.5" stroke="#ADADAD" strokeWidth="1.5"/>
+<rect x="3" y="13" width="8" height="8" rx="1.5" stroke="#ADADAD" strokeWidth="1.5"/>
+<rect x="13" y="13" width="8" height="8" rx="1.5" stroke="#ADADAD" strokeWidth="1.5"/>
+</svg>
+  );
+}
+export function PackIcon() {
+  return (
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 8L12 4L20 8L12 12L4 8Z" stroke="#ADADAD" strokeWidth="1.5" strokeLinejoin="round"/>
+<path d="M4 8V16L12 20V12" stroke="#ADADAD" strokeWidth="1.5" strokeLinejoin="round"/>
+<path d="M20 8V16L12 20" stroke="#ADADAD" strokeWidth="1.5" strokeLinejoin="round"/>
+</svg>
+  );
+}
+export function BuildingIcon() {
+  return (
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 20V6L12 3L20 6V20" stroke="#ADADAD" strokeWidth="1.5" strokeLinejoin="round"/>
+<path d="M9 20V14H15V20" stroke="#ADADAD" strokeWidth="1.5" strokeLinejoin="round"/>
+<path d="M8 9H8.01M12 9H12.01M16 9H16.01M8 12.5H8.01M12 12.5H12.01M16 12.5H16.01" stroke="#ADADAD" strokeWidth="2" strokeLinecap="round"/>
+</svg>
+  );
+}
+export function FeeIcon() {
+  return (
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="8.25" stroke="#ADADAD" strokeWidth="1.5"/>
+<path d="M12 8V16M9.5 10.5C9.5 9.5 10.5 8.75 12 8.75C13.5 8.75 14.5 9.5 14.5 10.5C14.5 11.5 13.5 12 12 12C10.5 12 9.5 12.5 9.5 13.5C9.5 14.5 10.5 15.25 12 15.25C13.5 15.25 14.5 14.5 14.5 13.5" stroke="#ADADAD" strokeWidth="1.5" strokeLinecap="round"/>
+</svg>
+  );
+}
+export function RewardIcon() {
+  return (
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 10H17V19C17 19.552 16.552 20 16 20H8C7.448 20 7 19.552 7 19V10Z" stroke="#ADADAD" strokeWidth="1.5"/>
+<path d="M6 6H18V10H6V6Z" stroke="#ADADAD" strokeWidth="1.5" strokeLinejoin="round"/>
+<path d="M9 6C9 4.343 10.343 3 12 3C13.657 3 15 4.343 15 6" stroke="#ADADAD" strokeWidth="1.5"/>
+</svg>
+  );
+}
+export function KeyIcon() {
+  return (
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="8" cy="12" r="3.25" stroke="#ADADAD" strokeWidth="1.5"/>
+<path d="M11 12H20V14.5M17 12V14.5" stroke="#ADADAD" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+  );
+}
+export function SwapIcon() {
+  return (
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 8H20L16 4" stroke="#ADADAD" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M17 16H4L8 20" stroke="#ADADAD" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+  );
+}
+export function SettingsIcon() {
+  return (
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="3" stroke="#ADADAD" strokeWidth="1.5"/>
+<path d="M12 4V6M12 18V20M4 12H6M18 12H20M6.3 6.3L7.7 7.7M16.3 16.3L17.7 17.7M17.7 6.3L16.3 7.7M7.7 16.3L6.3 17.7" stroke="#ADADAD" strokeWidth="1.5" strokeLinecap="round"/>
+</svg>
+  );
+}

@@ -8,10 +8,21 @@ import {
   BuydswapIcon,
   DistributionIcon,
   MyNetworkIcon,
+  LicenseIcon,
+  LevelIcon,
+  CategoryIcon,
+  PackIcon,
+  BuildingIcon,
+  FeeIcon,
+  RewardIcon,
+  KeyIcon,
+  SwapIcon,
+  SettingsIcon,
 } from "./Iconssvg";
-import axios from "axios";
+import axios from "@/utils/common/axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import DemoRoleSwitcher from "@/components/reusables/DemoRoleSwitcher";
 
 function AdminDashboardSidebar() {
   const router = useRouter();
@@ -65,8 +76,8 @@ function AdminDashboardSidebar() {
   };
 
   //   use effect to fetch latest data
-  useEffect(async () => {
-    await fetchnavbarinfoFunc();
+  useEffect(() => {
+    fetchnavbarinfoFunc();
   }, []);
 
   return (
@@ -99,8 +110,7 @@ function AdminDashboardSidebar() {
             }
           >
             <div className="liIcon">
-              {" "}
-              <MyNetworkIcon />
+              <LicenseIcon />
             </div>
             <Link legacyBehavior href="/admin/dashboard/addnftlicense">
               <a>Add NFT License</a>
@@ -112,8 +122,7 @@ function AdminDashboardSidebar() {
             }
           >
             <div className="liIcon">
-              {" "}
-              <MyNetworkIcon />
+              <LevelIcon />
             </div>
             <Link legacyBehavior href="/admin/dashboard/createlevel">
               <a>Create Company Reward Level</a>
@@ -127,8 +136,7 @@ function AdminDashboardSidebar() {
             }
           >
             <div className="liIcon">
-              {" "}
-              <MyNetworkIcon />
+              <CategoryIcon />
             </div>
             <Link legacyBehavior href="/admin/dashboard/createcompanycategory">
               <a>Create Company Category</a>
@@ -142,8 +150,7 @@ function AdminDashboardSidebar() {
             }
           >
             <div className="liIcon">
-              {" "}
-              <MyNetworkIcon />
+              <DistributionIcon />
             </div>
             <Link legacyBehavior href="/admin/dashboard/purchasednftlicense">
               <a>Purchased NFT License </a>
@@ -160,8 +167,7 @@ function AdminDashboardSidebar() {
             }
           >
             <div className="liIcon">
-              {" "}
-              <MyNetworkIcon />
+              <PackIcon />
             </div>
             <Link legacyBehavior href="/admin/dashboard/addclamingpack">
               <a>Add Deswap Packs</a>
@@ -175,8 +181,7 @@ function AdminDashboardSidebar() {
             }
           >
             <div className="liIcon">
-              {" "}
-              <MyNetworkIcon />
+              <BuydswapIcon />
             </div>
             <Link legacyBehavior href="/admin/dashboard/purchasedpack">
               <a>
@@ -195,8 +200,7 @@ function AdminDashboardSidebar() {
             }
           >
             <div className="liIcon">
-              {" "}
-              <MyNetworkIcon />
+              <RewardIcon />
             </div>
             <Link legacyBehavior href="/admin/dashboard/claimmedpack">
               <a>
@@ -221,7 +225,7 @@ function AdminDashboardSidebar() {
             }
           >
             <div className="liIcon">
-              <BuydswapIcon />
+              <UserIcon />
             </div>
             <Link legacyBehavior href="/admin/dashboard/useraccount">
               <a>Users List</a>
@@ -233,7 +237,7 @@ function AdminDashboardSidebar() {
             }
           >
             <div className="liIcon">
-              <BuydswapIcon />
+              <BuildingIcon />
             </div>
             <Link legacyBehavior href="/admin/dashboard/companylist">
               <a>Company List</a>
@@ -245,7 +249,7 @@ function AdminDashboardSidebar() {
             }
           >
             <div className="liIcon">
-              <BuydswapIcon />
+              <FeeIcon />
             </div>
             <Link legacyBehavior href="/admin/dashboard/companyfee">
               <a>Company Fee List</a>
@@ -259,7 +263,7 @@ function AdminDashboardSidebar() {
             }
           >
             <div className="liIcon">
-              <BuydswapIcon />
+              <RewardIcon />
             </div>
             <Link legacyBehavior href="/admin/dashboard/companyrewards">
               <a>Company Network Rewards List</a>
@@ -271,7 +275,7 @@ function AdminDashboardSidebar() {
             }
           >
             <div className="liIcon">
-              <BuydswapIcon />
+              <KeyIcon />
             </div>
             <Link legacyBehavior href="/admin/dashboard/publickeyfee">
               <a>Publickey Fee List</a>
@@ -285,8 +289,7 @@ function AdminDashboardSidebar() {
             }
           >
             <div className="liIcon">
-              {" "}
-              <MyNetworkIcon />
+              <FeeIcon />
             </div>
             <Link legacyBehavior href="/admin/dashboard/userregistrationfee">
               <a>User Registration Fee</a>
@@ -300,8 +303,7 @@ function AdminDashboardSidebar() {
             }
           >
             <div className="liIcon">
-              {" "}
-              <MyNetworkIcon />
+              <SwapIcon />
             </div>
             <Link legacyBehavior href="/admin/dashboard/swapmatictodaw">
               <a>
@@ -326,7 +328,6 @@ function AdminDashboardSidebar() {
             }
           >
             <div className="liIcon">
-              {" "}
               <MyNetworkIcon />
             </div>
             <Link legacyBehavior href="/admin/dashboard/networkrewards">
@@ -341,8 +342,7 @@ function AdminDashboardSidebar() {
             }
           >
             <div className="liIcon">
-              {" "}
-              <MyNetworkIcon />
+              <RewardIcon />
             </div>
             <Link legacyBehavior href="/admin/dashboard/claimmednetworkrewards">
               <a>
@@ -364,8 +364,7 @@ function AdminDashboardSidebar() {
             }
           >
             <div className="liIcon">
-              {" "}
-              <MyNetworkIcon />
+              <SettingsIcon />
             </div>
             <Link legacyBehavior href="/admin/dashboard/networkrewardssetting">
               <a>Network Rewards Setting</a>
@@ -375,35 +374,45 @@ function AdminDashboardSidebar() {
         <div></div>
 
         <li className="logoutList">
-          <div className="sidebarfooter">
-            <div className="footerCardContainer">
-              <div className="footerImg">
-                <Image
-                  src={"/images/avatar.png"}
-                  width={82}
-                  height={82}
-                  alt="footer profile image"
-                  loading="lazy"
-                />
-              </div>
-              <div className="logOutContent">
-                {/* <h5>0xAbsd...5eb5</h5>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 8,
+            }}
+          >
+            <DemoRoleSwitcher />
+            <div className="sidebarfooter">
+              <div className="footerCardContainer">
+                <div className="footerImg">
+                  <Image
+                    src={"/images/avatar.png"}
+                    width={82}
+                    height={82}
+                    alt="footer profile image"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="logOutContent">
+                  {/* <h5>0xAbsd...5eb5</h5>
              <h6>Deswap@123@gmail.com</h6> */}
-              </div>
+                </div>
 
-              <button
-                onClick={handleLogout}
-                className="logoutBtn SimpleButton btnHoverEffectOutline"
-              >
-                <Image
-                  src={"/images/logoutIcon.png"}
-                  width={20}
-                  height={20}
-                  alt="logo"
-                  loading="lazy"
-                />
-                <p>Logout</p>
-              </button>
+                <button
+                  onClick={handleLogout}
+                  className="logoutBtn SimpleButton btnHoverEffectOutline"
+                >
+                  <Image
+                    src={"/images/logoutIcon.png"}
+                    width={20}
+                    height={20}
+                    alt="logo"
+                    loading="lazy"
+                  />
+                  <p>Logout</p>
+                </button>
+              </div>
             </div>
           </div>
         </li>
@@ -439,7 +448,7 @@ import logo from "@/assets/images/logo.png";
 import logoout from "@/assets/images/dashboard/icons/logout.png";
 // import logout from "@/assets/images/dashboard/icons/logout.png";
 import { DashboardIcon,UserIcon,BuydswapIcon,DistributionIcon,MyNetworkIcon } from "./Iconssvg";
-import axios from "axios";
+import axios from "@/utils/common/axios";
 
 function AdminDashboardSidebar() {
   const router = useRouter();
