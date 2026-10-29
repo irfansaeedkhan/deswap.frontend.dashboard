@@ -137,6 +137,7 @@ function SwapTokenComponent({ toggleGraphView }) {
   const [walletBalance, setWalletBalances] = useState({
     bnb: "0,00",
     ntr: "0,00",
+    usd: "0,00",
   });
 
   // DEMO ONLY (round 3): the web3 balance fetch only runs after a wallet
@@ -161,6 +162,13 @@ function SwapTokenComponent({ toggleGraphView }) {
           setWalletBalances({
             bnb: convertToEuro(Number(balances.matic).toFixed(4)),
             ntr: convertToEuro(Number(balances.deswap).toFixed(4)),
+            // ROUND 5: the demo USD balance (3210.25) existed in the
+            // demo data layer but appeared nowhere on the site. Same
+            // comma-style formatting as the MATIC/DESWAP lines.
+            usd:
+              balances.usd != null
+                ? convertToEuro(Number(balances.usd).toFixed(4))
+                : "0,00",
           });
         }
       } catch (e) {
@@ -449,6 +457,7 @@ function SwapTokenComponent({ toggleGraphView }) {
       // dummy demo balances so the demo swap screen shows working values.
       // These are NOT real wallet balances and must never be presented as
       // on-chain activity.
+      let USDBalance = null;
       if (!BNBBalance && !NTRBalance0) {
         try {
           const demoRes = await axios.post(
@@ -459,6 +468,9 @@ function SwapTokenComponent({ toggleGraphView }) {
           if (demoRes?.data?.demoBalances) {
             BNBBalance = demoRes.data.demoBalances.matic;
             NTRBalance0 = demoRes.data.demoBalances.deswap;
+            // ROUND 5: carry the demo USD balance through too, so the
+            // swap card can show it (it previously appeared nowhere).
+            USDBalance = demoRes.data.demoBalances.usd;
           }
         } catch (e) {
           console.log("Demo balance fallback unavailable", e);
@@ -469,6 +481,9 @@ function SwapTokenComponent({ toggleGraphView }) {
         ...walletBalance,
         bnb: convertToEuro(BNBBalance.toFixed(4)),
       };
+      if (USDBalance != null) {
+        walletbalancesFetched.usd = convertToEuro(USDBalance.toFixed(4));
+      }
       await setWalletBalances(walletbalancesFetched);
       let NTRBalance = NTRBalance0 || (await fetchDeswapBalance());
       walletbalancesFetched = {
@@ -1204,6 +1219,11 @@ function SwapTokenComponent({ toggleGraphView }) {
             />
           </div>
         </div>
+      </div>
+      {/* ROUND 5: demo USD balance line, same balance style as the
+      MATIC/DESWAP lines above. Demo data only, not a real balance. */}
+      <div className="balance">
+        <p>Balance (USD): {walletBalance.usd ? walletBalance.usd : "N/A"}</p>
       </div>
       <div className="swaptokenFooter">
         <button

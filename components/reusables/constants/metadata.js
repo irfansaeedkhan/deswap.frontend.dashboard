@@ -133,7 +133,7 @@ export const MetaDataArr = [
     url: AppRoutes.admin.claimmednetworkrewards,
   },
   {
-    title: "Claimmed Pack",
+    title: "Claimed Pack",
     url: AppRoutes.admin.claimmedpack,
   },
   {

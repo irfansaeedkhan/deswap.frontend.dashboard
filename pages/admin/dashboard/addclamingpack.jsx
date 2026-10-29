@@ -119,7 +119,7 @@ function AddDeswapPack(serversidePropsData) {
       setLoadingState(result && false);
       setDeletePackModal(false);
       await fetchClaimingPackListFunc();
-      toast.success("Clamming Pack Successfully Delete", {
+      toast.success("Claiming Pack Successfully Delete", {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -161,7 +161,7 @@ function AddDeswapPack(serversidePropsData) {
       setLoadingState(result && false);
       setDeactivatePackModal(false);
       await fetchClaimingPackListFunc();
-      toast.success("Clamming Pack Successfully Deactive", {
+      toast.success("Claiming Pack Successfully Deactive", {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -220,7 +220,7 @@ function AddDeswapPack(serversidePropsData) {
       <Modal
         show={deletePackModal}
         cross={false}
-        modaltitle="Delete Claimming Pack"
+        modaltitle="Delete Claiming Pack"
         onClose={() => setDeletePackModal(false)}
       >
         <div className="claimmingpackDelCard modalcontentSuccess modalWithImage">
@@ -237,7 +237,7 @@ function AddDeswapPack(serversidePropsData) {
                 />
               </div>
             </div>
-            <h5>Are You Sure You Want To Delete Claimming Pack ?</h5>
+            <h5>Are You Sure You Want To Delete Claiming Pack ?</h5>
           </div>
           <div className={` claimmingpackDelCard`}>
             <div className="claimmingpackDelCardInner">

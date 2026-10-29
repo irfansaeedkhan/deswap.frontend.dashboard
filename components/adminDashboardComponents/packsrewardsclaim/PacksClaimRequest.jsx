@@ -779,7 +779,7 @@ const PacksClaimRequest = () => {
   return (
     <div className="stackingpackfeetableContainer">
       <div className="tableContainer">
-        <p>Clamming Packs Rewards Request</p>
+        <p>Claiming Packs Rewards Request</p>
         <div className="tableContainerTable customScroll">
           <table cellPadding="0" cellSpacing="0" border="0">
             <thead>

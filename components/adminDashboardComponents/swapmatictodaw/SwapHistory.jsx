@@ -109,20 +109,14 @@ function SwapRequested() {
               </td>
               <td>
                 {loopDate[index]?.UserTo?.walletaddress ? (
-                  <a
-                    target="_blank"
-                    href={`${process.env.NEXT_PUBLIC_POLYGON_SCANLINK}address/${
-                      loopDate[index].UserTo.walletaddress[
-                        loopDate[index].UserTo.walletaddress.length - 1
-                      ]
-                    }`}
-                  >
-                    {reducedWalletAddress(
-                      loopDate[index].UserTo.walletaddress[
-                        loopDate[index].UserTo.walletaddress.length - 1
-                      ]
-                    )}
-                  </a>
+                  // ROUND 5: plain text, never a link. The explorer-base
+                  // link built here resolved to a relative address/...
+                  // href on main and landed on a 404 page.
+                  reducedWalletAddress(
+                    loopDate[index].UserTo.walletaddress[
+                      loopDate[index].UserTo.walletaddress.length - 1
+                    ]
+                  )
                 ) : (
                   "N/A"
                 )}
@@ -134,13 +128,9 @@ function SwapRequested() {
               </td>
               <td>
                 {loopDate[index]?.IncommingTxHash ? (
-                  <a
-                    target="_blank"
-                    href={`${process.env.NEXT_PUBLIC_POLYGON_SCANLINK}tx/${loopDate[index].IncommingTxHash}`}
-                  >
-                    {loopDate[index].IncommingTxHash &&
-                      reducedWalletAddress(loopDate[index].IncommingTxHash)}
-                  </a>
+                  // ROUND 5: plain text, never a link (same 404 reason).
+                  loopDate[index].IncommingTxHash &&
+                    reducedWalletAddress(loopDate[index].IncommingTxHash)
                 ) : (
                   "N/A"
                 )}
@@ -150,25 +140,17 @@ function SwapRequested() {
                   <div>
                     <div>From</div>
                     <div>
-                      <a
-                        target="_blank"
-                        href={`${process.env.NEXT_PUBLIC_POLYGON_SCANLINK}address/${loopDate[index].transactionDetails.from}`}
-                      >
-                        {reducedWalletAddress(
-                          loopDate[index].transactionDetails.from
-                        )}
-                      </a>
+                      {/* ROUND 5: plain text, never a link. */}
+                      {reducedWalletAddress(
+                        loopDate[index].transactionDetails.from
+                      )}
                     </div>
                     <div>To</div>
                     <div>
-                      <a
-                        target="_blank"
-                        href={`${process.env.NEXT_PUBLIC_POLYGON_SCANLINK}address/${loopDate[index].transactionDetails.to}`}
-                      >
-                        {reducedWalletAddress(
-                          loopDate[index].transactionDetails.to
-                        )}
-                      </a>
+                      {/* ROUND 5: plain text, never a link. */}
+                      {reducedWalletAddress(
+                        loopDate[index].transactionDetails.to
+                      )}
                     </div>
                     <div>Amount</div>
                     <div>
@@ -181,13 +163,9 @@ function SwapRequested() {
               </td>
               <td>
                 {loopDate[index]?.OutgoingTxHash ? (
-                  <a
-                    target="_blank"
-                    href={`${process.env.NEXT_PUBLIC_POLYGON_SCANLINK}tx/${loopDate[index].OutgoingTxHash}`}
-                  >
-                    {loopDate[index].OutgoingTxHash &&
-                      reducedWalletAddress(loopDate[index].OutgoingTxHash)}
-                  </a>
+                  // ROUND 5: plain text, never a link (same 404 reason).
+                  loopDate[index].OutgoingTxHash &&
+                    reducedWalletAddress(loopDate[index].OutgoingTxHash)
                 ) : (
                   "N/A"
                 )}
@@ -197,37 +175,19 @@ function SwapRequested() {
                   <div>
                     <div>From</div>
                     <div>
-                      <a
-                        target="_blank"
-                        href={`${
-                          process.env.NEXT_PUBLIC_POLYGON_SCANLINK
-                        }address/${
-                          loopDate[index].transactionDetailsOutgoing &&
+                      {/* ROUND 5: plain text, never a link. */}
+                      {loopDate[index].transactionDetailsOutgoing &&
+                        reducedWalletAddress(
                           loopDate[index].transactionDetailsOutgoing.from
-                        }`}
-                      >
-                        {loopDate[index].transactionDetailsOutgoing &&
-                          reducedWalletAddress(
-                            loopDate[index].transactionDetailsOutgoing.from
-                          )}
-                      </a>
+                        )}
                     </div>
                     <div>To</div>
                     <div>
-                      <a
-                        target="_blank"
-                        href={`${
-                          process.env.NEXT_PUBLIC_POLYGON_SCANLINK
-                        }address/${
-                          loopDate[index].transactionDetailsOutgoing &&
+                      {/* ROUND 5: plain text, never a link. */}
+                      {loopDate[index].transactionDetailsOutgoing &&
+                        reducedWalletAddress(
                           loopDate[index].transactionDetailsOutgoing.to
-                        }`}
-                      >
-                        {loopDate[index].transactionDetailsOutgoing &&
-                          reducedWalletAddress(
-                            loopDate[index].transactionDetailsOutgoing.to
-                          )}
-                      </a>
+                        )}
                     </div>
                     <div>Amount</div>
                     <div>
