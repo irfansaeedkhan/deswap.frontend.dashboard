@@ -120,7 +120,7 @@ function DashboardSidebar() {
             <MetaverseIcon />
           </div>
           <Link prefetch={true} legacyBehavior href="/user/dashboard/buydeswaptoken">
-            <a>Buy Deswap</a>
+            <a>Buy Deswap Token</a>
           </Link>
         </li>
         {/* <li className={router.pathname == "/user/dashboard/stackingpack" ? "active" : ""}>

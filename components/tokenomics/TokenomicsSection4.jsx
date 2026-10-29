@@ -170,7 +170,7 @@ function TokenomicsSection4() {
                     loading="lazy"
                    style={{ width: "100%", height: "auto", objectFit: "contain" }} />{" "}
                 </div>
-                <p>Coming Soon</p>
+                <p>Roadmap update pending</p>
               </div>
             </div>
           </div>

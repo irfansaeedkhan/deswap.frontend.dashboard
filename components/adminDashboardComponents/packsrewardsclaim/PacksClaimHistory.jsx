@@ -237,7 +237,7 @@ const PacksClaimHistory = () => {
   return (
     <div className="stackingpackfeetableContainer">
       <div className="tableContainer">
-        <p>Claimmed Pack Rewards Table</p>
+        <p>Claimed Pack Rewards Table</p>
         <div className="tableContainerTable customScroll">
           <table cellPadding="0" cellSpacing="0" border="0">
             <thead>

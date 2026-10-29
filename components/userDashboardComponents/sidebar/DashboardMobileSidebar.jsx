@@ -130,7 +130,7 @@ function DashboardMobileSidebar() {
             <MetaverseIcon />
           </div>
           <Link legacyBehavior href="/user/dashboard/buydeswaptoken">
-            <a>Buy Deswap</a>
+            <a>Buy Deswap Token</a>
           </Link>
         </li>
         {/* <li

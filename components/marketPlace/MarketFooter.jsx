@@ -46,7 +46,7 @@ function MarketFooter() {
         <div className="copyrightContainer">
           <div className="copyrightInner deswapMax">
             <div className="textBox">
-              <h6>Copyright © 2021</h6>
+              <h6>Copyright © {new Date().getFullYear()}</h6>
             </div>
             <div className="linkBox">
               <div className="linkBoxImg  navItem1 Svgneon-button" >

@@ -407,7 +407,7 @@ function SwapRequested() {
                 <th>Public Key</th>
                 <th>Datetime</th>
                 <th>Incomming txhash</th>
-                <th>Web3 Incomming details</th>
+                <th>Web3 Incoming details</th>
                 <th>Outgoing txhash</th>
                 <th>Web3 Outgoing details</th>
                 <th>Amount In Matic</th>

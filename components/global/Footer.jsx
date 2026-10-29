@@ -84,7 +84,7 @@ function Footer() {
         <div className="copyrightContainer">
           <div className="copyrightInner deswapMax">
             <div className="textBox">
-              <p>Copyright © 2021</p>
+              <p>Copyright © {new Date().getFullYear()}</p>
             </div>
             <div className="linkBox">
               <a

@@ -42,13 +42,13 @@ function AdminDashboardNavbar({
           {router.pathname == "/admin/dashboard/networkrewards" &&
             "Network Rewards"}
           {router.pathname == "/admin/dashboard/claimmednetworkrewards" &&
-            "Claimmed Network Rewards"}
+            "Claimed Network Rewards"}
           {router.pathname == "/admin/dashboard/purchasednftlicense" &&
             "Purchased NFT License"}
           {router.pathname == "/admin/dashboard/swapmatictodaw" &&
             "Swap Matic To DAW"}
           {router.pathname == "/admin/dashboard/claimmedpack" &&
-            "Claimmed Pack"}
+            "Claimed Pack"}
           {router.pathname == "/admin/dashboard/userregistrationfee" &&
             "User Registration Fee"}
           {router.pathname == "/admin/dashboard/networkrewardssetting" &&

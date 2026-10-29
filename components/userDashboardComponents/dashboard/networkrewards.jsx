@@ -39,7 +39,9 @@ function NetworkRewards() {
             <td>{holderDisplay}</td>
             <td>
               {data[index]?.Amount && data[index]?.RewardsPercentage
-                ? data[index].Amount * data[index].RewardsPercentage
+                ? Number(
+                    data[index].Amount * data[index].RewardsPercentage
+                  ).toFixed(2)
                 : "N/A"}
             </td>
             <td>
@@ -50,7 +52,7 @@ function NetworkRewards() {
 
             <td>
               {data[index]?.Status == "Claimmed" ? (
-                <button className="locked">Claimmed</button>
+                <button className="locked">Claimed</button>
               ) : (
                 <button className="locked btnHoverEffectOutline">Locked</button>
               )}

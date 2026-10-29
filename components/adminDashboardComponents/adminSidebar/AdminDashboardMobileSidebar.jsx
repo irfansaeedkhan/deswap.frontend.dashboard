@@ -161,7 +161,7 @@ function AdminDashboardMobileSidebar() {
         </div>
 
         <div className="sidebarGroup">
-          <h3>Claimmed Pack</h3>
+          <h3>Claimed Pack</h3>
           <li
             className={
               router.pathname == "/admin/dashboard/addclamingpack"
@@ -368,7 +368,7 @@ function AdminDashboardMobileSidebar() {
             </div>
             <Link legacyBehavior href="/admin/dashboard/claimmednetworkrewards">
               <a>
-                Claimmed Network Rewards{" "}
+                Claimed Network Rewards{" "}
                 <span className="counterBox">
                   {navbarinfo.RequestedNetworkRewards ||
                   navbarinfo.RequestedNetworkRewards == 0

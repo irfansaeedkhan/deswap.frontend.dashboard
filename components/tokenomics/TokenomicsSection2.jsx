@@ -8,7 +8,7 @@ function TokenomicsSection2() {
           <div className="analicCard">
             <div className="percentageContainer">
               <div className="circle blue"></div>
-              <h3>42%</h3>
+              <h3>36%</h3>
             </div>
             <p>Platform development</p>
           </div>
