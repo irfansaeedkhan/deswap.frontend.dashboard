@@ -99,7 +99,7 @@ function DeswapPackCard({ cardInfo, key, deleteClaimmingPack }) {
 
       //await fetchNFTListFunc();
       setLoadingState(result && false);
-      toast.success("Clamming Pack Successfully Updated", {
+      toast.success("Claiming Pack Successfully Updated", {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,

@@ -129,7 +129,7 @@ export const MetaDataArr = [
     url: AppRoutes.admin.addnftlicense,
   },
   {
-    title: "Claimmed Network Rewards",
+    title: "Claimed Network Rewards",
     url: AppRoutes.admin.claimmednetworkrewards,
   },
   {

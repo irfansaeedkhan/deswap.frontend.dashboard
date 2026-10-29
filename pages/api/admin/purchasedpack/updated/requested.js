@@ -37,8 +37,8 @@ const sendInformationToAdmin = async (data) => {
   
       let result = await sendEmail({
         toAddress: process.env.NEXT_PUBLIC_SMTP_ADMIN_MAIL,
-        subject: "Clamming pack purchased by user "+data.emailid,
-        bodyText: "Clamming pack purchased by user "+data.publickey,
+        subject: "Claiming pack purchased by user "+data.emailid,
+        bodyText: "Claiming pack purchased by user "+data.publickey,
         bodyHTML: htmltempate
       });
     } catch (e) {
