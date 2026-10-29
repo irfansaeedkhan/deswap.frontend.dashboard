@@ -805,7 +805,7 @@ function UserInfoData() {
                   <th>Role</th>
                   <th>Created At</th>
                   <th>Status</th>
-                  <th>Registeration Fee</th>
+                  <th>Registration Fee</th>
                   <th>Edit</th>
                 </tr>
               </thead>

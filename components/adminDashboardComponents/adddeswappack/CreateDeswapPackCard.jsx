@@ -38,7 +38,7 @@ const schema = Joi.object({
     "string.empty": `Locked Period Type Required`,
     "any.required": `Required Field`,
   }),
-  Bonous: Joi.number().required().max(7750).label("Bonus").messages({
+  Bonus: Joi.number().required().max(7750).label("Bonus").messages({
     "string.empty": `Bonus Required`,
     "any.required": `Required Field`,
   }),
@@ -52,7 +52,11 @@ function CreateDeswapPackCard({ closeModal }) {
   });
   const onSubmit = (data) => {
     if (data) {
-      creatingClaimmingPackFunc(data);
+      // ROUND 4: the rendered field is "Bonus", but the API/model field
+      // is still "Bonous" (models/deswapPack/packdetails.js, insert/update
+      // handlers). Map it here so the form rename never breaks submission.
+      const { Bonus, ...rest } = data;
+      creatingClaimmingPackFunc({ ...rest, Bonous: Bonus });
     }
   };
 
@@ -106,7 +110,7 @@ const closeModalFunction = () =>{
     Amount: "",
     LockedPeriod: "",
     LockedPeriodType: "",
-    Bonous: "",
+    Bonus: "",
   });
 }
   return (
@@ -182,14 +186,14 @@ const closeModalFunction = () =>{
             <div className="formInputs">
               <input
                 type="text"
-                id="Bonous"
-                name="Bonous"
+                id="Bonus"
+                name="Bonus"
                 autoComplete="off"
-                {...register("Bonous")}
-                error={formState.errors.Bonous && true}
+                {...register("Bonus")}
+                error={formState.errors.Bonus && true}
               />
-              {formState.errors.Bonous && (
-                <p>{formState.errors.Bonous.message}</p>
+              {formState.errors.Bonus && (
+                <p>{formState.errors.Bonus.message}</p>
               )}
             </div>
           </div>

@@ -7,7 +7,7 @@ import TableLoader from "@/components/reusables/loader/TableLoader";
 import NodataCard from "@/components/reusables/NodataCard";
 import FailedToFetchData from "@/components/reusables/FailedToFetchData";
 import { myRewardsDate, claimmedDate } from "@/utils/common/date";
-import { reducedWalletAddress } from "@/utils/common/walletaddress";
+import { reducedWalletAddress, explorerAddressUrl, explorerTxUrl } from "@/utils/common/walletaddress";
 import { convertToEuro, convertToUSD } from "@/utils/common/currencyconversion";
 import Web3 from "web3";
 import { bindActionCreators } from "redux";
@@ -515,23 +515,28 @@ const PacksPurchasedRequest = () => {
                   : "N/A"}
               </td>
               <td>
-                {loopDate[index]?.UserID?.walletaddress[
-                  loopDate[index]?.UserID?.walletaddress
-                ] ? (
-                  <a
-                    target="_blank"
-                    href={`${process.env.NEXT_PUBLIC_POLYGON_SCANLINK}address/${
+                {loopDate[index]?.UserID?.walletaddress?.length ? (
+                  // ROUND 4: the old guard indexed the array by itself
+                  // (arr[arr] is always undefined), so this cell always
+                  // rendered "N/A". A non-empty wallet list renders.
+                  (() => {
+                    // ROUND 4: with no explorer base configured, a raw
+                    // SCANLINK href resolves inside the app and 404s
+                    // (e.g. /admin/dashboard/address/<wallet>). Render
+                    // plain text instead; never invent an explorer URL.
+                    const holder =
                       loopDate[index].UserID.walletaddress[
                         loopDate[index].UserID.walletaddress.length - 1
-                      ]
-                    }`}
-                  >
-                    {reducedWalletAddress(
-                      loopDate[index].UserID.walletaddress[
-                        loopDate[index].UserID.walletaddress.length - 1
-                      ]
-                    )}
-                  </a>
+                      ];
+                    const explorerUrl = explorerAddressUrl(holder);
+                    return explorerUrl ? (
+                      <a target="_blank" rel="noreferrer" href={explorerUrl}>
+                        {reducedWalletAddress(holder)}
+                      </a>
+                    ) : (
+                      reducedWalletAddress(holder)
+                    );
+                  })()
                 ) : (
                   "N/A"
                 )}
@@ -548,12 +553,16 @@ const PacksPurchasedRequest = () => {
               </td>
               <td>
                 {loopDate[index]?.TxHash ? (
-                  <a
-                    target="_blank"
-                    href={`${process.env.NEXT_PUBLIC_POLYGON_SCANLINK}tx/${loopDate[index].TxHash}`}
-                  >
-                    {reducedWalletAddress(loopDate[index].TxHash)}
-                  </a>
+                  (() => {
+                    const txUrl = explorerTxUrl(loopDate[index].TxHash);
+                    return txUrl ? (
+                      <a target="_blank" rel="noreferrer" href={txUrl}>
+                        {reducedWalletAddress(loopDate[index].TxHash)}
+                      </a>
+                    ) : (
+                      reducedWalletAddress(loopDate[index].TxHash)
+                    );
+                  })()
                 ) : (
                   "N/A"
                 )}
@@ -564,25 +573,41 @@ const PacksPurchasedRequest = () => {
                   <div>
                     <div>From</div>
                     <div>
-                      <a
-                        target="_blank"
-                        href={`${process.env.NEXT_PUBLIC_POLYGON_SCANLINK}address/${loopDate[index].transactionDetails.from}`}
-                      >
-                        {reducedWalletAddress(
+                      {(() => {
+                        const fromUrl = explorerAddressUrl(
                           loopDate[index].transactionDetails.from
-                        )}
-                      </a>
+                        );
+                        return fromUrl ? (
+                          <a target="_blank" rel="noreferrer" href={fromUrl}>
+                            {reducedWalletAddress(
+                              loopDate[index].transactionDetails.from
+                            )}
+                          </a>
+                        ) : (
+                          reducedWalletAddress(
+                            loopDate[index].transactionDetails.from
+                          )
+                        );
+                      })()}
                     </div>
                     <div>To</div>
                     <div>
-                      <a
-                        target="_blank"
-                        href={`${process.env.NEXT_PUBLIC_POLYGON_SCANLINK}address/${loopDate[index].transactionDetails.to}`}
-                      >
-                        {reducedWalletAddress(
+                      {(() => {
+                        const toUrl = explorerAddressUrl(
                           loopDate[index].transactionDetails.to
-                        )}
-                      </a>
+                        );
+                        return toUrl ? (
+                          <a target="_blank" rel="noreferrer" href={toUrl}>
+                            {reducedWalletAddress(
+                              loopDate[index].transactionDetails.to
+                            )}
+                          </a>
+                        ) : (
+                          reducedWalletAddress(
+                            loopDate[index].transactionDetails.to
+                          )
+                        );
+                      })()}
                     </div>
                     <div>Amount</div>
                     <div>

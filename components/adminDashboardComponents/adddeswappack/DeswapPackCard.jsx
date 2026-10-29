@@ -39,7 +39,7 @@ const schema = Joi.object({
     "string.empty": `Currency Required`,
     "any.required": `Required Field`,
   }),
-  Bonous: Joi.number().required().max(7750).label("Bonus").messages({
+  Bonus: Joi.number().required().max(7750).label("Bonus").messages({
     "string.empty": `Bonus Required`,
     "any.required": `Required Field`,
   }),
@@ -74,7 +74,11 @@ function DeswapPackCard({ cardInfo, key, deleteClaimmingPack }) {
     setGetStatus(value);
   };
   const onSubmit = async (data) => {
-    data = { ...data, status: getStatus };
+    // ROUND 4: the rendered field is "Bonus", but the API/model field
+    // is still "Bonous" (models/deswapPack/packdetails.js, insert/update
+    // handlers). Map it here so the form rename never breaks submission.
+    const { Bonus, ...rest } = data;
+    data = { ...rest, Bonous: Bonus, status: getStatus };
     setStatusError(false);
     const updateData = { id: cardInfo._id, ...data };
     const sanData = await SanitizeRequestObject(updateData);
@@ -197,17 +201,17 @@ function DeswapPackCard({ cardInfo, key, deleteClaimmingPack }) {
             <div className="formInputs levelsinput">
               <input
                 type="text"
-                id="Bonous"
-                name="Bonous"
+                id="Bonus"
+                name="Bonus"
                 autoComplete="off"
-                {...register("Bonous")}
-                error={formState.errors.Bonous && true}
+                {...register("Bonus")}
+                error={formState.errors.Bonus && true}
                 defaultValue={cardInfo.Bonous}
                 disabled={cardInfo.Status == "Deactive"}
               />
               {/* <i>{percentIcon}</i> */}
-              {formState.errors.Bonous && (
-                <p>{formState.errors.Bonous.message}</p>
+              {formState.errors.Bonus && (
+                <p>{formState.errors.Bonus.message}</p>
               )}
             </div>
           </div>

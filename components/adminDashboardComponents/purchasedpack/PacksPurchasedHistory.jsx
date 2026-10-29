@@ -80,9 +80,10 @@ const PacksPurchasedHistory = () => {
                   : "N/A"}
               </td>
               <td>
-                {loopDate[index]?.UserID?.walletaddress[
-                  loopDate[index]?.UserID?.walletaddress
-                ] ? (
+                {loopDate[index]?.UserID?.walletaddress?.length ? (
+                  // ROUND 4: the old guard indexed the array by itself
+                  // (arr[arr] is always undefined), so this cell always
+                  // rendered "N/A". A non-empty wallet list renders.
                   (() => {
                     const holder =
                       loopDate[index].UserID.walletaddress[
@@ -130,25 +131,44 @@ const PacksPurchasedHistory = () => {
                   <div>
                     <div>From</div>
                     <div>
-                      <a
-                        target="_blank"
-                        href={`${process.env.NEXT_PUBLIC_POLYGON_SCANLINK}address/${loopDate[index].transactionDetails.from}`}
-                      >
-                        {reducedWalletAddress(
+                      {(() => {
+                        // ROUND 4: same rule as the holder/tx links above:
+                        // no explorer base means plain text, not a dead
+                        // in-app link that 404s.
+                        const fromUrl = explorerAddressUrl(
                           loopDate[index].transactionDetails.from
-                        )}
-                      </a>
+                        );
+                        return fromUrl ? (
+                          <a target="_blank" rel="noreferrer" href={fromUrl}>
+                            {reducedWalletAddress(
+                              loopDate[index].transactionDetails.from
+                            )}
+                          </a>
+                        ) : (
+                          reducedWalletAddress(
+                            loopDate[index].transactionDetails.from
+                          )
+                        );
+                      })()}
                     </div>
                     <div>To</div>
                     <div>
-                      <a
-                        target="_blank"
-                        href={`${process.env.NEXT_PUBLIC_POLYGON_SCANLINK}address/${loopDate[index].transactionDetails.to}`}
-                      >
-                        {reducedWalletAddress(
+                      {(() => {
+                        const toUrl = explorerAddressUrl(
                           loopDate[index].transactionDetails.to
-                        )}
-                      </a>
+                        );
+                        return toUrl ? (
+                          <a target="_blank" rel="noreferrer" href={toUrl}>
+                            {reducedWalletAddress(
+                              loopDate[index].transactionDetails.to
+                            )}
+                          </a>
+                        ) : (
+                          reducedWalletAddress(
+                            loopDate[index].transactionDetails.to
+                          )
+                        );
+                      })()}
                     </div>
                     <div>Amount</div>
                     <div>

@@ -45,7 +45,7 @@ function ActivatedPackListCard({
           </div>
         </div>
         <div className="levels">
-          <h5>Bonous</h5>
+          <h5>Bonus</h5>
           <h6>{Number(bonous).toFixed(2)} %</h6>
         </div>
         <div className="levels">

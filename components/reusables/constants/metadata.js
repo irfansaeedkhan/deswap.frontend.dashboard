@@ -121,7 +121,7 @@ export const MetaDataArr = [
     url: AppRoutes.admin.usersinfoUserID,
   },
   {
-    title: "Add Clamingpack",
+    title: "Add Claiming Pack",
     url: AppRoutes.admin.addclamingpack,
   },
   {

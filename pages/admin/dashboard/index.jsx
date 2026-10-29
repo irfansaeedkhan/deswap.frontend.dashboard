@@ -143,8 +143,17 @@ function Dashboard() {
           },
         }
       );
-      const data = await SanitizeRequestString(result.data.conversion);
-      await setTotalPackUSD(data);
+      const rate = await SanitizeRequestString(result.data.conversion);
+      // ROUND 4: the old code stored the conversion RATE itself (0.82) as
+      // the "Total Value Of All Packs Sold", so the card read 0.82 $
+      // next to Total Packs Sold 128450.75. The value is total x rate.
+      const total = Number(data);
+      const rateNum = Number(rate);
+      await setTotalPackUSD(
+        Number.isFinite(total) && Number.isFinite(rateNum)
+          ? total * rateNum
+          : rate
+      );
     } catch (e) {
       console.log(e);
     }
