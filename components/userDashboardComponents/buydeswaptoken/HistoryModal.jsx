@@ -9,6 +9,7 @@ import {
 import { myRewardsDate } from "../../../utils/common/date";
 import Pagination from "@/components/reusables/Pagination";
 import FailedToFetchData from "@/components/reusables/FailedToFetchData";
+import { explorerAddressUrl, explorerTxUrl } from "@/utils/common/walletaddress";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 function HistoryModal() {
@@ -35,21 +36,27 @@ function HistoryModal() {
           <tr>
             <td className="dark:text-gray-400 pr-6 text-left tracking-normal leading-4 xl:text-base lg:text-base text-sm font-semibold text-white">
               {data?.data[index]?.UserToPublicKey ? (
-                <a
-                  className="transactionhashlink"
-                  href={
-                    process.env.NEXT_PUBLIC_POLYGON_SCANLINK +
-                    "/address/" +
-                    data.data[index].UserToPublicKey
-                  }
-                  target="_blank"
-                >
-                  {data.data[index].UserToPublicKey
-                    ? data.data[index].UserToPublicKey.length > 18
-                      ? `${data.data[index].UserToPublicKey.slice(0, 10)}....${data.data[index].UserToPublicKey.slice(-8)}`
-                      : data.data[index].UserToPublicKey
-                    : "--"}
-                </a>
+                (() => {
+                  const holderText = data.data[index].UserToPublicKey.length > 18
+                    ? `${data.data[index].UserToPublicKey.slice(0, 10)}....${data.data[index].UserToPublicKey.slice(-8)}`
+                    : data.data[index].UserToPublicKey;
+                  // DEMO SAFETY (round 3): no explorer base configured in
+                  // this build means a link would resolve inside the app
+                  // and 404, so render plain text instead of a dead link.
+                  const explorerUrl = explorerAddressUrl(data.data[index].UserToPublicKey);
+                  return explorerUrl ? (
+                    <a
+                      className="transactionhashlink"
+                      href={explorerUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {holderText}
+                    </a>
+                  ) : (
+                    <span className="transactionhashlink">{holderText}</span>
+                  );
+                })()
               ) : (
                 "N/A"
               )}
@@ -75,21 +82,24 @@ function HistoryModal() {
             </td>
             <td className="dark:text-gray-400 pr-6 text-left tracking-normal leading-4 xl:text-base lg:text-base text-sm font-semibold text-white">
               {data?.data[index]?.IncommingTxHash ? (
-                <a
-                  className="transactionhashlink"
-                  href={
-                    process.env.NEXT_PUBLIC_POLYGON_SCANLINK +
-                    "/tx/" +
-                    data.data[index].IncommingTxHash
-                  }
-                  target="_blank"
-                >
-                  {data.data[index].IncommingTxHash
-                    ? data.data[index].IncommingTxHash.length > 18
-                      ? `${data.data[index].IncommingTxHash.slice(0, 10)}....${data.data[index].IncommingTxHash.slice(-8)}`
-                      : data.data[index].IncommingTxHash
-                    : "--"}
-                </a>
+                (() => {
+                  const hashText = data.data[index].IncommingTxHash.length > 18
+                    ? `${data.data[index].IncommingTxHash.slice(0, 10)}....${data.data[index].IncommingTxHash.slice(-8)}`
+                    : data.data[index].IncommingTxHash;
+                  const txUrl = explorerTxUrl(data.data[index].IncommingTxHash);
+                  return txUrl ? (
+                    <a
+                      className="transactionhashlink"
+                      href={txUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {hashText}
+                    </a>
+                  ) : (
+                    <span className="transactionhashlink">{hashText}</span>
+                  );
+                })()
               ) : (
                 "N/A"
               )}

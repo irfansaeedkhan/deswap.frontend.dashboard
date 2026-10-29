@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import HistoryModal from "./HistoryModal";
 import Historyicon from "@/assets/svgAssets/Historyicon";
@@ -138,6 +138,42 @@ function SwapTokenComponent({ toggleGraphView }) {
     bnb: "0,00",
     ntr: "0,00",
   });
+
+  // DEMO ONLY (round 3): the web3 balance fetch only runs after a wallet
+  // connect attempt or during a swap, so on plain page load with no wallet
+  // the card sat at the initial "0,00" forever and the round 2 fallback
+  // inside fetchAccountBalance never ran. On mount, with no wallet
+  // connected, load the dummy demo balances directly so the swap card
+  // shows working values. No wallet is connected and no chain call is
+  // made here; these are NOT real wallet balances.
+  useEffect(() => {
+    if (walletConnect.walletStatus) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const demoRes = await axios.post(
+          `${process.env.NEXT_PUBLIC_PLATFORM_URL}/api/users/demo-balances`,
+          {},
+          { withCredentials: true }
+        );
+        const balances = demoRes?.data?.demoBalances;
+        if (!cancelled && balances) {
+          setWalletBalances({
+            bnb: convertToEuro(Number(balances.matic).toFixed(4)),
+            ntr: convertToEuro(Number(balances.deswap).toFixed(4)),
+          });
+        }
+      } catch (e) {
+        console.log("Demo balance load unavailable", e);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+    // Run once on mount only: a later wallet connect overwrites these
+    // demo values through fetchAccountBalance.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [swapNTRValue, setSwapNTRValue] = useState("0,00");
   const [swapBNBValue, setSwapBNBValue] = useState("0,00");
 

@@ -3,7 +3,7 @@ import axios from "@/utils/common/axios";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { requestBodyEncryptionAdmin } from "@/utils/common/jwtToken";
-import { reducedWalletAddress } from "@/utils/common/walletaddress";
+import { reducedWalletAddress, explorerAddressUrl } from "@/utils/common/walletaddress";
 import Loader from "@/components/reusables/loader/Loader";
 import TableLoader from "@/components/reusables/loader/TableLoader";
 import { myRewardsDate, claimmedDate } from "@/utils/common/date";
@@ -79,14 +79,19 @@ function UserInfoData() {
     try {
       let walletdata = [];
       for (let wallet in walletlist) {
+        // DEMO SAFETY (round 3): with no explorer base configured, an
+        // explorer link resolves inside the app and 404s, so render the
+        // truncated address as plain text instead of a dead link.
+        const explorerUrl = explorerAddressUrl(walletlist[wallet]);
         walletdata.push(
           <div>
-            <a
-              target="_blank"
-              href={`${process.env.NEXT_PUBLIC_POLYGON_SCANLINK}address/${walletlist[wallet]}`}
-            >
-              {reducedWalletAddress(walletlist[wallet])}
-            </a>
+            {explorerUrl ? (
+              <a target="_blank" rel="noreferrer" href={explorerUrl}>
+                {reducedWalletAddress(walletlist[wallet])}
+              </a>
+            ) : (
+              reducedWalletAddress(walletlist[wallet])
+            )}
           </div>
         );
       }
@@ -405,6 +410,19 @@ function UserInfoData() {
   const createUserTable = async (dataForTable) => {
     try {
       let tableContent = [];
+      // ROUND 3: an empty data array used to leave a blank tbody with no
+      // message at all, which reads as "no user rows rendered". Show the
+      // explicit no-data card instead.
+      if (!dataForTable.data || dataForTable.data.length < 1) {
+        setuserstableList(
+          <tr>
+            <td className="text-center" colSpan={7}>
+              <NodataCard />
+            </td>
+          </tr>
+        );
+        return;
+      }
       for (let index in dataForTable.data) {
         //
         tableContent.push(
@@ -527,6 +545,16 @@ function UserInfoData() {
         progress: undefined,
         });
       console.log("Failed to fetch user info ", e);
+      // ROUND 3: previously a fetch failure left the table loader on
+      // screen forever, which reads as "no user rows rendered". Show an
+      // explicit failure state instead.
+      setuserstableList(
+        <tr>
+          <td className="text-center" colSpan={7}>
+            <FailedToFetchData />
+          </td>
+        </tr>
+      );
     }
   };
 

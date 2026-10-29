@@ -7,7 +7,7 @@ import TableLoader from "@/components/reusables/loader/TableLoader";
 import NodataCard from "@/components/reusables/NodataCard";
 import FailedToFetchData from "@/components/reusables/FailedToFetchData";
 import { myRewardsDate, claimmedDate } from "@/utils/common/date";
-import { reducedWalletAddress } from "@/utils/common/walletaddress";
+import { reducedWalletAddress, explorerAddressUrl, explorerTxUrl } from "@/utils/common/walletaddress";
 import {
   ConnectToWeb3,
   formatWei,
@@ -83,20 +83,23 @@ const PacksPurchasedHistory = () => {
                 {loopDate[index]?.UserID?.walletaddress[
                   loopDate[index]?.UserID?.walletaddress
                 ] ? (
-                  <a
-                    target="_blank"
-                    href={`${process.env.NEXT_PUBLIC_POLYGON_SCANLINK}address/${
+                  (() => {
+                    const holder =
                       loopDate[index].UserID.walletaddress[
                         loopDate[index].UserID.walletaddress.length - 1
-                      ]
-                    }`}
-                  >
-                    {reducedWalletAddress(
-                      loopDate[index].UserID.walletaddress[
-                        loopDate[index].UserID.walletaddress.length - 1
-                      ]
-                    )}
-                  </a>
+                      ];
+                    // DEMO SAFETY (round 3): no explorer base configured
+                    // means a link would resolve inside the app and 404,
+                    // so render plain text instead of a dead link.
+                    const explorerUrl = explorerAddressUrl(holder);
+                    return explorerUrl ? (
+                      <a target="_blank" rel="noreferrer" href={explorerUrl}>
+                        {reducedWalletAddress(holder)}
+                      </a>
+                    ) : (
+                      reducedWalletAddress(holder)
+                    );
+                  })()
                 ) : (
                   "N/A"
                 )}
@@ -108,12 +111,16 @@ const PacksPurchasedHistory = () => {
               </td>
               <td>
                 {loopDate[index]?.TxHash ? (
-                  <a
-                    target="_blank"
-                    href={`${process.env.NEXT_PUBLIC_POLYGON_SCANLINK}tx/${loopDate[index].TxHash}`}
-                  >
-                    {reducedWalletAddress(loopDate[index].TxHash)}
-                  </a>
+                  (() => {
+                    const txUrl = explorerTxUrl(loopDate[index].TxHash);
+                    return txUrl ? (
+                      <a target="_blank" rel="noreferrer" href={txUrl}>
+                        {reducedWalletAddress(loopDate[index].TxHash)}
+                      </a>
+                    ) : (
+                      reducedWalletAddress(loopDate[index].TxHash)
+                    );
+                  })()
                 ) : (
                   "N/A"
                 )}
@@ -347,7 +354,7 @@ const PacksPurchasedHistory = () => {
                 <th>TxHash</th>
                 <th>Block chain details</th>
                 <th>Purchased On</th>
-                <th>Staus</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>{claimmedPackList}</tbody>

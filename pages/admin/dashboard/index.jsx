@@ -13,7 +13,7 @@ import {
   SanitizeRequestObject,
   SanitizeRequestString,
 } from "../../../utils/common/sanitize";
-import { reducedWalletAddress } from "@/utils/common/walletaddress";
+import { reducedWalletAddress, explorerAddressUrl } from "@/utils/common/walletaddress";
 import moment from "moment";
 import Pagination from "@/components/reusables/Pagination";
 import { maticToDollar } from "../../../utils/common/tokenconversion";
@@ -248,27 +248,34 @@ function Dashboard() {
                                 {data?.UserID?.walletaddress[
                                   data?.UserID?.walletaddress.length - 1
                                 ] ? (
-                                  <a
-                                    target="_blank"
-                                    href={`${
-                                      process.env.NEXT_PUBLIC_POLYGON_SCANLINK
-                                    }address/${
+                                  (() => {
+                                    const holder =
                                       data.UserID.walletaddress[
                                         data.UserID.walletaddress.length - 1
-                                      ]
-                                    }`}
-                                  >
-                                    {reducedWalletAddress(
-                                      data.UserID.walletaddress[
-                                        data.UserID.walletaddress.length - 1
-                                      ]
-                                    )}
-                                  </a>
+                                      ];
+                                    // DEMO SAFETY (round 3): no explorer
+                                    // base configured means a link would
+                                    // resolve inside the app and 404, so
+                                    // render plain text instead.
+                                    const explorerUrl =
+                                      explorerAddressUrl(holder);
+                                    return explorerUrl ? (
+                                      <a
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        href={explorerUrl}
+                                      >
+                                        {reducedWalletAddress(holder)}
+                                      </a>
+                                    ) : (
+                                      reducedWalletAddress(holder)
+                                    );
+                                  })()
                                 ) : (
                                   "N/A"
                                 )}
                               </td>
-                              <td>{data.DAW ? data.DAW.toFixed(6) : "N/A"}</td>
+                              <td>{data.DAW ? data.DAW.toFixed(2) : "N/A"}</td>
                               <td>In {moment(data.created_at).fromNow()}</td>
                               <td>{data.Status === "Claimmed" ? "Claimed" : data.Status}</td>
                               <td>

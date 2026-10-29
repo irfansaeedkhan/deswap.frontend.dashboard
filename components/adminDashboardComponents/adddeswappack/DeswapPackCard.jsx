@@ -39,7 +39,7 @@ const schema = Joi.object({
     "string.empty": `Currency Required`,
     "any.required": `Required Field`,
   }),
-  Bonous: Joi.number().required().max(7750).label("Bonous").messages({
+  Bonous: Joi.number().required().max(7750).label("Bonus").messages({
     "string.empty": `Bonus Required`,
     "any.required": `Required Field`,
   }),
