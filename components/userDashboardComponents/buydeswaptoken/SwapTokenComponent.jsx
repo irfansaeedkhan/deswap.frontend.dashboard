@@ -407,13 +407,34 @@ function SwapTokenComponent({ toggleGraphView }) {
       //
 
       let BNBBalance = await fetchMaticBalance();
+      let NTRBalance0 = await fetchDeswapBalance();
+      // DEMO ONLY: no wallet is connected and no chain call is made here.
+      // When the web3 balance calls return 0 (no wallet), fall back to the
+      // dummy demo balances so the demo swap screen shows working values.
+      // These are NOT real wallet balances and must never be presented as
+      // on-chain activity.
+      if (!BNBBalance && !NTRBalance0) {
+        try {
+          const demoRes = await axios.post(
+            `${process.env.NEXT_PUBLIC_PLATFORM_URL}/api/users/demo-balances`,
+            {},
+            { withCredentials: true }
+          );
+          if (demoRes?.data?.demoBalances) {
+            BNBBalance = demoRes.data.demoBalances.matic;
+            NTRBalance0 = demoRes.data.demoBalances.deswap;
+          }
+        } catch (e) {
+          console.log("Demo balance fallback unavailable", e);
+        }
+      }
 
       let walletbalancesFetched = {
         ...walletBalance,
         bnb: convertToEuro(BNBBalance.toFixed(4)),
       };
       await setWalletBalances(walletbalancesFetched);
-      let NTRBalance = await fetchDeswapBalance();
+      let NTRBalance = NTRBalance0 || (await fetchDeswapBalance());
       walletbalancesFetched = {
         ...walletbalancesFetched,
         ntr: convertToEuro(NTRBalance.toFixed(4)),

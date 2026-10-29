@@ -33,7 +33,7 @@ const ClaimmedGraph = (props) => {
   const [users,setUsers]=useState([]);
   const [labelss,setLabels]=useState([])
   const [data,setData]=useState({labels:[],datasets: [{
-    label: "Total Value of Claimmed Network Rewards",
+    label: "Total Value of Claimed Network Rewards",
     fill: false,
     borderColor: '#0494E8',
     data: [],
@@ -90,7 +90,7 @@ const ClaimmedGraph = (props) => {
         }
         setLabels( labelss );
         setData({labels:labelss,datasets: [{
-          label: "Total Value of Claimmed Network Rewards",
+          label: "Total Value of Claimed Network Rewards",
           fill: false,
           borderColor: '#0494E8',
           data: arr,
@@ -106,7 +106,7 @@ const ClaimmedGraph = (props) => {
       <span className="">
         <span className="row">
             <span className="col-9">
-                  <p className="CardContainer">Total Value of Claimmed Network Rewards</p>
+                  <p className="CardContainer">Total Value of Claimed Network Rewards</p>
                   </span>
                   <span className="col-3 text-right">
             <MonthDropdown onSelectIndex={(index)=>{fetchTotalRewards(index)}} />

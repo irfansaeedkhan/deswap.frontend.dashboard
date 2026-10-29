@@ -92,7 +92,7 @@ function SwapMaticToDaw() {
     <div className="SwapMDContainer">
       <div className="SwapMDInner">
         <div className="title">
-          <h1>Claimmed Network Rewards</h1>
+          <h1>Claimed Network Rewards</h1>
         </div>
         <div className="SwapMDMain">
           <div className="GraphtableContainer rounded-2xl sm:overflow-x-scroll md:overflow-hidden customScrollOntables">

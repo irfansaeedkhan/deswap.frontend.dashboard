@@ -169,7 +169,7 @@ function NetworkRewards() {
             <tr>
               <th>Holders</th>
               <th>Amount(DAW)</th>
-              <th>Unclock Date</th>
+              <th>Unlock Date</th>
               <th>Status</th>
             </tr>
           </thead>

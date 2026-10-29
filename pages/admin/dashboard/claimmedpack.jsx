@@ -22,7 +22,7 @@ function ClaimmedPack() {
     <div className="NetworkRewardsContainer">
       <div className="NetworkRewardsInner">
         <div className="title">
-          <h1>Claimmed Network Rewards</h1>
+          <h1>Claimed Network Rewards</h1>
         </div>
         <div className="NetworkRewardsMain">
           <div className="GraphtableContainer rounded-2xl sm:overflow-x-scroll md:overflow-hidden customScrollOntables">

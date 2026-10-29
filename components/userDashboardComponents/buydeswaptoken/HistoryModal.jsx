@@ -45,16 +45,9 @@ function HistoryModal() {
                   target="_blank"
                 >
                   {data.data[index].UserToPublicKey
-                    ? data.data[index].UserToPublicKey.slice(
-                        0,
-                        data.data[index].UserToPublicKey.length - 76
-                      ).concat(
-                        "...." +
-                          data.data[index].UserToPublicKey.slice(
-                            38,
-                            data.data[index].UserToPublicKey.length
-                          )
-                      )
+                    ? data.data[index].UserToPublicKey.length > 18
+                      ? `${data.data[index].UserToPublicKey.slice(0, 10)}....${data.data[index].UserToPublicKey.slice(-8)}`
+                      : data.data[index].UserToPublicKey
                     : "--"}
                 </a>
               ) : (
@@ -92,16 +85,9 @@ function HistoryModal() {
                   target="_blank"
                 >
                   {data.data[index].IncommingTxHash
-                    ? data.data[index].IncommingTxHash.slice(
-                        0,
-                        data.data[index].IncommingTxHash.length - 124
-                      ).concat(
-                        "...." +
-                          data.data[index].IncommingTxHash.slice(
-                            62,
-                            data.data[index].IncommingTxHash.length
-                          )
-                      )
+                    ? data.data[index].IncommingTxHash.length > 18
+                      ? `${data.data[index].IncommingTxHash.slice(0, 10)}....${data.data[index].IncommingTxHash.slice(-8)}`
+                      : data.data[index].IncommingTxHash
                     : "--"}
                 </a>
               ) : (

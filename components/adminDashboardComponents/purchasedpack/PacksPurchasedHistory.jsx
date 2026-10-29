@@ -169,7 +169,7 @@ const PacksPurchasedHistory = () => {
                       : "locked"
                   }`}
                 >
-                  {loopDate[index].Status}
+                  {loopDate[index].Status === "Claimmed" ? "Claimed" : loopDate[index].Status}
                 </button>
               </td>
             </tr>
@@ -198,7 +198,7 @@ const PacksPurchasedHistory = () => {
                             <td>{data?.created_at ? myRewardsDate(data.created_at) : "N/A"}</td>
                             <td>
                                 <button className={`${data.Status == 'Active' || data.Status == 'Claimmed' ? 'Unlocked' : 'locked'}`}>
-                                    {data.Status}
+                                    {data.Status === "Claimmed" ? "Claimed" : data.Status}
                                 </button>
                             </td>
                         </tr>

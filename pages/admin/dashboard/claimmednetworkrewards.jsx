@@ -112,7 +112,7 @@ function ClaimmedNetworkRewards() {
     <div className="ClaimmedNetworkRewardsContainer">
       <div className="ClaimmedNetworkRewardsInner">
         <div className="title">
-          <h1>Claimmed Network Rewards</h1>
+          <h1>Claimed Network Rewards</h1>
         </div>
         <div className="ClaimmedNetworkRewardsMain">
           <div className="GraphtableContainer rounded-2xl sm:overflow-x-scroll md:overflow-hidden customScrollOntables">
@@ -137,7 +137,7 @@ function ClaimmedNetworkRewards() {
                   type="button"
                   className={`nav-link ${displayNRTable && "active"}`}
                 >
-                  History Claimmed Network Rewards Table
+                  History Claimed Network Rewards Table
                 </button>
               </li>
               <li
@@ -150,7 +150,7 @@ function ClaimmedNetworkRewards() {
                   type="button"
                   className={`nav-link ${!displayNRTable && "active"}`}
                 >
-                  Requested Claimmed Network Rewards Table
+                  Requested Claimed Network Rewards Table
                 </button>
               </li>
             </ul>

@@ -609,7 +609,7 @@ const PacksClaimRequest = () => {
                         : "locked"
                     }`}
                   >
-                    {data.Status}
+                    {data.Status === "Claimmed" ? "Claimed" : data.Status}
                   </button>
                 </td>
                 <td>

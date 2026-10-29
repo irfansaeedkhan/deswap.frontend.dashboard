@@ -274,7 +274,7 @@ function SwapRequested() {
                 </div>
               </td>
               <td>
-                {loopDate[index]?.Status ? loopDate[index].Status : "N/A"}
+                {loopDate[index]?.Status ? (loopDate[index].Status === "Claimmed" ? "Claimed" : loopDate[index].Status) : "N/A"}
               </td>
               <td>
                 {loopDate[index]?.requestRejectIssueDescription
@@ -406,7 +406,7 @@ function SwapRequested() {
                 <th>Email ID</th>
                 <th>Public Key</th>
                 <th>Datetime</th>
-                <th>Incomming txhash</th>
+                <th>Incoming txhash</th>
                 <th>Web3 Incoming details</th>
                 <th>Outgoing txhash</th>
                 <th>Web3 Outgoing details</th>

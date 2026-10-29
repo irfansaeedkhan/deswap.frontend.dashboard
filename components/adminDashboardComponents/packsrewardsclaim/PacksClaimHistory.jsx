@@ -102,7 +102,7 @@ const PacksClaimHistory = () => {
                       : "locked"
                   }`}
                 >
-                  {loopDate[index].Status}
+                  {loopDate[index].Status === "Claimmed" ? "Claimed" : loopDate[index].Status}
                 </button>
               </td>
             </tr>

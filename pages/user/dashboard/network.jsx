@@ -59,7 +59,7 @@ function Network({ users }) {
         cross={true}
         onClose={() => setShowSuccess(false)}
       >
-        <h1>dfdf</h1>
+        <h1>Success</h1>
       </Modal>
       <ToastContainer
         position="top-center"

@@ -52,7 +52,7 @@ function ClaimmedNetworkRewardsHistory() {
                             }
 
                         </td>
-                        <td>{data[index]?.Status ? data[index]?.Status : "N/A"}</td>
+                        <td>{data[index]?.Status ? (data[index]?.Status === "Claimmed" ? "Claimed" : data[index]?.Status) : "N/A"}</td>
                     </tr>
                 )
             }

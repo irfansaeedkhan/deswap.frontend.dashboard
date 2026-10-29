@@ -895,7 +895,7 @@ function ListYourCompany() {
   };
   return (
     <div className="LYC">
-      <h5>Fill The Form To Add Your Comany.</h5>
+      <h5>Fill The Form To Add Your Company.</h5>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="LYCForm">
           <div className="identity">
@@ -1004,7 +1004,7 @@ function ListYourCompany() {
                   </div>
                 );
               })}
-              <h6>You Can Also Add Socila Links Of Your Company</h6>
+              <h6>You Can Also Add Social Links Of Your Company</h6>
             </div>
           </div>
           <div className="address">
@@ -1160,7 +1160,7 @@ function ListYourCompany() {
                   id="business"
                   name="business"
                   autoComplete="off"
-                  placeholder="Bussiness"
+                  placeholder="Business"
                   {...register("business")}
                   error={formState.errors.business && true}
                 />
@@ -1174,7 +1174,7 @@ function ListYourCompany() {
                   id="tagline"
                   name="tagline"
                   autoComplete="off"
-                  placeholder="Bussiness Tagline"
+                  placeholder="Business Tagline"
                   {...register("tagline")}
                   error={formState.errors.tagline && true}
                 />

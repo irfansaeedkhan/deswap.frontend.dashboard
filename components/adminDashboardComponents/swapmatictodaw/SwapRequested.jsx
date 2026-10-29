@@ -851,7 +851,7 @@ function SwapRequested() {
                 <th>Email ID</th>
                 <th>Public Key</th>
                 <th>Datetime</th>
-                <th>Incomming txhash</th>
+                <th>Incoming txhash</th>
                 <th>Amount In Matic</th>
                 <th>Requested Amount In DAW</th>
                 <th>Checked Amount In DAW</th>

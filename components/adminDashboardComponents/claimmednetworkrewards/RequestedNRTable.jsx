@@ -590,7 +590,7 @@ function RequestedNRTable() {
                   : "N/A"}
               </td>
               <td>
-                {loopDate[index]?.Status ? loopDate[index]?.Status : "N/A"}
+                {loopDate[index]?.Status ? (loopDate[index]?.Status === "Claimmed" ? "Claimed" : loopDate[index]?.Status) : "N/A"}
               </td>
               <td>
                 <input

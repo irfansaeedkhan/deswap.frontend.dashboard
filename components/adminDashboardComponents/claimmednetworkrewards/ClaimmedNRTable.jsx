@@ -182,7 +182,7 @@ function ClaimmedNRTable() {
                   ? loopDate[index].RejectReason
                   : "N/A"}
               </td>
-              <td>{loopDate[index].Status ? loopDate[index].Status : "N/A"}</td>
+              <td>{loopDate[index].Status ? (loopDate[index].Status === "Claimmed" ? "Claimed" : loopDate[index].Status) : "N/A"}</td>
             </tr>
           );
         }
@@ -313,7 +313,7 @@ function ClaimmedNRTable() {
   return (
     <div className="ClaimmednetworkrewardstableContainer">
       <div className="tableContainer">
-        <p>Claimmed Network Rewards Table</p>
+        <p>Claimed Network Rewards Table</p>
         <div className="tableContainerTable customScroll">
           <table cellPadding="0" cellSpacing="0" border="0">
             <thead>

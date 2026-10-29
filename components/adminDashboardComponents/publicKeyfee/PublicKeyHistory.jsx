@@ -224,7 +224,7 @@ function PublickeyFeeHistory() {
                     loopDate[index].Status
                   ) : (
                     <div>
-                    {loopDate[index].Status}<br/>
+                    {loopDate[index].Status === "Claimmed" ? "Claimed" : loopDate[index].Status}<br/>
                       <span style={{ color: "#e44757", fontWeight: "700" }}>
                         Reason:
                       </span>{" "}

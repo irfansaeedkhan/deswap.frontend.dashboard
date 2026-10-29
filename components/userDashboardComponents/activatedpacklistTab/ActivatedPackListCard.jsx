@@ -19,7 +19,7 @@ function ActivatedPackListCard({
   daw,
   status,
 }) {
-  let buttonText = status == "Active" ? "Claim" : "Claimmed";
+  let buttonText = status == "Active" ? "Claim" : "Claimed";
   const dawNum = Number(daw) || 0;
   const bonusNum = Number(bonous) || 0;
   const earnedDaw = dawNum + dawNum * (bonusNum / 100);

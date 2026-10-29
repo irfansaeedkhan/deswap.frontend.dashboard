@@ -11,7 +11,7 @@ function PurchasedNftLicense() {
     <div className="PurchasedNftLicenseContainer">
       <div className="PurchasedNftLicenseInner">
         <div className="title">
-          <h1>Claimmed Network Rewards</h1>
+          <h1>Claimed Network Rewards</h1>
         </div>
         <div className="PurchasedNftLicenseMain">
           <div className="tabsContainer">

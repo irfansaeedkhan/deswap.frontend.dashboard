@@ -194,7 +194,7 @@ function Dashboard() {
                 <div className="CardInner">
                   <div className="content">
                     <p>Total Packs Sold</p>
-                    <h1>{totalPackData && totalPackData.toFixed(6)} </h1>
+                    <h1>{totalPackData && totalPackData.toFixed(2)} </h1>
                   </div>
                 </div>
               </div>
@@ -202,7 +202,7 @@ function Dashboard() {
                 <div className="CardInner">
                   <div className="content">
                     <p>Total Value Of All Packs Sold</p>
-                    <h1>{totalPackUSD ? totalPackUSD.toFixed(6) : "N/A"} $</h1>
+                    <h1>{totalPackUSD ? totalPackUSD.toFixed(2) : "N/A"} $</h1>
                   </div>
                 </div>
               </div>
@@ -234,7 +234,7 @@ function Dashboard() {
                     <tr>
                       <th>Holders</th>
                       <th>Amount(DAW)</th>
-                      <th>Unclock Date</th>
+                      <th>Unlock Date</th>
                       <th>Current Status</th>
                       <th>Status</th>
                     </tr>
@@ -270,7 +270,7 @@ function Dashboard() {
                               </td>
                               <td>{data.DAW ? data.DAW.toFixed(6) : "N/A"}</td>
                               <td>In {moment(data.created_at).fromNow()}</td>
-                              <td>{data.Status}</td>
+                              <td>{data.Status === "Claimmed" ? "Claimed" : data.Status}</td>
                               <td>
                                 {moment(moment.now()).diff(
                                   new Date(data.created_at),

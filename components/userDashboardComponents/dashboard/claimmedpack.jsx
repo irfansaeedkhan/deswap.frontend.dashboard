@@ -160,7 +160,7 @@ function ClaimmedPack() {
           <thead>
             <tr>
               <th>Amount(DAW)</th>
-              <th>Bonous</th>
+              <th>Bonus</th>
               <th>Txhash</th>
               <th>Timestamp</th>
             </tr>

@@ -30,8 +30,10 @@ function ActivePack() {
           <tr>
             <td>
               {data[index].TotalAmount && data[index].PackID.Bonous
-                ? data[index].TotalAmount +
-                  (data[index].TotalAmount * data[index].PackID.Bonous) / 100
+                ? Number(
+                    data[index].TotalAmount +
+                      (data[index].TotalAmount * data[index].PackID.Bonous) / 100
+                  ).toFixed(2)
                 : "N/A"}
             </td>
             <td>
@@ -159,7 +161,7 @@ function ActivePack() {
           <thead>
             <tr>
               <th>Amount(DAW)</th>
-              <th>Unclock Date</th>
+              <th>Unlock Date</th>
               <th>Status</th>
             </tr>
           </thead>
